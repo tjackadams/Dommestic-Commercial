@@ -1,0 +1,27 @@
+{
+  "name": "dcds",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "grommet": "^1.7.0",
+    "grommet-css": "^1.6.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-ga": "^2.2.0",
+    "react-google-maps": "^7.2.0",
+    "react-helmet": "4",
+    "react-loadable": "^4.0.5",
+    "react-router-dom": "next",
+    "react-scripts": "1.0.12",
+    "react-snapshot": "^1.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build && react-snapshot && node critical.js",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "critical": "^0.9.0"
+  }
+}
