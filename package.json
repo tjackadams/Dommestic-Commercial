@@ -13,6 +13,10 @@
   "dependencies": {
     "@uifabric/fluent-theme": "^0.16.7",
     "gatsby": "^2.4.0",
+    "gatsby-image": "^2.2.18",
+    "gatsby-plugin-sharp": "^2.2.21",
+    "gatsby-source-filesystem": "^2.1.22",
+    "gatsby-transformer-sharp": "^2.2.14",
     "office-ui-fabric-react": "^6.176.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
