@@ -1,27 +1,24 @@
 {
-  "name": "dcds",
-  "version": "0.1.0",
+  "name": "domestic-commercial",
   "private": true,
-  "dependencies": {
-    "grommet": "^1.7.0",
-    "grommet-css": "^1.6.0",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-ga": "^2.2.0",
-    "react-google-maps": "^7.2.0",
-    "react-helmet": "4",
-    "react-loadable": "^4.0.5",
-    "react-router-dom": "next",
-    "react-scripts": "1.0.12",
-    "react-snapshot": "^1.1.0"
-  },
+  "description": "Dommestic & Commercial Drain Services",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && react-snapshot && node critical.js",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write src/**/*.{js,jsx}",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+  },
+  "dependencies": {
+    "@uifabric/fluent-theme": "^0.16.7",
+    "gatsby": "^2.4.0",
+    "office-ui-fabric-react": "^6.176.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
-    "critical": "^0.9.0"
+    "gatsby-plugin-typescript": "^2.0.13",
+    "prettier": "^1.17.0"
   }
 }
