@@ -30,3 +30,8 @@ html,
   background-color: #f4f4f4;
   margin: 0;
 }
+
+a.active > span {
+  color: rgb(60, 60, 60);
+  border-bottom: 1px solid rgb(60, 60, 60);
+}

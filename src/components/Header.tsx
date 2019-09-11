@@ -3,11 +3,12 @@ import {
   DefaultPalette,
   FontSizes,
   FontWeights,
-  Link,
+  Icon,
   Stack,
   Text,
   ITextStyles,
 } from "office-ui-fabric-react"
+import { Link, animateScroll as scroll } from "react-scroll"
 
 const linkStyles: ITextStyles = {
   root: {
@@ -25,7 +26,7 @@ const linkStyles: ITextStyles = {
   },
 }
 
-const Header = () => {
+const Header = props => {
   return (
     <Stack
       horizontal
@@ -63,23 +64,44 @@ const Header = () => {
           styles={{ root: { paddingTop: 4 } }}
         >
           <Stack.Item>
-            <Link href="/">
+                      <Link activeClass="active" to="home" spy smooth offset={-70}>
               <Text styles={linkStyles}>Home</Text>
-            </Link>
+                      </Link>
           </Stack.Item>
           <Stack.Item>
-            <Link href="#services">
+            <Link activeClass="active" to="services" spy smooth offset={-70}>
               <Text styles={linkStyles}>Services</Text>
             </Link>
           </Stack.Item>
           <Stack.Item>
-            <Link href="/">
+            <Link activeClass="active" to="contact" smooth offset={-70}>
               <Text styles={linkStyles}>Contact</Text>
             </Link>
           </Stack.Item>
         </Stack>
       </Stack.Item>
-      <Stack.Item grow={2}></Stack.Item>
+      <Stack.Item grow={2}>
+        <Icon
+          iconName="Phone"
+          styles={{
+            root: {
+              fontSize: FontSizes.xLarge,
+              position: "relative",
+              top: 3,
+            },
+          }}
+        />
+        <Text
+          styles={{
+            root: {
+              marginLeft: 10,
+              fontSize: FontSizes.xLarge,
+            },
+          }}
+        >
+          07974 243764
+        </Text>
+      </Stack.Item>
     </Stack>
   )
 }

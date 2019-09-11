@@ -1,6 +1,25 @@
 const path = require("path")
 
 module.exports = {
+  siteMetadata: {
+    title: "Domestic & Commercial Drain Services",
+    description: "",
+    siteUrl: "https://www.dudleydrains.com",
+    image: "",
+    author: {
+      name: "",
+      minibio: "",
+    },
+    organization: {
+      name: "Domestic & Commercial Drain Services",
+      url: "https://www.dudleydrains.com",
+      logo: "",
+    },
+    social: {
+      twitter: "",
+      fbAppID: "",
+    },
+  },
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,
@@ -11,6 +30,14 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-react-helmet`,
     `gatsby-plugin-typescript`,
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        policy: [{ userAgent: "*", allow: "/" }],
+      },
+    },
   ],
 }
