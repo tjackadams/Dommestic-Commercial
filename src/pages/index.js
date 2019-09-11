@@ -8,6 +8,8 @@ import {
   Separator,
   Stack,
   Text,
+  TextField,
+  PrimaryButton,
 } from "office-ui-fabric-react"
 import { Card } from "@uifabric/react-cards"
 import { initializeIcons } from "@uifabric/icons"
@@ -19,6 +21,27 @@ import "./index.css"
 initializeIcons()
 
 const App = props => {
+  const [state, setState] = React.useState({})
+
+  const handleChange = e => {
+    setState({ ...state, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    const form = e.target
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({
+        "form-name": form.getAttribute("name"),
+        ...state,
+      }),
+    })
+      .then(() => alert("success"))
+      .catch(err => alert(error))
+  }
+
   console.log("props: ", props)
   return (
     <Layout banner={props.data.drainBanner.childImageSharp.fluid}>
@@ -230,7 +253,43 @@ const App = props => {
         </Stack>
         <Stack.Item>
           <div id="contact">
-            <div></div>
+            <Stack horizontal horizontalAlign="center">
+              <Stack.Item></Stack.Item>
+              <Stack.Item>
+                <form
+                  name="contact"
+                  method="POST"
+                  data-netlify="true"
+                  data-netlify-honeypot="bot-field"
+                >
+                  <input type="hidden" name="form-name" value="contact" />
+
+                  <p>
+                    <TextField label="Full Name" name="fullname" required />
+                  </p>
+                  <p>
+                    <TextField
+                      label="Phone Number"
+                      name="phonenumber"
+                      required
+                    />
+                  </p>
+                  <p>
+                    <TextField
+                      label="Enquiry"
+                      name="enquiry"
+                      required
+                      multiline={true}
+                      rows={5}
+                      resizable={false}
+                    />
+                  </p>
+                  <div style={{ float: "right" }}>
+                    <PrimaryButton type="submit">Send</PrimaryButton>
+                  </div>
+                </form>
+              </Stack.Item>
+            </Stack>
           </div>
         </Stack.Item>
       </Stack>
