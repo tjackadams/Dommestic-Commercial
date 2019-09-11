@@ -5,15 +5,18 @@ import {
   DefaultPalette,
   FontSizes,
   FontWeights,
+  Link,
   Separator,
   Stack,
   Text,
   TextField,
   PrimaryButton,
+  Icon,
 } from "office-ui-fabric-react"
 import { Card } from "@uifabric/react-cards"
 import { initializeIcons } from "@uifabric/icons"
 
+import { ContactForm } from "../components"
 import Layout from "../components/Layout"
 
 import "./index.css"
@@ -21,27 +24,6 @@ import "./index.css"
 initializeIcons()
 
 const App = props => {
-  const [state, setState] = React.useState({})
-
-  const handleChange = e => {
-    setState({ ...state, [e.target.name]: e.target.value })
-  }
-
-  const handleSubmit = e => {
-    e.preventDefault()
-    const form = e.target
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({
-        "form-name": form.getAttribute("name"),
-        ...state,
-      }),
-    })
-      .then(() => alert("success"))
-      .catch(err => alert(error))
-  }
-
   console.log("props: ", props)
   return (
     <Layout banner={props.data.drainBanner.childImageSharp.fluid}>
@@ -253,41 +235,86 @@ const App = props => {
         </Stack>
         <Stack.Item>
           <div id="contact">
-            <Stack horizontal horizontalAlign="center">
-              <Stack.Item></Stack.Item>
+            <Stack
+              horizontal
+              horizontalAlign="space-between"
+              tokens={{ childrenGap: 40 }}
+            >
               <Stack.Item>
-                <form
-                  name="contact"
-                  method="POST"
-                  data-netlify="true"
-                  data-netlify-honeypot="bot-field"
+                <Text as="h2" block variant="xxLarge">
+                  Areas we Service
+                </Text>
+                <Text as="p" block>
+                  Dudley
+                  <br />
+                  Wolverhampton
+                  <br />
+                  Cradley Heath
+                  <br />
+                  Halesowen
+                  <br />
+                  Netherton
+                  <br />
+                  Stourbridge
+                  <br />
+                  Tipton
+                </Text>
+                <Text block>
+                  Can't see your area listed above?
+                  <br />
+                  We may still be able to help. Please do not hesitate to
+                  contact us with your enquiry.
+                </Text>
+                <Text as="h2" block variant="xxLarge">
+                  Contact Information
+                </Text>
+                <Text
+                  block
+                  styles={{ root: { fontWeight: FontWeights.semibold } }}
                 >
-                  <input type="hidden" name="form-name" value="contact" />
-
-                  <p>
-                    <TextField label="Full Name" name="fullname" required />
-                  </p>
-                  <p>
-                    <TextField
-                      label="Phone Number"
-                      name="phonenumber"
-                      required
-                    />
-                  </p>
-                  <p>
-                    <TextField
-                      label="Enquiry"
-                      name="enquiry"
-                      required
-                      multiline={true}
-                      rows={5}
-                      resizable={false}
-                    />
-                  </p>
-                  <div style={{ float: "right" }}>
-                    <PrimaryButton type="submit">Send</PrimaryButton>
-                  </div>
-                </form>
+                  Domestic &#38; Commercial Drain Services
+                </Text>
+                <Text as="p" block>
+                  67 Merryfield Road
+                  <br />
+                  Dudley
+                  <br />
+                  West Midlands
+                  <br />
+                  DY1 2ND
+                  <br />
+                </Text>
+                <div style={{ paddingTop: 4 }}>
+                  <Icon
+                    iconName="phone"
+                    styles={{ root: { position: "relative", top: 2 } }}
+                  />
+                  <Text styles={{ root: { marginLeft: 4 } }}>01384 357446</Text>
+                </div>
+                <div style={{ paddingTop: 4 }}>
+                  <Icon
+                    iconName="phone"
+                    styles={{ root: { position: "relative", top: 2 } }}
+                  />
+                  <Text styles={{ root: { marginLeft: 4 } }}>07974 243764</Text>
+                </div>
+                <div style={{ paddingTop: 4 }}>
+                  <Icon
+                    iconName="mail"
+                    styles={{ root: { position: "relative", top: 2 } }}
+                  />
+                  <Link as="a" href="mailto:stevetomkins53@gmail.com">
+                    <Text styles={{ root: { marginLeft: 4 } }}>
+                      stevetomkins53@gmail.com
+                    </Text>
+                  </Link>
+                </div>
+              </Stack.Item>
+              <Stack.Item>
+                <Text as="h2" block variant="xxLarge">
+                  Contact us
+                </Text>
+                <ContactForm />
               </Stack.Item>
             </Stack>
           </div>

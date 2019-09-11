@@ -55,6 +55,9 @@ const Layout = props => {
             {props.children}
           </Stack.Item>
         </Stack>
+        <Stack horizontalAlign="center">
+          <Stack.Item>hi</Stack.Item>
+        </Stack>
       </Stack>
     </div>
   )

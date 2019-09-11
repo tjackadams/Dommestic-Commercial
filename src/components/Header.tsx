@@ -8,7 +8,7 @@ import {
   Text,
   ITextStyles,
 } from "office-ui-fabric-react"
-import { Link, animateScroll as scroll } from "react-scroll"
+import { Link } from "react-scroll"
 
 const linkStyles: ITextStyles = {
   root: {
@@ -53,7 +53,7 @@ const Header = props => {
           as="h1"
           styles={{ root: { fontWeight: FontWeights.semibold } }}
         >
-          Dudley
+          West Midlands
         </Text>
       </Stack.Item>
       <Stack.Item grow>
@@ -64,9 +64,9 @@ const Header = props => {
           styles={{ root: { paddingTop: 4 } }}
         >
           <Stack.Item>
-                      <Link activeClass="active" to="home" spy smooth offset={-70}>
+            <Link activeClass="active" to="home" spy smooth offset={-70}>
               <Text styles={linkStyles}>Home</Text>
-                      </Link>
+            </Link>
           </Stack.Item>
           <Stack.Item>
             <Link activeClass="active" to="services" spy smooth offset={-70}>

@@ -29,6 +29,12 @@ const schema = Yup.object().shape({
     .required("Please ensure enquiry is filled out."),
 })
 
+const encode = data => {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&")
+}
+
 const ContactForm = () => {
   return (
     <Formik
@@ -38,9 +44,19 @@ const ContactForm = () => {
         enquiry: "",
       }}
       validationSchema={schema}
-      onSubmit={values => {}}
+      onSubmit={values => {
+        console.log("values: ", values)
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: encode({ values }),
+        })
+          .then(() => alert("success"))
+          .catch(err => alert(err))
+      }}
       render={({ values, touched, errors, ...props }) => (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={props.handleSubmit} style={{ width: "320px" }}>
+          <input type="hidden" name="form-name" value="contact" />
           <p>
             <Field
               name="fullName"
@@ -81,3 +97,5 @@ const ContactForm = () => {
     />
   )
 }
+
+export default ContactForm
