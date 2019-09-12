@@ -57,33 +57,31 @@ const ContactForm = () => {
       render={({ values, touched, errors, ...props }) => (
         <form onSubmit={props.handleSubmit} style={{ width: "320px" }}>
           <input type="hidden" name="form-name" value="contact" />
-          <p>
-            <Field
-              name="fullName"
-              label="Full Name"
-              required
-              component={FormikTextField}
-            />
-          </p>
-          <p>
-            <Field
-              label="Phone Number"
-              name="phoneNumber"
-              required
-              component={FormikTextField}
-            />
-          </p>
-          <p>
-            <Field
-              label="Enquiry"
-              name="enquiry"
-              required
-              multiline={true}
-              rows={5}
-              resizable={false}
-              component={FormikTextField}
-            />
-          </p>
+
+          <Field
+            name="fullName"
+            label="Full Name"
+            required
+            component={FormikTextField}
+          />
+
+          <Field
+            label="Phone Number"
+            name="phoneNumber"
+            required
+            component={FormikTextField}
+          />
+
+          <Field
+            label="Enquiry"
+            name="enquiry"
+            required
+            multiline={true}
+            rows={5}
+            resizable={false}
+            component={FormikTextField}
+          />
+
           <div style={{ float: "right" }}>
             <PrimaryButton
               type="submit"

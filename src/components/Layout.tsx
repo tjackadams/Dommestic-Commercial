@@ -4,7 +4,7 @@ import Img from "gatsby-image"
 import { DefaultPalette, Stack } from "office-ui-fabric-react"
 import { Depths } from "@uifabric/fluent-theme/lib/fluent/FluentDepths"
 
-import Header from "./Header"
+import { Header, MapContainer } from "./"
 
 const Layout = props => {
   return (
@@ -55,9 +55,12 @@ const Layout = props => {
             {props.children}
           </Stack.Item>
         </Stack>
-        <Stack horizontalAlign="center">
-          <Stack.Item>hi</Stack.Item>
+        <Stack horizontal horizontalAlign="center">
+          <Stack.Item grow styles={{ root: { height: 480 } }}>
+            <MapContainer />
+          </Stack.Item>
         </Stack>
+        <Stack></Stack>
       </Stack>
     </div>
   )
