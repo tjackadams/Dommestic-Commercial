@@ -7,7 +7,7 @@ const coords = { lat: 52.513115, lng: -2.115432 }
 
 const getInfoWindowString = place => {
   return renderToString(
-    <Stack horizontalAlign="center" tokens={{ childrenGap: 6 }}>
+    <Stack horizontalAlign="center" tokens={{ childrenGap: 6, padding: 20 }}>
       <Stack.Item>
         <Text as="h2" variant="large">
           {place.name}
