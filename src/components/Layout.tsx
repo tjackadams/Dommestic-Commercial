@@ -4,7 +4,7 @@ import Img from "gatsby-image"
 import { DefaultPalette, Stack } from "office-ui-fabric-react"
 import { Depths } from "@uifabric/fluent-theme/lib/fluent/FluentDepths"
 
-import { Header, MapContainer } from "./"
+import { Footer, Header, MapContainer } from "./"
 
 const Layout = props => {
   return (
@@ -60,7 +60,16 @@ const Layout = props => {
             <MapContainer />
           </Stack.Item>
         </Stack>
-        <Stack></Stack>
+        <Stack
+          styles={{
+            root: {
+              backgroundColor: DefaultPalette.neutralPrimary,
+              color: DefaultPalette.white,
+            },
+          }}
+        >
+          <Footer />
+        </Stack>
       </Stack>
     </div>
   )
