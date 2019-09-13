@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react"
+import React, { useState } from "react"
 import { renderToString } from "react-dom/server"
 import { Separator, Stack, Text } from "office-ui-fabric-react"
 import GoogleMap from "google-map-react"
@@ -63,9 +63,7 @@ const handleApiLoaded = (map, maps, places) => {
 }
 
 const MapContainer = props => {
-  console.log("key: ", process.env.GOOGLE_MAPS_API_KEY)
-
-  const [state, setState] = useState({
+  const [state] = useState({
     places: [
       {
         name: "Domestic & Commercial Drain Services",

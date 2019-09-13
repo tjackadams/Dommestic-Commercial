@@ -1,15 +1,27 @@
 import React from "react"
 import { Separator, Stack, Text, Icon, Link } from "office-ui-fabric-react"
+import useMedia from "use-media"
+
+import { Small } from "../utilities/mediaQuery"
 
 const Footer = () => {
+  const isSmall = useMedia(Small)
+
   return (
     <Stack
       tokens={{ childrenGap: 20 }}
       styles={{ root: { marginTop: 20, marginBottom: 20 } }}
     >
       <Stack.Item>
-        <Stack horizontal horizontalAlign="center" tokens={{ childrenGap: 40 }}>
-          <Stack.Item>
+        <Stack
+          reversed={isSmall}
+          horizontal={!isSmall}
+          horizontalAlign="center"
+          tokens={{ childrenGap: 40 }}
+        >
+          <Stack.Item
+            styles={{ root: { textAlign: isSmall ? "center" : "left" } }}
+          >
             <Text as="h3" variant="xLarge" block>
               Opening Times
             </Text>
@@ -29,8 +41,10 @@ const Footer = () => {
               Sunday 9:00 am - 2:00 pm
             </Text>
           </Stack.Item>
-          <Separator vertical />
-          <Stack.Item>
+          <Separator vertical={!isSmall} />
+          <Stack.Item
+            styles={{ root: { textAlign: isSmall ? "center" : "left" } }}
+          >
             <Text as="h3" variant="xLarge" block>
               Domestic &#38; Commercial Drain Services
             </Text>
@@ -78,12 +92,14 @@ const Footer = () => {
       </Stack.Item>
       <Stack.Item>
         <Stack
-          horizontal
+          horizontal={!isSmall}
           horizontalAlign="center"
-          tokens={{ childrenGap: 60 }}
+          tokens={{ childrenGap: isSmall ? 20 : 60 }}
           styles={{ root: { marginTop: 60 } }}
         >
-          <Stack.Item styles={{ root: { textAlign: "left" } }}>
+          <Stack.Item
+            styles={{ root: { textAlign: isSmall ? "center" : "left" } }}
+          >
             <Text>
               &copy; {new Date().getFullYear()} - Domestic &#38; Commercial
               Drain Services

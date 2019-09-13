@@ -1,21 +1,8 @@
 import React from "react"
 import { Formik, Field } from "formik"
 import * as Yup from "yup"
-import {
-  PrimaryButton,
-  DefaultButton,
-  Label,
-  initializeIcons,
-} from "office-ui-fabric-react"
-import {
-  FormikTextField,
-  FormikToggle,
-  FormikCheckbox,
-  FormikChoiceGroup,
-  FormikDatePicker,
-  FormikDropdown,
-  FormikSwatchColorPicker,
-} from "formik-office-ui-fabric-react"
+import { PrimaryButton } from "office-ui-fabric-react"
+import { FormikTextField } from "formik-office-ui-fabric-react"
 
 const schema = Yup.object().shape({
   fullname: Yup.string()
@@ -82,7 +69,7 @@ const ContactForm = () => {
             component={FormikTextField}
           />
 
-          <div style={{ float: "right" }}>
+          <div style={{ float: "right", marginTop: 20 }}>
             <PrimaryButton
               type="submit"
               disabled={props.isSubmitting || !props.dirty || !props.isValid}

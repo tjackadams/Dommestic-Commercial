@@ -1,38 +1,51 @@
 import React from "react"
-
 import Img from "gatsby-image"
 import { DefaultPalette, Stack } from "office-ui-fabric-react"
 import { Depths } from "@uifabric/fluent-theme/lib/fluent/FluentDepths"
+import useMedia from "use-media"
+import { Element } from "react-scroll"
 
 import { Footer, Header, MapContainer } from "./"
+import { Small } from "../utilities/mediaQuery"
 
 const Layout = props => {
+  const isSmall = useMedia(Small)
+  const headerStyles = isSmall
+    ? {
+        root: {
+          backgroundColor: DefaultPalette.white,
+          padding: 6,
+          width: "100%",
+        },
+      }
+    : {
+        root: {
+          backgroundColor: DefaultPalette.white,
+          padding: 6,
+          position: "fixed",
+          zIndex: 99999999,
+          width: "100%",
+        },
+      }
+
   return (
-    <div id="home">
-      <Stack>
-        <Stack.Item
-          styles={{
-            root: {
-              backgroundColor: DefaultPalette.white,
-              padding: 10,
-              position: "fixed",
-              zIndex: 99999999,
-              width: "100%",
-            },
-          }}
-        >
+    <Element name="home">
+      <Stack styles={{ root: { width: "100vw" } }}>
+        <Stack.Item styles={headerStyles}>
           <Header />
         </Stack.Item>
-        <Stack.Item
-          styles={{
-            root: {
-              backgroundColor: DefaultPalette.white,
-              height: 80,
-            },
-          }}
-        >
-          {" "}
-        </Stack.Item>
+        {!isSmall && (
+          <Stack.Item
+            styles={{
+              root: {
+                backgroundColor: DefaultPalette.white,
+                height: 80,
+              },
+            }}
+          >
+            {" "}
+          </Stack.Item>
+        )}
         <Stack.Item>
           <Img fluid={props.banner} />
         </Stack.Item>
@@ -41,13 +54,13 @@ const Layout = props => {
             styles={{
               root: {
                 backgroundColor: DefaultPalette.white,
-                maxWidth: 800,
-                marginTop: 20,
+                maxWidth: isSmall ? 375 : 800,
+                marginTop: isSmall ? 0 : 20,
                 marginBottom: 40,
-                paddingTop: 60,
-                paddingBottom: 40,
-                paddingLeft: "8%",
-                paddingRight: "8%",
+                paddingTop: isSmall ? 4 : 40,
+                paddingBottom: isSmall ? 4 : 40,
+                paddingLeft: isSmall ? 0 : "8%",
+                paddingRight: isSmall ? 0 : "8%",
                 boxShadow: Depths.depth4,
               },
             }}
@@ -71,7 +84,7 @@ const Layout = props => {
           <Footer />
         </Stack>
       </Stack>
-    </div>
+    </Element>
   )
 }
 

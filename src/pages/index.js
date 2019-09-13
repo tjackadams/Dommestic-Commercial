@@ -15,21 +15,35 @@ import {
 } from "office-ui-fabric-react"
 import { Card } from "@uifabric/react-cards"
 import { initializeIcons } from "@uifabric/icons"
+import { Element } from "react-scroll"
+import useMedia from "use-media"
 
 import { ContactForm } from "../components"
 import Layout from "../components/Layout"
+import { Small } from "../utilities/mediaQuery"
 
 import "./index.css"
 
 initializeIcons()
 
 const App = props => {
-  console.log("props: ", props)
+  const isSmall = useMedia(Small)
+
+  const cardSectionStyle = isSmall
+    ? {
+        root: {
+          textAlign: "center",
+          paddingRight: 12,
+          paddingLeft: 12,
+        },
+      }
+    : { root: { textAlign: "center", paddingRight: 12 } }
+
   return (
     <Layout banner={props.data.drainBanner.childImageSharp.fluid}>
       <Stack>
         <Stack.Item>
-          <div id="services">
+          <Element name="services">
             <Text
               as="h1"
               block
@@ -37,7 +51,7 @@ const App = props => {
               styles={{
                 root: {
                   fontWeight: FontWeights.semibold,
-                  fontSize: "2.4rem",
+                  fontSize: FontSizes.xxLargePlus,
                   textAlign: "center",
                 },
               }}
@@ -50,14 +64,17 @@ const App = props => {
               tokens={{ childrenGap: 40 }}
               wrap
             >
-              <Card compact tokens={{ maxWidth: 767 }}>
-                <Card.Item fill styles={{ root: { width: 180 } }}>
+              <Card
+                compact={!isSmall}
+                tokens={{ maxWidth: isSmall ? 335 : 767 }}
+              >
+                <Card.Item
+                  fill
+                  styles={{ root: { width: isSmall ? 335 : 180 } }}
+                >
                   <Img fluid={props.data.blockedDrains.childImageSharp.fluid} />
                 </Card.Item>
-                <Card.Section
-                  grow
-                  styles={{ root: { textAlign: "center", paddingRight: 12 } }}
-                >
+                <Card.Section grow styles={cardSectionStyle}>
                   <Text
                     as="h1"
                     variant="xLarge"
@@ -86,16 +103,19 @@ const App = props => {
                 </Card.Section>
               </Card>
 
-              <Card compact tokens={{ maxWidth: 767 }}>
-                <Card.Item fill styles={{ root: { width: 180 } }}>
+              <Card
+                compact={!isSmall}
+                tokens={{ maxWidth: isSmall ? 335 : 767 }}
+              >
+                <Card.Item
+                  fill
+                  styles={{ root: { width: isSmall ? 335 : 180 } }}
+                >
                   <Img
                     fluid={props.data.commercialDrain.childImageSharp.fluid}
                   />
                 </Card.Item>
-                <Card.Section
-                  grow
-                  styles={{ root: { textAlign: "center", paddingRight: 12 } }}
-                >
+                <Card.Section grow styles={cardSectionStyle}>
                   <Text
                     as="h1"
                     variant="xLarge"
@@ -122,14 +142,17 @@ const App = props => {
                 </Card.Section>
               </Card>
 
-              <Card compact tokens={{ maxWidth: 767 }}>
-                <Card.Item fill styles={{ root: { width: 180 } }}>
+              <Card
+                compact={!isSmall}
+                tokens={{ maxWidth: isSmall ? 335 : 767 }}
+              >
+                <Card.Item
+                  fill
+                  styles={{ root: { width: isSmall ? 335 : 180 } }}
+                >
                   <Img fluid={props.data.drainJetting.childImageSharp.fluid} />
                 </Card.Item>
-                <Card.Section
-                  grow
-                  styles={{ root: { textAlign: "center", paddingRight: 12 } }}
-                >
+                <Card.Section grow styles={cardSectionStyle}>
                   <Text
                     as="h1"
                     variant="xLarge"
@@ -155,12 +178,16 @@ const App = props => {
                 </Card.Section>
               </Card>
             </Stack>
-          </div>
+          </Element>
         </Stack.Item>
         <Stack tokens={{ childrenGap: 12 }}>
           <Separator styles={{ root: { marginTop: 20 } }} />
         </Stack>
-        <Stack.Item styles={{ root: { textAlign: "center" } }}>
+        <Stack.Item
+          styles={{
+            root: { textAlign: "center", marginLeft: 20, marginRight: 20 },
+          }}
+        >
           <Text
             as="h1"
             block
@@ -168,7 +195,7 @@ const App = props => {
             styles={{
               root: {
                 fontWeight: FontWeights.semibold,
-                fontSize: "2.4rem",
+                fontSize: FontSizes.xxLargePlus,
               },
             }}
           >
@@ -234,13 +261,15 @@ const App = props => {
           <Separator styles={{ root: { marginTop: 20 } }} />
         </Stack>
         <Stack.Item>
-          <div id="contact">
+          <Element name="contact">
             <Stack
-              horizontal
-              horizontalAlign="space-between"
+              horizontal={!isSmall}
+              horizontalAlign={isSmall ? "center" : "space-between"}
               tokens={{ childrenGap: 40 }}
             >
-              <Stack.Item>
+              <Stack.Item
+                styles={{ root: { marginLeft: 20, marginRight: 20 } }}
+              >
                 <Text as="h2" block variant="xxLarge">
                   Areas we Service
                 </Text>
@@ -332,7 +361,7 @@ const App = props => {
                 <ContactForm />
               </Stack.Item>
             </Stack>
-          </div>
+          </Element>
         </Stack.Item>
       </Stack>
     </Layout>
