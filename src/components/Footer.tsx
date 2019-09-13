@@ -1,5 +1,5 @@
 import React from "react"
-import { Separator, Stack, Text } from "office-ui-fabric-react"
+import { Separator, Stack, Text, Icon, Link } from "office-ui-fabric-react"
 
 const Footer = () => {
   return (
@@ -30,7 +30,50 @@ const Footer = () => {
             </Text>
           </Stack.Item>
           <Separator vertical />
-          <Stack.Item>right</Stack.Item>
+          <Stack.Item>
+            <Text as="h3" variant="xLarge" block>
+              Domestic &#38; Commercial Drain Services
+            </Text>
+            <Text as="p" variant="mediumPlus">
+              67 Merryfield Road
+              <br />
+              Dudley
+              <br />
+              West Midlands
+              <br />
+              DY1 2ND
+              <br />
+            </Text>
+            <div style={{ paddingTop: 4 }}>
+              <Icon
+                iconName="phone"
+                styles={{ root: { position: "relative", top: 2 } }}
+              />
+              <Text variant="mediumPlus" styles={{ root: { marginLeft: 4 } }}>
+                01384 357446
+              </Text>
+            </div>
+            <div style={{ paddingTop: 4 }}>
+              <Icon
+                iconName="phone"
+                styles={{ root: { position: "relative", top: 2 } }}
+              />
+              <Text variant="mediumPlus" styles={{ root: { marginLeft: 4 } }}>
+                07974 243764
+              </Text>
+            </div>
+            <div style={{ paddingTop: 4 }}>
+              <Icon
+                iconName="mail"
+                styles={{ root: { position: "relative", top: 2 } }}
+              />
+              <Link as="a" href="mailto:stevetomkins53@gmail.com">
+                <Text variant="mediumPlus" styles={{ root: { marginLeft: 4 } }}>
+                  stevetomkins53@gmail.com
+                </Text>
+              </Link>
+            </div>
+          </Stack.Item>
         </Stack>
       </Stack.Item>
       <Stack.Item>

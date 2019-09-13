@@ -244,7 +244,7 @@ const App = props => {
                 <Text as="h2" block variant="xxLarge">
                   Areas we Service
                 </Text>
-                <Text as="p" block>
+                <Text as="p" block variant="mediumPlus">
                   Dudley
                   <br />
                   Wolverhampton
@@ -259,7 +259,7 @@ const App = props => {
                   <br />
                   Tipton
                 </Text>
-                <Text block>
+                <Text as="p" block variant="mediumPlus">
                   Can't see your area listed above?
                   <br />
                   We may still be able to help. Please do not hesitate to
@@ -269,12 +269,14 @@ const App = props => {
                   Contact Information
                 </Text>
                 <Text
+                  as="h3"
                   block
+                  variant="mediumPlus"
                   styles={{ root: { fontWeight: FontWeights.semibold } }}
                 >
                   Domestic &#38; Commercial Drain Services
                 </Text>
-                <Text as="p" block>
+                <Text as="p" block variant="mediumPlus">
                   67 Merryfield Road
                   <br />
                   Dudley
@@ -289,14 +291,24 @@ const App = props => {
                     iconName="phone"
                     styles={{ root: { position: "relative", top: 2 } }}
                   />
-                  <Text styles={{ root: { marginLeft: 4 } }}>01384 357446</Text>
+                  <Text
+                    variant="mediumPlus"
+                    styles={{ root: { marginLeft: 4 } }}
+                  >
+                    01384 357446
+                  </Text>
                 </div>
                 <div style={{ paddingTop: 4 }}>
                   <Icon
                     iconName="phone"
                     styles={{ root: { position: "relative", top: 2 } }}
                   />
-                  <Text styles={{ root: { marginLeft: 4 } }}>07974 243764</Text>
+                  <Text
+                    variant="mediumPlus"
+                    styles={{ root: { marginLeft: 4 } }}
+                  >
+                    07974 243764
+                  </Text>
                 </div>
                 <div style={{ paddingTop: 4 }}>
                   <Icon
@@ -304,7 +316,10 @@ const App = props => {
                     styles={{ root: { position: "relative", top: 2 } }}
                   />
                   <Link as="a" href="mailto:stevetomkins53@gmail.com">
-                    <Text styles={{ root: { marginLeft: 4 } }}>
+                    <Text
+                      variant="mediumPlus"
+                      styles={{ root: { marginLeft: 4 } }}
+                    >
                       stevetomkins53@gmail.com
                     </Text>
                   </Link>
