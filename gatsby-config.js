@@ -5,10 +5,13 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`, // or '.env'
 })
 
+const config = require("gatsby-plugin-config")
+
 module.exports = {
   siteMetadata: {
     title: "Domestic & Commercial Drain Services",
-    description: "",
+    description:
+      "We offer a fast & efficient Domestic & Commercial drain service in Dudley and across the West Midlands.",
     siteUrl: "https://www.dudleydrains.com",
     image: "",
     author: {
@@ -27,6 +30,24 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: "gatsby-plugin-preconnect",
+      options: {
+        domains: [
+          "https://maps.gstatic.com",
+          "https://fonts.googleapis.com",
+          "https://maps.googleapis.com",
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: config.GOOGLE_ANALYTICS_TRACKINGID,
+        head: false,
+        respectDNT: true,
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
@@ -43,6 +64,10 @@ module.exports = {
       options: {
         policy: [{ userAgent: "*", allow: "/" }],
       },
+    },
+    {
+      resolve: `gatsby-plugin-purgecss`,
+      options: {},
     },
   ],
 }

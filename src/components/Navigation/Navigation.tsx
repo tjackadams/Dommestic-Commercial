@@ -32,6 +32,7 @@ const MobileNavigation = () => {
       <Stack.Item>
         <CommandBar
           items={[]}
+          ariaLabel="Menu Button"
           overflowItems={[
             {
               key: "home",

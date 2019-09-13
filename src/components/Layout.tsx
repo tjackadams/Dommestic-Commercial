@@ -58,7 +58,7 @@ const Layout = props => {
           </Stack.Item>
         )}
         <Stack.Item>
-          <Img fluid={props.banner} />
+          <Img fluid={props.banner} alt="Flowing Water in a Sink" critical />
         </Stack.Item>
         <Stack horizontalAlign="center">
           <Stack.Item

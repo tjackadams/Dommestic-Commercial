@@ -12,17 +12,14 @@ import {
   Icon,
 } from "office-ui-fabric-react"
 import { Card } from "@uifabric/react-cards"
-import { initializeIcons } from "@uifabric/icons"
 import { Element, scroller } from "react-scroll"
 import useMedia from "use-media"
 
-import { ContactForm } from "../components"
+import { ContactForm, SEO } from "../components"
 import Layout from "../components/Layout"
 import { Small } from "../utilities/mediaQuery"
 
 import "./index.css"
-
-initializeIcons()
 
 const App = props => {
   const isSmall = useMedia(Small)
@@ -39,6 +36,7 @@ const App = props => {
 
   return (
     <Layout banner={props.data.drainBanner.childImageSharp.fluid}>
+      <SEO />
       <Stack>
         <Stack.Item>
           <Element name="services">
@@ -103,7 +101,10 @@ const App = props => {
                   fill
                   styles={{ root: { width: isSmall ? 335 : 180 } }}
                 >
-                  <Img fluid={props.data.blockedDrains.childImageSharp.fluid} />
+                  <Img
+                    fluid={props.data.blockedDrains.childImageSharp.fluid}
+                    alt="Blocked Drain with Ladders"
+                  />
                 </Card.Item>
                 <Card.Section grow styles={cardSectionStyle}>
                   <Text
@@ -144,6 +145,7 @@ const App = props => {
                 >
                   <Img
                     fluid={props.data.commercialDrain.childImageSharp.fluid}
+                    alt="Commercial Drain on the Street"
                   />
                 </Card.Item>
                 <Card.Section grow styles={cardSectionStyle}>
@@ -181,7 +183,10 @@ const App = props => {
                   fill
                   styles={{ root: { width: isSmall ? 335 : 180 } }}
                 >
-                  <Img fluid={props.data.drainJetting.childImageSharp.fluid} />
+                  <Img
+                    fluid={props.data.drainJetting.childImageSharp.fluid}
+                    alt="Man performing High Pressure Jetting"
+                  />
                 </Card.Item>
                 <Card.Section grow styles={cardSectionStyle}>
                   <Text

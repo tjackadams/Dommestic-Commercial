@@ -50,6 +50,7 @@ const SEO = ({ postData, frontmatter = {}, postImage, isBlogPost }) => (
             <meta name="description" content={description} />
             <meta name="image" content={image} />
             <link rel="canonical" href={url} />
+            <html lang="en-GB" dir="ltr" />
 
             {/* OpenGraph tags */}
             <meta property="og:url" content={url} />
