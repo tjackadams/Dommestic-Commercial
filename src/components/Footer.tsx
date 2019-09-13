@@ -1,5 +1,12 @@
 import React from "react"
-import { Separator, Stack, Text, Icon, Link } from "office-ui-fabric-react"
+import {
+  Separator,
+  Stack,
+  Text,
+  Icon,
+  Link,
+  DefaultPalette,
+} from "office-ui-fabric-react"
 import useMedia from "use-media"
 
 import { Small } from "../utilities/mediaQuery"
@@ -81,7 +88,20 @@ const Footer = () => {
                 iconName="mail"
                 styles={{ root: { position: "relative", top: 2 } }}
               />
-              <Link as="a" href="mailto:stevetomkins53@gmail.com">
+              <Link
+                as="a"
+                href="mailto:stevetomkins53@gmail.com"
+                styles={{
+                  root: {
+                    selectors: {
+                      ":hover": {
+                        color: DefaultPalette.teal,
+                        textDecoration: "none",
+                      },
+                    },
+                  },
+                }}
+              >
                 <Text variant="mediumPlus" styles={{ root: { marginLeft: 4 } }}>
                   stevetomkins53@gmail.com
                 </Text>

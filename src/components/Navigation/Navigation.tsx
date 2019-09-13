@@ -8,7 +8,7 @@ import {
   Text,
   ITextStyles,
 } from "office-ui-fabric-react"
-import { Link, animateScroll as scroll } from "react-scroll"
+import { Link, scroller } from "react-scroll"
 
 const linkStyles: ITextStyles = {
   root: {
@@ -19,8 +19,8 @@ const linkStyles: ITextStyles = {
     border: "1px solid transparent",
     selectors: {
       ":hover": {
-        color: DefaultPalette.neutralPrimaryAlt,
-        borderBottom: `1px solid ${DefaultPalette.neutralPrimaryAlt}`,
+        color: DefaultPalette.tealLight,
+        borderBottom: `1px solid ${DefaultPalette.tealLight}`,
       },
     },
   },
@@ -31,24 +31,26 @@ const MobileNavigation = () => {
     <Stack>
       <Stack.Item>
         <CommandBar
+          items={[]}
           overflowItems={[
             {
               key: "home",
               name: "Home",
               onClick: () =>
-                scroll.scrollTo("home", {
+                scroller.scrollTo("home", {
                   smooth: true,
                   offset: -70,
                 }),
               iconProps: {
                 iconName: "home",
+                color: DefaultPalette.tealLight,
               },
             },
             {
               key: "services",
               name: "Services",
               onClick: () =>
-                scroll.scrollTo("services", {
+                scroller.scrollTo("services", {
                   smooth: true,
                   offset: -70,
                 }),
@@ -60,7 +62,7 @@ const MobileNavigation = () => {
               key: "contact",
               name: "Contact",
               onClick: () =>
-                scroll.scrollTo("contact", {
+                scroller.scrollTo("contact", {
                   smooth: true,
                   offset: -70,
                 }),
@@ -94,7 +96,7 @@ const DesktopNavigation = () => {
         </Link>
       </Stack.Item>
       <Stack.Item>
-        <Link activeClass="active" to="contact" smooth offset={-70}>
+        <Link activeClass="active" to="contact" spy smooth offset={-70}>
           <Text styles={linkStyles}>Contact</Text>
         </Link>
       </Stack.Item>

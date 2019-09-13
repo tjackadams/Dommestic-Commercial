@@ -1,6 +1,11 @@
 import React from "react"
 import Img from "gatsby-image"
-import { DefaultPalette, Stack } from "office-ui-fabric-react"
+import {
+  DefaultPalette,
+  loadTheme,
+  Stack,
+  IStackItemStyles,
+} from "office-ui-fabric-react"
 import { Depths } from "@uifabric/fluent-theme/lib/fluent/FluentDepths"
 import useMedia from "use-media"
 import { Element } from "react-scroll"
@@ -8,9 +13,15 @@ import { Element } from "react-scroll"
 import { Footer, Header, MapContainer } from "./"
 import { Small } from "../utilities/mediaQuery"
 
+loadTheme({
+  palette: {
+    themePrimary: DefaultPalette.tealLight,
+  },
+})
+
 const Layout = props => {
   const isSmall = useMedia(Small)
-  const headerStyles = isSmall
+  const headerStyles: IStackItemStyles = isSmall
     ? {
         root: {
           backgroundColor: DefaultPalette.white,

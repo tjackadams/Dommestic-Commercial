@@ -9,13 +9,11 @@ import {
   Separator,
   Stack,
   Text,
-  TextField,
-  PrimaryButton,
   Icon,
 } from "office-ui-fabric-react"
 import { Card } from "@uifabric/react-cards"
 import { initializeIcons } from "@uifabric/icons"
-import { Element } from "react-scroll"
+import { Element, scroller } from "react-scroll"
 import useMedia from "use-media"
 
 import { ContactForm } from "../components"
@@ -51,12 +49,45 @@ const App = props => {
               styles={{
                 root: {
                   fontWeight: FontWeights.semibold,
-                  fontSize: FontSizes.xxLargePlus,
                   textAlign: "center",
                 },
               }}
             >
               Our Services
+            </Text>
+            <Text
+              as="p"
+              block
+              variant="large"
+              styles={{
+                root: {
+                  fontWeight: FontWeights.semilight,
+                  textAlign: "center",
+                },
+              }}
+            >
+              We offer a fast & efficient drainage service across the{" "}
+              <Link
+                onClick={() =>
+                  scroller.scrollTo("areas-we-cover", {
+                    smooth: true,
+                    offset: -70,
+                  })
+                }
+              >
+                West Midlands
+              </Link>{" "}
+              to help you when you need it most. Whether it be for Domestic or
+              Commercial drains, our aim is to identify and resolve the issue on
+              the very same day.{" "}
+              <Link
+                onClick={() =>
+                  scroller.scrollTo("contact", { smooth: true, offset: -70 })
+                }
+              >
+                Contact us
+              </Link>{" "}
+              today to book our specialist drainage services.
             </Text>
             <Stack
               horizontal
@@ -270,30 +301,32 @@ const App = props => {
               <Stack.Item
                 styles={{ root: { marginLeft: 20, marginRight: 20 } }}
               >
-                <Text as="h2" block variant="xxLarge">
-                  Areas we Service
-                </Text>
-                <Text as="p" block variant="mediumPlus">
-                  Dudley
-                  <br />
-                  Wolverhampton
-                  <br />
-                  Cradley Heath
-                  <br />
-                  Halesowen
-                  <br />
-                  Netherton
-                  <br />
-                  Stourbridge
-                  <br />
-                  Tipton
-                </Text>
-                <Text as="p" block variant="mediumPlus">
-                  Can't see your area listed above?
-                  <br />
-                  We may still be able to help. Please do not hesitate to
-                  contact us with your enquiry.
-                </Text>
+                <Element name="areas-we-cover">
+                  <Text as="h2" block variant="xxLarge">
+                    Areas we Service
+                  </Text>
+                  <Text as="p" block variant="mediumPlus">
+                    Dudley
+                    <br />
+                    Wolverhampton
+                    <br />
+                    Cradley Heath
+                    <br />
+                    Halesowen
+                    <br />
+                    Netherton
+                    <br />
+                    Stourbridge
+                    <br />
+                    Tipton
+                  </Text>
+                  <Text as="p" block variant="mediumPlus">
+                    Can't see your area listed above?
+                    <br />
+                    We may still be able to help. Please do not hesitate to
+                    contact us with your enquiry.
+                  </Text>
+                </Element>
                 <Text as="h2" block variant="xxLarge">
                   Contact Information
                 </Text>
@@ -344,7 +377,20 @@ const App = props => {
                     iconName="mail"
                     styles={{ root: { position: "relative", top: 2 } }}
                   />
-                  <Link as="a" href="mailto:stevetomkins53@gmail.com">
+                  <Link
+                    as="a"
+                    href="mailto:stevetomkins53@gmail.com"
+                    styles={{
+                      root: {
+                        selectors: {
+                          ":hover": {
+                            color: DefaultPalette.teal,
+                            textDecoration: "none",
+                          },
+                        },
+                      },
+                    }}
+                  >
                     <Text
                       variant="mediumPlus"
                       styles={{ root: { marginLeft: 4 } }}

@@ -5,6 +5,7 @@ import {
   Icon,
   Stack,
   Text,
+  DefaultPalette,
 } from "office-ui-fabric-react"
 
 import useMedia from "use-media"
@@ -12,7 +13,7 @@ import useMedia from "use-media"
 import { DesktopNavigation, MobileNavigation } from "./Navigation"
 import { Small } from "../utilities/mediaQuery"
 
-const Header = props => {
+const Header = () => {
   const isSmall = useMedia(Small)
 
   return (
@@ -53,26 +54,45 @@ const Header = props => {
       {!isSmall && (
         <>
           <Stack.Item grow={2}>
-            <Icon
-              iconName="Phone"
-              styles={{
-                root: {
-                  fontSize: FontSizes.xLarge,
-                  position: "relative",
-                  top: 3,
-                },
-              }}
-            />
-            <Text
-              styles={{
-                root: {
-                  marginLeft: 10,
-                  fontSize: FontSizes.xLarge,
-                },
-              }}
+            <Stack
+              horizontal
+              horizontalAlign="center"
+              tokens={{ childrenGap: 20 }}
             >
-              07974 243764
-            </Text>
+              <Stack.Item
+                styles={{
+                  root: {
+                    selectors: {
+                      ":hover": {
+                        color: DefaultPalette.tealLight,
+                        cursor: "pointer",
+                      },
+                    },
+                  },
+                }}
+              >
+                <Icon
+                  iconName="Phone"
+                  styles={{
+                    root: {
+                      fontSize: FontSizes.xLarge,
+                      position: "relative",
+                      top: 3,
+                    },
+                  }}
+                />
+                <Text
+                  styles={{
+                    root: {
+                      marginLeft: 10,
+                      fontSize: FontSizes.xLarge,
+                    },
+                  }}
+                >
+                  07974 243764
+                </Text>
+              </Stack.Item>
+            </Stack>
           </Stack.Item>
         </>
       )}

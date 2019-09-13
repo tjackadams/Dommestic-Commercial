@@ -33,5 +33,5 @@ html,
 
 a.active > span {
   color: rgb(60, 60, 60);
-  border-bottom: 1px solid rgb(60, 60, 60);
+  border-bottom: 1px solid #00b294;
 }
