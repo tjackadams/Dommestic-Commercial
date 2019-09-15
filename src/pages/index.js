@@ -12,7 +12,6 @@ import {
   Icon,
 } from "office-ui-fabric-react"
 import { Card } from "@uifabric/react-cards"
-import { initializeIcons } from "office-ui-fabric-react/lib/Icons"
 
 import { Element, scroller } from "react-scroll"
 import useMedia from "use-media"
@@ -22,8 +21,6 @@ import Layout from "../components/Layout"
 import { Small } from "../utilities/mediaQuery"
 
 import "./index.css"
-
-initializeIcons()
 
 const App = props => {
   const isSmall = useMedia(Small)
