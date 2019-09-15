@@ -1,6 +1,6 @@
-const initializeIcons = require("@uifabric/icons/lib")
+const icons = require("office-ui-fabric-react/lib-commonjs/Icons")
 
-console.log("icon", icon)
+console.log("icon", icons)
 exports.onInitialClientRender = () => {
-  initializeIcons()
+  icons.initializeIcons()
 }
