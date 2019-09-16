@@ -84,7 +84,7 @@ const MapContainer = props => {
     <GoogleMap
       defaultZoom={14}
       defaultCenter={coords}
-      bootstrapURLKeys={{ key: process.env.GOOGLE_MAPS_API_KEY }}
+      bootstrapURLKeys={{ key: process.env.GATSBY_GOOGLE_MAPS_API_KEY }}
       yesIWantToUseGoogleMapApiInternals
       onGoogleApiLoaded={({ map, maps }) =>
         handleApiLoaded(map, maps, state.places)

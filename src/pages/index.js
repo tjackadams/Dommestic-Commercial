@@ -5,6 +5,7 @@ import {
   DefaultPalette,
   FontSizes,
   FontWeights,
+  initializeIcons,
   Link,
   Separator,
   Stack,
@@ -21,6 +22,8 @@ import Layout from "../components/Layout"
 import { Small } from "../utilities/mediaQuery"
 
 import "./index.css"
+
+initializeIcons("/fonts/")
 
 const App = props => {
   const isSmall = useMedia(Small)
