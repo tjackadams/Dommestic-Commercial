@@ -7,7 +7,7 @@ require("dotenv").config({
 
 const config = require("gatsby-plugin-config")
 
-module.exports = {
+const cfg = {
   siteMetadata: {
     title: "Domestic & Commercial Drain Services",
     description:
@@ -72,3 +72,16 @@ module.exports = {
     },
   ],
 }
+
+if(process.env.CONTEXT === "production"){
+  const googleAnalyticsCfg = {
+    resolve: `gatsby-plugin-google-analytics`,
+    options: {
+      trackingId: config.GOOGLE_ANALYTICS_TRACKINGID,
+    },
+
+    cfg.plugins.push(googleAnalyticsCfg)
+  }
+}
+
+module.exports = cfg

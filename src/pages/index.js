@@ -95,6 +95,7 @@ const App = props => {
               horizontal
               horizontalAlign="center"
               tokens={{ childrenGap: 40 }}
+              styles={{ root: { marginTop: 40 } }}
               wrap
             >
               <Card

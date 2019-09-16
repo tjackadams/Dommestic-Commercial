@@ -78,8 +78,6 @@ const MapContainer = props => {
     ],
   })
 
-  console.log("state: ", state)
-
   return (
     <GoogleMap
       defaultZoom={14}
