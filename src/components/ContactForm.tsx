@@ -60,6 +60,7 @@ const ContactForm = () => {
           phoneNumber: "",
           enquiry: "",
           "form-name": "contact",
+          "bot-field": "",
         }}
         validationSchema={schema}
         onSubmit={(values, actions) => {
@@ -92,11 +93,10 @@ const ContactForm = () => {
             data-netlify-honeypot="bot-field"
             onSubmit={props.handleSubmit}
           >
-            <input type="hidden" name="form-name" value="contact" />
+            <Field type="hidden" name="form-name" value="contact" />
             <p hidden>
               <label>
-                Don’t fill this out:{" "}
-                <input name="bot-field" onChange={props.handleChange} />
+                Don’t fill this out: <Field name="bot-field" />
               </label>
             </p>
             <Field
