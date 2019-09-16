@@ -41,7 +41,7 @@ const Layout = props => {
 
   return (
     <Element name="home">
-      <Stack styles={{ root: { width: "100vw" } }}>
+      <Stack styles={{ root: { width: "calc(100vw - (100vw - 100%))" } }}>
         <Stack.Item styles={headerStyles}>
           <Header />
         </Stack.Item>
