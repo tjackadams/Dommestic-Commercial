@@ -13,7 +13,6 @@ import {
   Icon,
 } from "office-ui-fabric-react"
 import { Card } from "@uifabric/react-cards"
-
 import { Element, scroller } from "react-scroll"
 import useMedia from "use-media"
 
@@ -122,7 +121,7 @@ const App = props => {
                       },
                     }}
                   >
-                    Blockages
+                    Blocked Drains
                   </Text>
                   <Text
                     as="p"
