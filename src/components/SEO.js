@@ -12,6 +12,7 @@ const SEO = ({ postData, frontmatter = {}, postImage, isBlogPost }) => (
           siteMetadata {
             title
             description
+            keywords
             siteUrl
             image
             author {
@@ -36,6 +37,7 @@ const SEO = ({ postData, frontmatter = {}, postImage, isBlogPost }) => (
 
       const title = postMeta.title || seo.title
       const description = postMeta.description || seo.description
+      const keywords = postMeta.keywords || seo.keywords
       const image = postImage ? `${seo.siteUrl}${postImage}` : seo.image
       const url = postMeta.slug
         ? `${seo.siteUrl}/${postMeta.slug}/`
@@ -48,6 +50,7 @@ const SEO = ({ postData, frontmatter = {}, postImage, isBlogPost }) => (
             {/* General tags */}
             <title>{title}</title>
             <meta name="description" content={description} />
+            <meta name="keywords" content={keywords} />
             <meta name="image" content={image} />
             <link rel="canonical" href={url} />
             <html lang="en-GB" dir="ltr" />
