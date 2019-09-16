@@ -89,7 +89,10 @@ const ContactForm = () => {
             onSubmit={props.handleSubmit}
             style={{ width: "320px" }}
             data-netlify="true"
+            netlify-honeypot="bot-field"
           >
+            <input type="hidden" name="form-name" value="contact" />
+            <input type="text" name="bot-field" style={{ display: "none " }} />
             <Field
               label="Full Name"
               name="fullName"
