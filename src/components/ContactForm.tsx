@@ -59,37 +59,38 @@ const ContactForm = () => {
           fullName: "",
           phoneNumber: "",
           enquiry: "",
+          "form-name": "contact",
         }}
         validationSchema={schema}
         onSubmit={(values, actions) => {
-          setTimeout(function() {
-            fetch("/", {
-              method: "POST",
-              headers: { "Content-Type": "application/x-www-form-urlencoded" },
-              body: encode({ values }),
+          console.log("form values: ", values)
+
+          fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: encode({ values }),
+          })
+            .then(() => {
+              actions.resetForm()
+              setState({ isFailed: false, isSuccess: true })
             })
-              .then(() => {
-                actions.resetForm()
-                setState({ isFailed: false, isSuccess: true })
-              })
-              .catch(err => {
-                console.error(
-                  "An error occurred while submitting the form. Error: ",
-                  err
-                )
+            .catch(err => {
+              console.error(
+                "An error occurred while submitting the form. Error: ",
+                err
+              )
 
-                setState({ isFailed: true, isSuccess: false })
-              })
-
-            actions.setSubmitting(false)
-          }, 1000)
+              setState({ isFailed: true, isSuccess: false })
+            })
+            .finally(() => actions.setSubmitting(false))
         }}
         render={props => (
           <form
-            onSubmit={props.handleSubmit}
+            name="contact"
             style={{ width: "320px" }}
             data-netlify="true"
             data-netlify-honeypot="bot-field"
+            onSubmit={props.handleSubmit}
           >
             <input type="hidden" name="form-name" value="contact" />
             <p hidden>
