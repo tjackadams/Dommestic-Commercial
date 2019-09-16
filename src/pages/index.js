@@ -108,7 +108,7 @@ const App = props => {
                 >
                   <Img
                     fluid={props.data.blockedDrains.childImageSharp.fluid}
-                    alt="Blocked Drain with Ladders"
+                    alt="Blocked Drain with Ladders in Dudley"
                   />
                 </Card.Item>
                 <Card.Section grow styles={cardSectionStyle}>
@@ -150,7 +150,7 @@ const App = props => {
                 >
                   <Img
                     fluid={props.data.commercialDrain.childImageSharp.fluid}
-                    alt="Commercial Drain on the Street"
+                    alt="Commercial Drains on the Street"
                   />
                 </Card.Item>
                 <Card.Section grow styles={cardSectionStyle}>
@@ -190,7 +190,7 @@ const App = props => {
                 >
                   <Img
                     fluid={props.data.drainJetting.childImageSharp.fluid}
-                    alt="Man performing High Pressure Jetting"
+                    alt="Man performing High Pressure Jetting in Dudley"
                   />
                 </Card.Item>
                 <Card.Section grow styles={cardSectionStyle}>
@@ -284,7 +284,7 @@ const App = props => {
               },
             }}
           >
-            Fully insured, upto £2 million.
+            Fully insured, up to £2 million.
           </Text>
           <Text
             block

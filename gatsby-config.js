@@ -11,7 +11,7 @@ const cfg = {
   siteMetadata: {
     title: "Domestic & Commercial Drain Services",
     description:
-      "We offer a fast & efficient Domestic & Commercial drain service in Dudley and across the West Midlands.",
+      "We offer a fast & efficient Domestic & Commercial drains service in Dudley and across the West Midlands.",
     keywords: "domestic,commercial,drain,dudley,west midlands",
     siteUrl: "https://www.dudleydrains.com",
     image: "",
