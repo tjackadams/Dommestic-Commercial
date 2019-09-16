@@ -45,7 +45,7 @@ const App = props => {
         <Stack.Item>
           <Element name="services">
             <Text
-              as="h1"
+              as="h2"
               block
               variant="xxLargePlus"
               styles={{
@@ -113,7 +113,7 @@ const App = props => {
                 </Card.Item>
                 <Card.Section grow styles={cardSectionStyle}>
                   <Text
-                    as="h1"
+                    as="h2"
                     variant="xLarge"
                     styles={{
                       root: {
@@ -155,7 +155,7 @@ const App = props => {
                 </Card.Item>
                 <Card.Section grow styles={cardSectionStyle}>
                   <Text
-                    as="h1"
+                    as="h2"
                     variant="xLarge"
                     styles={{
                       root: {
@@ -195,7 +195,7 @@ const App = props => {
                 </Card.Item>
                 <Card.Section grow styles={cardSectionStyle}>
                   <Text
-                    as="h1"
+                    as="h2"
                     variant="xLarge"
                     styles={{
                       root: {
@@ -230,7 +230,7 @@ const App = props => {
           }}
         >
           <Text
-            as="h1"
+            as="h2"
             block
             variant="xxLargePlus"
             styles={{

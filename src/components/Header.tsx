@@ -28,7 +28,7 @@ const Header = () => {
       <Stack.Item>
         <Text
           variant={isSmall ? "large" : "xLarge"}
-          as="h1"
+          as="h2"
           styles={{ root: { fontWeight: FontWeights.semibold } }}
         >
           Domestic &#38; Commercial Drain Services

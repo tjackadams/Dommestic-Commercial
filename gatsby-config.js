@@ -73,15 +73,14 @@ const cfg = {
   ],
 }
 
-if(process.env.CONTEXT === "production"){
+if (process.env.CONTEXT === "production") {
   const googleAnalyticsCfg = {
-    resolve: `gatsby-plugin-google-analytics`,
+    resolve: "gatsby-plugin-google-analytics",
     options: {
       trackingId: config.GOOGLE_ANALYTICS_TRACKINGID,
     },
-
-    cfg.plugins.push(googleAnalyticsCfg)
   }
+  cfg.plugins.push(googleAnalyticsCfg)
 }
 
 module.exports = cfg
