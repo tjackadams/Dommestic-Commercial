@@ -85,7 +85,11 @@ const ContactForm = () => {
           }, 1000)
         }}
         render={props => (
-          <form onSubmit={props.handleSubmit} style={{ width: "320px" }}>
+          <form
+            onSubmit={props.handleSubmit}
+            style={{ width: "320px" }}
+            data-netlify="true"
+          >
             <Field
               label="Full Name"
               name="fullName"
