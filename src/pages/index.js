@@ -15,6 +15,7 @@ import {
 import { Card } from "@uifabric/react-cards"
 import { Element, scroller } from "react-scroll"
 import useMedia from "use-media"
+import ErrorBoundary from "react-error-boundary"
 
 import { ContactForm, SEO } from "../components"
 import Layout from "../components/Layout"
@@ -304,7 +305,7 @@ const App = props => {
           <Element name="contact">
             <Stack
               horizontal={!isSmall}
-              horizontalAlign={isSmall ? "center" : "space-between"}
+              horizontalAlign={isSmall ? "center" : ""}
               tokens={{ childrenGap: 40 }}
             >
               <Stack.Item
@@ -413,7 +414,16 @@ const App = props => {
                 <Text as="h2" block variant="xxLarge">
                   Contact us
                 </Text>
-                <ContactForm />
+                <ErrorBoundary
+                  FallbackComponent={({ componentStack, error }) => (
+                    <Text styles={{ root: { color: DefaultPalette.red } }}>
+                      There was a problem loading the contact form:{" "}
+                      {error.toString()}
+                    </Text>
+                  )}
+                >
+                  <ContactForm />
+                </ErrorBoundary>
               </Stack.Item>
             </Stack>
           </Element>
