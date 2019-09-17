@@ -2,9 +2,11 @@ import React from "react"
 import Img from "gatsby-image"
 import {
   DefaultPalette,
+  FontWeights,
   loadTheme,
   Stack,
   IStackItemStyles,
+  Text,
 } from "office-ui-fabric-react"
 import { Depths } from "@uifabric/fluent-theme/lib/fluent/FluentDepths"
 import useMedia from "use-media"
@@ -57,11 +59,40 @@ const Layout = (props: any) => {
             {" "}
           </Stack.Item>
         )}
-        <Stack.Item>
+        <Stack.Item styles={{ root: { position: "relative" } }}>
           <Img
             fluid={props.banner}
             alt="Water in a sink flowing down the drain."
+            style={{ filter: "brightness(65%) saturate(135%)" }}
           />
+          <Text
+            as="h1"
+            variant="xxLarge"
+            styles={{
+              root: {
+                position: "absolute",
+                top: "30%",
+                left: "40%",
+                transform: "translate(-60%, -70%)",
+                color: DefaultPalette.white,
+                fontWeight: FontWeights.semibold,
+              },
+            }}
+          >
+            Providing Domestic &amp; Commercial Drain Services
+            <Text
+              block
+              variant="xLarge"
+              styles={{
+                root: {
+                  color: DefaultPalette.white,
+                  fontWeight: FontWeights.semilight,
+                },
+              }}
+            >
+              Across Dudley &amp; the West Midlands
+            </Text>
+          </Text>
         </Stack.Item>
       </Element>
       <Stack.Item>

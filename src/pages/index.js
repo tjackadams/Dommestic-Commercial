@@ -2,7 +2,6 @@ import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import {
-  FontSizes,
   FontWeights,
   initializeIcons,
   Link,
@@ -49,7 +48,7 @@ const App = props => {
             <Text
               as="h2"
               block
-              variant="xxLargePlus"
+              variant="superLarge"
               styles={{
                 root: {
                   fontWeight: FontWeights.semibold,
@@ -62,7 +61,7 @@ const App = props => {
             <Text
               as="p"
               block
-              variant="large"
+              variant="xLarge"
               styles={{
                 root: {
                   fontWeight: FontWeights.semilight,
@@ -120,7 +119,8 @@ const App = props => {
                     styles={{
                       root: {
                         fontWeight: FontWeights.semibold,
-                        marginBottom: 0,
+                        marginBlockStart: "0.50em",
+                        marginBlockEnd: "0",
                       },
                     }}
                   >
@@ -128,8 +128,13 @@ const App = props => {
                   </Text>
                   <Text
                     as="p"
-                    styles={{ root: { fontWeight: FontWeights.semilight } }}
-                    variant="medium"
+                    styles={{
+                      root: {
+                        fontWeight: FontWeights.semilight,
+                        marginBlockEnd: "unset",
+                      },
+                    }}
+                    variant="mediumPlus"
                   >
                     Domestic &#38; Commercial Drain Services provide a bespoke
                     service for clearing and unblocking all types of blocked
@@ -162,7 +167,8 @@ const App = props => {
                     styles={{
                       root: {
                         fontWeight: FontWeights.semibold,
-                        marginBottom: 0,
+                        marginBlockStart: "0.50em",
+                        marginBlockEnd: "0",
                       },
                     }}
                   >
@@ -170,8 +176,13 @@ const App = props => {
                   </Text>
                   <Text
                     as="p"
-                    styles={{ root: { fontWeight: FontWeights.semilight } }}
-                    variant="medium"
+                    styles={{
+                      root: {
+                        fontWeight: FontWeights.semilight,
+                        marginBlockEnd: "unset",
+                      },
+                    }}
+                    variant="mediumPlus"
                   >
                     Our drainage service covers both <i>Commercial Drains</i>{" "}
                     and <i>Domestic Drains</i>. We understand how important it
@@ -202,7 +213,8 @@ const App = props => {
                     styles={{
                       root: {
                         fontWeight: FontWeights.semibold,
-                        marginBottom: 0,
+                        marginBlockStart: "0.50em",
+                        marginBlockEnd: "0",
                       },
                     }}
                   >
@@ -210,8 +222,13 @@ const App = props => {
                   </Text>
                   <Text
                     as="p"
-                    styles={{ root: { fontWeight: FontWeights.semilight } }}
-                    variant="medium"
+                    styles={{
+                      root: {
+                        fontWeight: FontWeights.semilight,
+                        marginBlockEnd: "unset",
+                      },
+                    }}
+                    variant="mediumPlus"
                   >
                     Most drainage problems can be solved without pulling out the
                     "big guns", but sometimes there are blockages that are so
@@ -244,11 +261,10 @@ const App = props => {
           <Text
             as="h2"
             block
-            variant="xxLargePlus"
+            variant="superLarge"
             styles={{
               root: {
                 fontWeight: FontWeights.semibold,
-                fontSize: FontSizes.xxLargePlus,
               },
             }}
           >
@@ -256,7 +272,7 @@ const App = props => {
           </Text>
           <Text
             block
-            variant="xLarge"
+            variant="xxLarge"
             styles={{
               root: {
                 fontWeight: FontWeights.regular,
@@ -267,7 +283,7 @@ const App = props => {
           </Text>
           <Text
             block
-            variant="xLarge"
+            variant="xxLarge"
             styles={{
               root: {
                 fontWeight: FontWeights.regular,
@@ -278,7 +294,7 @@ const App = props => {
           </Text>
           <Text
             block
-            variant="xLarge"
+            variant="xxLarge"
             styles={{
               root: {
                 fontWeight: FontWeights.regular,
@@ -289,7 +305,7 @@ const App = props => {
           </Text>
           <Text
             block
-            variant="xLarge"
+            variant="xxLarge"
             styles={{
               root: {
                 fontWeight: FontWeights.regular,
@@ -300,7 +316,7 @@ const App = props => {
           </Text>
           <Text
             block
-            variant="xLarge"
+            variant="xxLarge"
             styles={{
               root: {
                 fontWeight: FontWeights.regular,
