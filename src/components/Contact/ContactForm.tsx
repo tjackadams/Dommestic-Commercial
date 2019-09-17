@@ -78,6 +78,7 @@ export const ContactForm: React.SFC<{}> = () => {
               headers: { "Content-Type": "application/x-www-form-urlencoded" },
               body: encode({
                 "form-name": "contact",
+                subject: "New Website Enquiry",
                 ...values,
               }),
             })
