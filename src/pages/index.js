@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import {
   FontWeights,
+  initializeIcons,
   Link,
   Separator,
   Stack,
@@ -11,7 +12,6 @@ import {
 import { Card } from "@uifabric/react-cards"
 import { Element, scroller } from "react-scroll"
 import useMedia from "use-media"
-import { initializeIcons } from "@uifabric/icons"
 
 import { ContactSection, SEO } from "../components"
 import Layout from "../components/Layout"
@@ -19,12 +19,12 @@ import { Small } from "../utilities/mediaQuery"
 
 import "./index.css"
 
-initializeIcons("../assets/fonts/")
-
 if (process.env.NODE_ENV !== "production") {
   const whyDidYouRender = require("@welldone-software/why-did-you-render")
   whyDidYouRender(React)
 }
+
+initializeIcons()
 
 const App = props => {
   const isSmall = useMedia(Small)
