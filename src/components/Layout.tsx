@@ -40,8 +40,8 @@ const Layout = props => {
       }
 
   return (
-    <Element name="home">
-      <Stack styles={{ root: { width: "calc(100vw - (100vw - 100%))" } }}>
+    <Stack styles={{ root: { width: "calc(100vw - (100vw - 100%))" } }}>
+      <Element name="home">
         <Stack.Item styles={headerStyles}>
           <Header />
         </Stack.Item>
@@ -63,6 +63,8 @@ const Layout = props => {
             alt="Water in a sink flowing down the drain."
           />
         </Stack.Item>
+      </Element>
+      <Stack.Item>
         <Stack horizontalAlign="center">
           <Stack.Item
             styles={{
@@ -82,6 +84,8 @@ const Layout = props => {
             {props.children}
           </Stack.Item>
         </Stack>
+      </Stack.Item>
+      <Stack.Item>
         <Stack horizontal horizontalAlign="center">
           <Stack.Item grow styles={{ root: { height: 480 } }}>
             <MapContainer />
@@ -97,8 +101,8 @@ const Layout = props => {
         >
           <Footer />
         </Stack>
-      </Stack>
-    </Element>
+      </Stack.Item>
+    </Stack>
   )
 }
 

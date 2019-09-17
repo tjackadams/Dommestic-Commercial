@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Formik, Field } from "formik"
+import { Formik, FormikActions, FormikProps, Form, Field } from "formik"
 import * as Yup from "yup"
 import {
   DefaultPalette,
@@ -28,7 +28,13 @@ const encode = data => {
     .join("&")
 }
 
-const ContactForm = () => {
+interface ContactFormValues {
+  fullName: string
+  phoneNumber: string
+  enquiry: string
+}
+
+export const ContactForm: React.SFC<{}> = () => {
   const [state, setState] = useState({ isSuccess: false, isFailed: false })
 
   return (
@@ -59,21 +65,27 @@ const ContactForm = () => {
           fullName: "",
           phoneNumber: "",
           enquiry: "",
-          "form-name": "contact",
           "bot-field": "",
         }}
         validationSchema={schema}
-        onSubmit={(values, actions) => {
+        onSubmit={(
+          values: ContactFormValues,
+          actions: FormikActions<ContactFormValues>
+        ) => {
           console.log("form values: ", values)
 
-          fetch("/", {
+          fetch("/?no-cache=1", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: encode({ values }),
+            body: encode({
+              "form-name": "contact",
+              ...values,
+            }),
           })
             .then(() => {
               actions.resetForm()
               setState({ isFailed: false, isSuccess: true })
+              actions.setSubmitting(false)
             })
             .catch(err => {
               console.error(
@@ -82,16 +94,15 @@ const ContactForm = () => {
               )
 
               setState({ isFailed: true, isSuccess: false })
+              actions.setSubmitting(false)
             })
-            .finally(() => actions.setSubmitting(false))
         }}
-        render={props => (
-          <form
+        render={(props: FormikProps<ContactFormValues>) => (
+          <Form
             name="contact"
             style={{ width: "320px" }}
             data-netlify="true"
             data-netlify-honeypot="bot-field"
-            onSubmit={props.handleSubmit}
           >
             <Field type="hidden" name="form-name" value="contact" />
             <p hidden>
@@ -145,11 +156,9 @@ const ContactForm = () => {
                 )}
               </div>
             </footer>
-          </form>
+          </Form>
         )}
       />
     </>
   )
 }
-
-export default ContactForm

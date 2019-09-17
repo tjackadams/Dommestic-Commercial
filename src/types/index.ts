@@ -1,0 +1,1 @@
+export { IMediaQueryProps } from "./MediaQuery"

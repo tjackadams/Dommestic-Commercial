@@ -2,7 +2,6 @@ import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import {
-  DefaultPalette,
   FontSizes,
   FontWeights,
   initializeIcons,
@@ -10,14 +9,12 @@ import {
   Separator,
   Stack,
   Text,
-  Icon,
 } from "office-ui-fabric-react"
 import { Card } from "@uifabric/react-cards"
 import { Element, scroller } from "react-scroll"
 import useMedia from "use-media"
-import ErrorBoundary from "react-error-boundary"
 
-import { ContactForm, SEO } from "../components"
+import { ContactSection, SEO } from "../components"
 import Layout from "../components/Layout"
 import { Small } from "../utilities/mediaQuery"
 
@@ -221,12 +218,22 @@ const App = props => {
             </Stack>
           </Element>
         </Stack.Item>
-        <Stack tokens={{ childrenGap: 12 }}>
-          <Separator styles={{ root: { marginTop: 20 } }} />
-        </Stack>
+        <Stack.Item>
+          <Stack tokens={{ childrenGap: 12 }}>
+            <Separator styles={{ root: { marginTop: 20 } }} />
+          </Stack>
+        </Stack.Item>
         <Stack.Item
           styles={{
-            root: { textAlign: "center", marginLeft: 20, marginRight: 20 },
+            root: {
+              textAlign: "center",
+              marginLeft: 20,
+              marginRight: 20,
+              animationName: "none !important",
+              animationDuration: "unset !important",
+              animationTimingFunction: "unset !important",
+              animationFillMode: "none !important",
+            },
           }}
         >
           <Text
@@ -298,135 +305,13 @@ const App = props => {
             We do the dirty work, so you don't have to.
           </Text>
         </Stack.Item>
-        <Stack tokens={{ childrenGap: 12 }}>
-          <Separator styles={{ root: { marginTop: 20 } }} />
-        </Stack>
         <Stack.Item>
-          <Element name="contact">
-            <Stack
-              horizontal={!isSmall}
-              horizontalAlign={isSmall ? "center" : ""}
-              tokens={{ childrenGap: 40 }}
-            >
-              <Stack.Item
-                styles={{ root: { marginLeft: 20, marginRight: 20 } }}
-              >
-                <Element name="areas-we-cover">
-                  <Text as="h2" block variant="xxLarge">
-                    Areas we Service
-                  </Text>
-                  <Text as="p" block variant="mediumPlus">
-                    Dudley
-                    <br />
-                    Wolverhampton
-                    <br />
-                    Cradley Heath
-                    <br />
-                    Halesowen
-                    <br />
-                    Netherton
-                    <br />
-                    Stourbridge
-                    <br />
-                    Tipton
-                  </Text>
-                  <Text as="p" block variant="mediumPlus">
-                    Can't see your area listed above?
-                    <br />
-                    We may still be able to help. Please do not hesitate to
-                    contact us with your enquiry.
-                  </Text>
-                </Element>
-                <Text as="h2" block variant="xxLarge">
-                  Contact Information
-                </Text>
-                <Text
-                  as="h3"
-                  block
-                  variant="mediumPlus"
-                  styles={{ root: { fontWeight: FontWeights.semibold } }}
-                >
-                  Domestic &#38; Commercial Drain Services
-                </Text>
-                <Text as="p" block variant="mediumPlus">
-                  67 Merryfield Road
-                  <br />
-                  Dudley
-                  <br />
-                  West Midlands
-                  <br />
-                  DY1 2ND
-                  <br />
-                </Text>
-                <div style={{ paddingTop: 4 }}>
-                  <Icon
-                    iconName="phone"
-                    styles={{ root: { position: "relative", top: 2 } }}
-                  />
-                  <Text
-                    variant="mediumPlus"
-                    styles={{ root: { marginLeft: 4 } }}
-                  >
-                    01384 357446
-                  </Text>
-                </div>
-                <div style={{ paddingTop: 4 }}>
-                  <Icon
-                    iconName="phone"
-                    styles={{ root: { position: "relative", top: 2 } }}
-                  />
-                  <Text
-                    variant="mediumPlus"
-                    styles={{ root: { marginLeft: 4 } }}
-                  >
-                    07974 243764
-                  </Text>
-                </div>
-                <div style={{ paddingTop: 4 }}>
-                  <Icon
-                    iconName="mail"
-                    styles={{ root: { position: "relative", top: 2 } }}
-                  />
-                  <Link
-                    as="a"
-                    href="mailto:stevetomkins53@gmail.com"
-                    styles={{
-                      root: {
-                        selectors: {
-                          ":hover": {
-                            color: DefaultPalette.teal,
-                            textDecoration: "none",
-                          },
-                        },
-                      },
-                    }}
-                  >
-                    <Text
-                      variant="mediumPlus"
-                      styles={{ root: { marginLeft: 4 } }}
-                    >
-                      stevetomkins53@gmail.com
-                    </Text>
-                  </Link>
-                </div>
-              </Stack.Item>
-              <Stack.Item>
-                <Text as="h2" block variant="xxLarge">
-                  Contact us
-                </Text>
-                <ErrorBoundary
-                  FallbackComponent={({ componentStack, error }) => (
-                    <Text styles={{ root: { color: DefaultPalette.red } }}>
-                      There was a problem loading the contact form:{" "}
-                      {error.toString()}
-                    </Text>
-                  )}
-                >
-                  <ContactForm />
-                </ErrorBoundary>
-              </Stack.Item>
-            </Stack>
-          </Element>
+          <Stack tokens={{ childrenGap: 12 }}>
+            <Separator styles={{ root: { marginTop: 20 } }} />
+          </Stack>
+        </Stack.Item>
+        <Stack.Item>
+          <ContactSection isSmall={isSmall} />
         </Stack.Item>
       </Stack>
     </Layout>
