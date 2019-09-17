@@ -72,30 +72,30 @@ export const ContactForm: React.SFC<{}> = () => {
           values: ContactFormValues,
           actions: FormikActions<ContactFormValues>
         ) => {
-          console.log("form values: ", values)
-
-          fetch("/?no-cache=1", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: encode({
-              "form-name": "contact",
-              ...values,
-            }),
-          })
-            .then(() => {
-              actions.resetForm()
-              setState({ isFailed: false, isSuccess: true })
-              actions.setSubmitting(false)
+          setTimeout(() => {
+            fetch("/?no-cache=1", {
+              method: "POST",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: encode({
+                "form-name": "contact",
+                ...values,
+              }),
             })
-            .catch(err => {
-              console.error(
-                "An error occurred while submitting the form. Error: ",
-                err
-              )
+              .then(() => {
+                actions.resetForm()
+                setState({ isFailed: false, isSuccess: true })
+                actions.setSubmitting(false)
+              })
+              .catch(err => {
+                console.error(
+                  "An error occurred while submitting the form. Error: ",
+                  err
+                )
 
-              setState({ isFailed: true, isSuccess: false })
-              actions.setSubmitting(false)
-            })
+                setState({ isFailed: true, isSuccess: false })
+                actions.setSubmitting(false)
+              })
+          }, 1100)
         }}
         render={(props: FormikProps<ContactFormValues>) => (
           <Form
