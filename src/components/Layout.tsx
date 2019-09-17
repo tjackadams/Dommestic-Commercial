@@ -19,7 +19,7 @@ loadTheme({
   },
 })
 
-const Layout = props => {
+const Layout = (props: any) => {
   const isSmall = useMedia(Small)
   const headerStyles: IStackItemStyles = isSmall
     ? {

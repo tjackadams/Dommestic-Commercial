@@ -22,7 +22,7 @@ const schema = Yup.object().shape({
     .required("Please ensure enquiry is filled out."),
 })
 
-const encode = data => {
+const encode = (data: any) => {
   return Object.keys(data)
     .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
     .join("&")
