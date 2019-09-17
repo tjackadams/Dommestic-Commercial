@@ -91,4 +91,6 @@ const MapContainer = props => {
   )
 }
 
+MapContainer.whyDidYouRender = true
+
 export default MapContainer

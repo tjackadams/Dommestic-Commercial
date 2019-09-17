@@ -22,6 +22,11 @@ import "./index.css"
 
 initializeIcons("/fonts/")
 
+if (process.env.NODE_ENV !== "production") {
+  const whyDidYouRender = require("@welldone-software/why-did-you-render")
+  whyDidYouRender(React)
+}
+
 const App = props => {
   const isSmall = useMedia(Small)
 
@@ -317,6 +322,8 @@ const App = props => {
     </Layout>
   )
 }
+
+App.whyDidYouRender = true
 
 export default App
 

@@ -10,10 +10,10 @@ import {
 import { Element } from "react-scroll"
 import ErrorBoundary from "react-error-boundary"
 
-import { ContactForm } from "./ContactForm"
+import ContactForm from "./ContactForm"
 import { IMediaQueryProps } from "../../types"
 
-export const ContactSection: React.FC<IMediaQueryProps> = props => {
+const ContactSection: React.FC<IMediaQueryProps> = props => {
   return (
     <Element name="contact">
       <Stack
@@ -139,3 +139,7 @@ export const ContactSection: React.FC<IMediaQueryProps> = props => {
     </Element>
   )
 }
+
+ContactSection.whyDidYouRender = true
+
+export default ContactSection

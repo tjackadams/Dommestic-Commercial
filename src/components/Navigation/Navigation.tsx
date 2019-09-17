@@ -78,6 +78,8 @@ const MobileNavigation = () => {
   )
 }
 
+MobileNavigation.whyDidYouRender = true
+
 const DesktopNavigation = () => {
   return (
     <Stack
@@ -104,5 +106,7 @@ const DesktopNavigation = () => {
     </Stack>
   )
 }
+
+DesktopNavigation.whyDidYouRender = true
 
 export { MobileNavigation, DesktopNavigation }

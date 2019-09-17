@@ -34,7 +34,7 @@ interface ContactFormValues {
   enquiry: string
 }
 
-export const ContactForm: React.SFC<{}> = () => {
+const ContactForm: React.SFC<{}> = () => {
   const [state, setState] = useState({ isSuccess: false, isFailed: false })
 
   return (
@@ -163,3 +163,7 @@ export const ContactForm: React.SFC<{}> = () => {
     </>
   )
 }
+
+ContactForm.whyDidYouRender = true
+
+export default ContactForm

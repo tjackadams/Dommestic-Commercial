@@ -88,6 +88,8 @@ const SEO = ({ postData, frontmatter = {}, postImage, isBlogPost }) => (
   />
 )
 
+SEO.whyDidYouRender = true
+
 SEO.propTypes = {
   isBlogPost: PropTypes.bool,
   postData: PropTypes.shape({

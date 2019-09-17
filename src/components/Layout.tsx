@@ -106,4 +106,6 @@ const Layout = props => {
   )
 }
 
+Layout.whyDidYouRender = true
+
 export default Layout

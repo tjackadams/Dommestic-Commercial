@@ -17,6 +17,7 @@
     "@types/yup": "^0.26.23",
     "@uifabric/fluent-theme": "^7.1.4",
     "@uifabric/react-cards": "^0.108.1",
+    "@welldone-software/why-did-you-render": "^3.3.5",
     "dotenv": "^8.1.0",
     "formik": "^1.5.8",
     "formik-office-ui-fabric-react": "^1.0.0",
