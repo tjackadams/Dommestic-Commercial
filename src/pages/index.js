@@ -348,28 +348,28 @@ export const query = graphql`
     drainBanner: file(relativePath: { eq: "drain-banner.jpg" }) {
       childImageSharp {
         fluid(maxWidth: 3840) {
-          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluid_withWebp
         }
       }
     }
     blockedDrains: file(relativePath: { eq: "blocked-drains.jpg" }) {
       childImageSharp {
         fluid(maxWidth: 300) {
-          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluid_withWebp
         }
       }
     }
     commercialDrain: file(relativePath: { eq: "commercial-drain.jpg" }) {
       childImageSharp {
         fluid(maxWidth: 300) {
-          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluid_withWebp
         }
       }
     }
     drainJetting: file(relativePath: { eq: "drain-jetting.jpg" }) {
       childImageSharp {
         fluid(maxWidth: 300) {
-          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluid_withWebp
         }
       }
     }
