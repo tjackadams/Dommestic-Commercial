@@ -30,6 +30,7 @@ const cfg = {
     },
   },
   plugins: [
+    "gatsby-plugin-webpack-bundle-analyser-v2",
     {
       resolve: "gatsby-plugin-preconnect",
       options: {
@@ -66,10 +67,10 @@ const cfg = {
         policy: [{ userAgent: "*", allow: "/" }],
       },
     },
-    {
-      resolve: `gatsby-plugin-purgecss`,
-      options: {},
-    },
+    // {
+    //   resolve: `gatsby-plugin-purgecss`,
+    //   options: {},
+    // },
   ],
 }
 

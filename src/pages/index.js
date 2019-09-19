@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import {
@@ -24,10 +24,12 @@ if (process.env.NODE_ENV !== "production") {
   whyDidYouRender(React)
 }
 
-initializeIcons()
-
 const App = props => {
   const isSmall = useMedia(Small)
+  initializeIcons()
+  // useEffect(() => {
+
+  // }, [])
 
   const cardSectionStyle = isSmall
     ? {
