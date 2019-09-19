@@ -9,7 +9,7 @@ const config = require("gatsby-plugin-config")
 
 const cfg = {
   siteMetadata: {
-    title: "Domestic & Commercial Drain Services",
+    title: "Domestic & Commercial Drain Services in West Midlands, UK",
     description:
       "We offer a fast & efficient Domestic & Commercial drains service in Dudley and across the West Midlands.",
     keywords: "domestic,commercial,drain,dudley,west midlands",

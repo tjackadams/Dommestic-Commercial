@@ -114,7 +114,7 @@ const App = props => {
                 </Card.Item>
                 <Card.Section grow styles={cardSectionStyle}>
                   <Text
-                    as="h2"
+                    as="h3"
                     variant="xLarge"
                     styles={{
                       root: {
@@ -162,7 +162,7 @@ const App = props => {
                 </Card.Item>
                 <Card.Section grow styles={cardSectionStyle}>
                   <Text
-                    as="h2"
+                    as="h3"
                     variant="xLarge"
                     styles={{
                       root: {
@@ -208,7 +208,7 @@ const App = props => {
                 </Card.Item>
                 <Card.Section grow styles={cardSectionStyle}>
                   <Text
-                    as="h2"
+                    as="h3"
                     variant="xLarge"
                     styles={{
                       root: {

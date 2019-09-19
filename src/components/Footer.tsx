@@ -10,6 +10,7 @@ import {
 import useMedia from "use-media"
 
 import { Small } from "../utilities/mediaQuery"
+import { EncodedEmailAddress } from "../metadata"
 
 const Footer = () => {
   const isSmall = useMedia(Small)
@@ -66,31 +67,9 @@ const Footer = () => {
               <br />
             </Text>
             <div style={{ paddingTop: 4 }}>
-              <Icon
-                iconName="phone"
-                styles={{ root: { position: "relative", top: 2 } }}
-              />
-              <Text variant="mediumPlus" styles={{ root: { marginLeft: 4 } }}>
-                01384 357446
-              </Text>
-            </div>
-            <div style={{ paddingTop: 4 }}>
-              <Icon
-                iconName="phone"
-                styles={{ root: { position: "relative", top: 2 } }}
-              />
-              <Text variant="mediumPlus" styles={{ root: { marginLeft: 4 } }}>
-                07974 243764
-              </Text>
-            </div>
-            <div style={{ paddingTop: 4 }}>
-              <Icon
-                iconName="mail"
-                styles={{ root: { position: "relative", top: 2 } }}
-              />
               <Link
                 as="a"
-                href="mailto:stevetomkins53@gmail.com"
+                href="tel:01384357446"
                 styles={{
                   root: {
                     selectors: {
@@ -102,8 +81,61 @@ const Footer = () => {
                   },
                 }}
               >
+                <Icon
+                  iconName="phone"
+                  styles={{ root: { position: "relative", top: 2 } }}
+                />
                 <Text variant="mediumPlus" styles={{ root: { marginLeft: 4 } }}>
-                  stevetomkins53@gmail.com
+                  01384 357446
+                </Text>
+              </Link>
+            </div>
+            <div style={{ paddingTop: 4 }}>
+              <Link
+                as="a"
+                href="tel:07974243764"
+                styles={{
+                  root: {
+                    selectors: {
+                      ":hover": {
+                        color: DefaultPalette.teal,
+                        textDecoration: "none",
+                      },
+                    },
+                  },
+                }}
+              >
+                <Icon
+                  iconName="phone"
+                  styles={{ root: { position: "relative", top: 2 } }}
+                />
+                <Text variant="mediumPlus" styles={{ root: { marginLeft: 4 } }}>
+                  07974 243764
+                </Text>
+              </Link>
+            </div>
+            <div style={{ paddingTop: 4 }}>
+              <Link
+                as="a"
+                href="mailto:&#115;&#116;&#101;&#118;&#101;&#116;&#111;&#109;&#107;&#105;&#110;&#115;&#53;&#51;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;"
+                styles={{
+                  root: {
+                    selectors: {
+                      ":hover": {
+                        color: DefaultPalette.teal,
+                        textDecoration: "none",
+                      },
+                    },
+                  },
+                }}
+              >
+                <Icon
+                  iconName="mail"
+                  styles={{ root: { position: "relative", top: 2 } }}
+                />
+
+                <Text variant="mediumPlus" styles={{ root: { marginLeft: 4 } }}>
+                  &#115;&#116;&#101;&#118;&#101;&#116;&#111;&#109;&#107;&#105;&#110;&#115;&#53;&#51;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;
                 </Text>
               </Link>
             </div>

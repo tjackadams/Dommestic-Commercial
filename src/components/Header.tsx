@@ -6,6 +6,7 @@ import {
   Stack,
   Text,
   DefaultPalette,
+  Link,
 } from "office-ui-fabric-react"
 
 import useMedia from "use-media"
@@ -28,7 +29,6 @@ const Header = () => {
       <Stack.Item>
         <Text
           variant={isSmall ? "large" : "xLarge"}
-          as="h2"
           styles={{ root: { fontWeight: FontWeights.semibold } }}
         >
           Domestic &#38; Commercial Drain Services
@@ -42,7 +42,6 @@ const Header = () => {
           <Stack.Item styles={{ root: { marginRight: 60 } }}>
             <Text
               variant="xLarge"
-              as="h1"
               styles={{ root: { fontWeight: FontWeights.semibold } }}
             >
               West Midlands
@@ -59,38 +58,42 @@ const Header = () => {
               horizontalAlign="center"
               tokens={{ childrenGap: 20 }}
             >
-              <Stack.Item
-                styles={{
-                  root: {
-                    selectors: {
-                      ":hover": {
-                        color: DefaultPalette.tealLight,
-                        cursor: "pointer",
+              <Stack.Item>
+                <Link
+                  styles={{
+                    root: {
+                      color: "inherit",
+                      selectors: {
+                        ":hover": {
+                          textDecoration: "none",
+                          color: DefaultPalette.tealLight,
+                        },
                       },
                     },
-                  },
-                }}
-              >
-                <Icon
-                  iconName="Phone"
-                  styles={{
-                    root: {
-                      fontSize: FontSizes.xLarge,
-                      position: "relative",
-                      top: 3,
-                    },
                   }}
-                />
-                <Text
-                  styles={{
-                    root: {
-                      marginLeft: 10,
-                      fontSize: FontSizes.xLarge,
-                    },
-                  }}
+                  href="tel:07974243764"
                 >
-                  07974 243764
-                </Text>
+                  <Icon
+                    iconName="Phone"
+                    styles={{
+                      root: {
+                        fontSize: FontSizes.xLarge,
+                        position: "relative",
+                        top: 3,
+                      },
+                    }}
+                  />
+                  <Text
+                    styles={{
+                      root: {
+                        marginLeft: 10,
+                        fontSize: FontSizes.xLarge,
+                      },
+                    }}
+                  >
+                    07974 243764
+                  </Text>
+                </Link>
               </Stack.Item>
             </Stack>
           </Stack.Item>
