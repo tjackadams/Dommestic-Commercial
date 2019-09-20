@@ -37,6 +37,7 @@ class Header extends React.PureComponent<IHeaderProps> {
     const { responsiveMode = ResponsiveMode.xLarge } = this.props
 
     const isLargeDown = responsiveMode <= ResponsiveMode.large
+    const isLargeUp = responsiveMode > ResponsiveMode.large
     const isMediumDown = responsiveMode <= ResponsiveMode.medium
     const isMediumUp = responsiveMode > ResponsiveMode.medium
 
@@ -65,7 +66,7 @@ class Header extends React.PureComponent<IHeaderProps> {
             Domestic &#38; Commercial Drain Services
           </Text>
         </Stack.Item>
-        {isMediumUp && (
+        {isLargeUp && (
           <>
             <Stack.Item>
               <Text variant="xLarge"> | </Text>
