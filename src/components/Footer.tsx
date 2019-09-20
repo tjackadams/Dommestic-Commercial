@@ -20,10 +20,10 @@ interface IFooterProps extends IWithResponsiveModeState {}
 
 const textContainerStyle: IStackItemStyles = {
   root: {
-    textAlign: "left",
+    textAlign: "left !important",
     selectors: {
       ["@media(max-width: 479px)"]: {
-        textAlign: "center",
+        textAlign: "center !important",
       },
     },
   },
@@ -60,7 +60,19 @@ class Footer extends React.PureComponent<IFooterProps> {
               >
                 Opening Times
               </Text>
-              <Text as="h3" variant="xLarge" block>
+              <Text
+                as="h3"
+                variant="xLarge"
+                block
+                styles={{
+                  root: {
+                    textAlign: isSmallUp
+                      ? "left !important"
+                      : "center !important",
+                    marginLeft: 0,
+                  },
+                }}
+              >
                 Opening Times
               </Text>
               <Text as="p" variant="mediumPlus">
@@ -80,7 +92,7 @@ class Footer extends React.PureComponent<IFooterProps> {
               </Text>
             </Stack.Item>
             <Separator vertical={isSmallUp} />
-            <Stack.Item styles={textContainerStyle}>
+            <Stack.Item styles={{ root: { marginTop: "0 !important" } }}>
               <Text
                 as="h3"
                 variant="xLarge"
@@ -89,7 +101,19 @@ class Footer extends React.PureComponent<IFooterProps> {
               >
                 Domestic &#38; Commercial Drain Services
               </Text>
-              <Text as="h3" variant="xLarge" block>
+              <Text
+                as="h3"
+                variant="xLarge"
+                block
+                styles={{
+                  root: {
+                    textAlign: isSmallUp
+                      ? "left !important"
+                      : "center !important",
+                    marginLeft: 0,
+                  },
+                }}
+              >
                 Domestic &#38; Commercial Drain Services
               </Text>
               <Text as="p" variant="mediumPlus">
@@ -192,18 +216,40 @@ class Footer extends React.PureComponent<IFooterProps> {
         <Stack.Item>
           <Stack
             horizontal={isSmallUp}
-            horizontalAlign="center"
+            horizontalAlign={isSmallUp ? "space-evenly" : "center"}
             tokens={gutterContainerTokens}
             styles={{ root: { marginTop: 60 } }}
           >
-            <Stack.Item styles={textContainerStyle}>
-              <Text>
+            <Stack.Item>
+              <Text
+                styles={{
+                  root: {
+                    textAlign: isSmallUp
+                      ? "left !important"
+                      : "center !important",
+                  },
+                }}
+              >
                 &copy; {new Date().getFullYear()} - Domestic &#38; Commercial
                 Drain Services
               </Text>
             </Stack.Item>
-            <Stack.Item styles={{ root: { textAlign: "right" } }}>
-              <Text>Website design by ITadams</Text>
+            <Stack.Item
+              styles={{
+                root: { textAlign: "right", color: DefaultPalette.white },
+              }}
+            >
+              <Text
+                styles={{
+                  root: {
+                    textAlign: isSmallUp
+                      ? "right !important"
+                      : "center !important",
+                  },
+                }}
+              >
+                Website design by ITadams
+              </Text>
             </Stack.Item>
           </Stack>
         </Stack.Item>
