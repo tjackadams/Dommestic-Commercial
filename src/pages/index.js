@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import {
@@ -27,9 +27,6 @@ if (process.env.NODE_ENV !== "production") {
 const App = props => {
   const isSmall = useMedia(Small)
   initializeIcons()
-  // useEffect(() => {
-
-  // }, [])
 
   const cardSectionStyle = isSmall
     ? {
@@ -253,10 +250,6 @@ const App = props => {
               textAlign: "center",
               marginLeft: 20,
               marginRight: 20,
-              animationName: "none !important",
-              animationDuration: "unset !important",
-              animationTimingFunction: "unset !important",
-              animationFillMode: "none !important",
             },
           }}
         >

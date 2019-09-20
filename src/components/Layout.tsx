@@ -118,7 +118,7 @@ const Layout = (props: any) => {
       </Stack.Item>
       <Stack.Item>
         <Stack horizontal horizontalAlign="center">
-          <Stack.Item grow styles={{ root: { height: 480 } }}>
+          <Stack.Item styles={{ root: { height: 480, width: "100%" } }}>
             <MapContainer />
           </Stack.Item>
         </Stack>

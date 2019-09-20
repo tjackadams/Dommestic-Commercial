@@ -2,7 +2,6 @@ import React from "react"
 import {
   DefaultPalette,
   FontWeights,
-  Icon,
   Link,
   Stack,
   Text,
@@ -10,6 +9,7 @@ import {
 import { Element } from "react-scroll"
 import ErrorBoundary from "react-error-boundary"
 
+import { Icon } from "../"
 import ContactForm from "./ContactForm"
 import { IMediaQueryProps } from "../../types"
 
@@ -96,6 +96,7 @@ const ContactSection: React.FC<IMediaQueryProps> = props => {
                 iconName="phone"
                 styles={{ root: { position: "relative", top: 2 } }}
               />
+
               <Text variant="mediumPlus" styles={{ root: { marginLeft: 4 } }}>
                 01384 357446
               </Text>
@@ -120,6 +121,7 @@ const ContactSection: React.FC<IMediaQueryProps> = props => {
                 iconName="phone"
                 styles={{ root: { position: "relative", top: 2 } }}
               />
+
               <Text variant="mediumPlus" styles={{ root: { marginLeft: 4 } }}>
                 07974 243764
               </Text>

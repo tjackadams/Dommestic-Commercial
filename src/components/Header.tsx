@@ -2,7 +2,6 @@ import React from "react"
 import {
   FontSizes,
   FontWeights,
-  Icon,
   Stack,
   Text,
   DefaultPalette,
@@ -11,6 +10,7 @@ import {
 
 import useMedia from "use-media"
 
+import { Icon } from "./"
 import { DesktopNavigation, MobileNavigation } from "./Navigation"
 import { Small } from "../utilities/mediaQuery"
 
@@ -83,6 +83,7 @@ const Header = () => {
                       },
                     }}
                   />
+
                   <Text
                     styles={{
                       root: {

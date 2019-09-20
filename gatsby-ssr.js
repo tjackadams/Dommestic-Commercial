@@ -2,6 +2,7 @@ import { Stylesheet, InjectionMode } from "@uifabric/merge-styles"
 import { renderStatic } from "@uifabric/merge-styles/lib/server"
 import { renderToString } from "react-dom/server"
 import React from "react"
+import { configureLoadStyles } from "@microsoft/load-themed-styles"
 
 export const replaceRenderer = ({
   bodyComponent,

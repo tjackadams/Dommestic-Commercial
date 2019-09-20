@@ -3,14 +3,13 @@ import {
   Separator,
   Stack,
   Text,
-  Icon,
   Link,
   DefaultPalette,
 } from "office-ui-fabric-react"
 import useMedia from "use-media"
 
+import { Icon } from "./"
 import { Small } from "../utilities/mediaQuery"
-import { EncodedEmailAddress } from "../metadata"
 
 const Footer = () => {
   const isSmall = useMedia(Small)
@@ -85,6 +84,7 @@ const Footer = () => {
                   iconName="phone"
                   styles={{ root: { position: "relative", top: 2 } }}
                 />
+
                 <Text variant="mediumPlus" styles={{ root: { marginLeft: 4 } }}>
                   01384 357446
                 </Text>
@@ -109,6 +109,7 @@ const Footer = () => {
                   iconName="phone"
                   styles={{ root: { position: "relative", top: 2 } }}
                 />
+
                 <Text variant="mediumPlus" styles={{ root: { marginLeft: 4 } }}>
                   07974 243764
                 </Text>
