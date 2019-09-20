@@ -53,6 +53,13 @@ class Footer extends React.PureComponent<IFooterProps> {
             tokens={{ childrenGap: 40 }}
           >
             <Stack.Item styles={textContainerStyle}>
+              <Text
+                as="h3"
+                variant="xLarge"
+                styles={{ root: { display: "none" } }}
+              >
+                Opening Times
+              </Text>
               <Text as="h3" variant="xLarge" block>
                 Opening Times
               </Text>
@@ -74,6 +81,14 @@ class Footer extends React.PureComponent<IFooterProps> {
             </Stack.Item>
             <Separator vertical={isSmallUp} />
             <Stack.Item styles={textContainerStyle}>
+              <Text
+                as="h3"
+                variant="xLarge"
+                block
+                styles={{ root: { display: "none" } }}
+              >
+                Domestic &#38; Commercial Drain Services
+              </Text>
               <Text as="h3" variant="xLarge" block>
                 Domestic &#38; Commercial Drain Services
               </Text>

@@ -101,9 +101,8 @@ class Layout extends React.PureComponent<ILayoutProps> {
                   styles={{
                     root: {
                       position: "absolute",
-                      top: "30%",
-                      left: "40%",
-                      transform: "translate(-60%, -70%)",
+                      top: "10%",
+                      left: "20%",
                       color: DefaultPalette.white,
                       fontWeight: FontWeights.semibold,
                     },
