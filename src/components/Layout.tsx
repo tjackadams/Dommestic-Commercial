@@ -3,24 +3,26 @@ import Img from "gatsby-image"
 import {
   DefaultPalette,
   FontWeights,
-  loadTheme,
   Stack,
   IStackItemStyles,
   Text,
+  Fabric,
 } from "office-ui-fabric-react"
 import { Depths } from "@uifabric/fluent-theme/lib/fluent/FluentDepths"
 import { Element } from "react-scroll"
 
-import { Footer, Header, MapContainer } from "./"
+import { Footer, Header } from "./"
 import {
   withResponsiveMode,
   IWithResponsiveModeState,
   ResponsiveMode,
 } from "office-ui-fabric-react/lib/utilities/decorators/withResponsiveMode"
+import Loadable from "react-loadable"
 
-loadTheme({
-  palette: {
-    themePrimary: DefaultPalette.tealLight,
+const LoadableMapContainer = Loadable({
+  loader: () => import("./MapContainer"),
+  loading() {
+    return <div>Loading...</div>
   },
 })
 
@@ -76,90 +78,92 @@ class Layout extends React.PureComponent<ILayoutProps> {
     const isSmallUp = responsiveMode > ResponsiveMode.small
 
     return (
-      <Stack styles={{ root: { width: "calc(100vw - (100vw - 100%))" } }}>
-        <Element name="home">
-          <Stack.Item styles={headerContentStyle}>
-            <Header />
-          </Stack.Item>
-          {isSmallUp && (
-            <Stack.Item
-              styles={{
-                root: {
-                  backgroundColor: DefaultPalette.white,
-                  height: 80,
-                },
-              }}
-            >
-              {" "}
+      <Fabric>
+        <Stack styles={{ root: { width: "calc(100vw - (100vw - 100%))" } }}>
+          <Element name="home">
+            <Stack.Item styles={headerContentStyle}>
+              <Header />
             </Stack.Item>
-          )}
-          <Stack.Item styles={{ root: { position: "relative" } }}>
-            <Img
-              fluid={banner}
-              alt="Water in a sink flowing down the drain."
-              style={{ filter: "brightness(65%) saturate(135%)" }}
-            />
             {isSmallUp && (
-              <Text
-                as="h1"
-                variant="xxLarge"
+              <Stack.Item
                 styles={{
                   root: {
-                    position: "absolute",
-                    top: "30%",
-                    left: "40%",
-                    transform: "translate(-60%, -70%)",
-                    color: DefaultPalette.white,
-                    fontWeight: FontWeights.semibold,
+                    backgroundColor: DefaultPalette.white,
+                    height: 80,
                   },
                 }}
               >
-                Providing Domestic &amp; Commercial Drain Services
+                {" "}
+              </Stack.Item>
+            )}
+            <Stack.Item styles={{ root: { position: "relative" } }}>
+              <Img
+                fluid={banner}
+                alt="Water in a sink flowing down the drain."
+                style={{ filter: "brightness(65%) saturate(135%)" }}
+              />
+              {isSmallUp && (
                 <Text
-                  block
-                  variant="xLarge"
+                  as="h1"
+                  variant="xxLarge"
                   styles={{
                     root: {
+                      position: "absolute",
+                      top: "30%",
+                      left: "40%",
+                      transform: "translate(-60%, -70%)",
                       color: DefaultPalette.white,
-                      fontWeight: FontWeights.semilight,
+                      fontWeight: FontWeights.semibold,
                     },
                   }}
                 >
-                  Across Dudley &amp; the West Midlands
+                  Providing Domestic &amp; Commercial Drain Services
+                  <Text
+                    block
+                    variant="xLarge"
+                    styles={{
+                      root: {
+                        color: DefaultPalette.white,
+                        fontWeight: FontWeights.semilight,
+                      },
+                    }}
+                  >
+                    Across Dudley &amp; the West Midlands
+                  </Text>
                 </Text>
-              </Text>
-            )}
+              )}
+            </Stack.Item>
+          </Element>
+          <Stack.Item>
+            <Stack horizontalAlign="center">
+              <Stack.Item styles={mainContentContainer}>
+                {this.props.children}
+              </Stack.Item>
+            </Stack>
           </Stack.Item>
-        </Element>
-        <Stack.Item>
-          <Stack horizontalAlign="center">
-            <Stack.Item styles={mainContentContainer}>
-              {this.props.children}
-            </Stack.Item>
-          </Stack>
-        </Stack.Item>
-        <Stack.Item>
-          <Stack
-            horizontal
-            horizontalAlign="center"
-            styles={{ root: { width: "100%" } }}
-          >
-            <Stack.Item styles={{ root: { height: 480, width: "100%" } }}>
-              <MapContainer />
-            </Stack.Item>
-          </Stack>
-          <Stack
-            styles={{
-              root: {
-                backgroundColor: DefaultPalette.neutralPrimary,
-                color: DefaultPalette.white,
-              },
-            }}
-          >
-            <Footer />
-          </Stack>
-        </Stack.Item>
-      </Stack>
+          <Stack.Item>
+            <Stack
+              horizontal
+              horizontalAlign="center"
+              styles={{ root: { width: "100%" } }}
+            >
+              <Stack.Item styles={{ root: { height: 480, width: "100%" } }}>
+                <LoadableMapContainer />
+              </Stack.Item>
+            </Stack>
+            <Stack
+              styles={{
+                root: {
+                  backgroundColor: DefaultPalette.neutralPrimary,
+                  color: DefaultPalette.white,
+                },
+              }}
+            >
+              <Footer />
+            </Stack>
+          </Stack.Item>
+        </Stack>
+      </Fabric>
     )
   }
 }

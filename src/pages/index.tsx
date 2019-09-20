@@ -3,23 +3,39 @@ import Loadable from "react-loadable"
 
 import "./index.css"
 import { graphql } from "gatsby"
-import { Stack, ProgressIndicator } from "office-ui-fabric-react"
+import {
+  Stack,
+  ProgressIndicator,
+  loadTheme,
+  DefaultPalette,
+  Fabric,
+} from "office-ui-fabric-react"
+
+loadTheme({
+  palette: {
+    themePrimary: DefaultPalette.tealLight,
+  },
+})
 
 const LoadableApp = Loadable({
   loader: () => import("../components/App"),
-  loading: () => (
-    <Stack
-      horizontal
-      horizontalAlign="center"
-      verticalAlign="center"
-      tokens={{ childrenGap: 40, padding: 60 }}
-      styles={{ root: { width: "calc(100vw - (100vw - 100%))" } }}
-    >
-      <Stack.Item grow>
-        <ProgressIndicator description="Loading.." />
-      </Stack.Item>
-    </Stack>
-  ),
+  loading() {
+    return (
+      <Fabric>
+        <Stack
+          horizontal
+          horizontalAlign="center"
+          verticalAlign="center"
+          tokens={{ childrenGap: 40, padding: 60 }}
+          styles={{ root: { width: "calc(100vw - (100vw - 100%))" } }}
+        >
+          <Stack.Item grow>
+            <ProgressIndicator description="Loading.." />
+          </Stack.Item>
+        </Stack>
+      </Fabric>
+    )
+  },
 })
 
 const App = (props: any) => {
