@@ -11,20 +11,12 @@ import {
 import { Depths } from "@uifabric/fluent-theme/lib/fluent/FluentDepths"
 import { Element } from "react-scroll"
 
-import { Footer, Header } from "./"
+import { Footer, Header, MapContainer } from "./"
 import {
   withResponsiveMode,
   IWithResponsiveModeState,
   ResponsiveMode,
 } from "office-ui-fabric-react/lib/utilities/decorators/withResponsiveMode"
-import Loadable from "react-loadable"
-
-const LoadableMapContainer = Loadable({
-  loader: () => import("./MapContainer"),
-  loading() {
-    return <div>Loading...</div>
-  },
-})
 
 interface ILayoutProps extends IWithResponsiveModeState {
   banner: any
@@ -148,7 +140,7 @@ class Layout extends React.PureComponent<ILayoutProps> {
               styles={{ root: { width: "100%" } }}
             >
               <Stack.Item styles={{ root: { height: 480, width: "100%" } }}>
-                <LoadableMapContainer />
+                <MapContainer />
               </Stack.Item>
             </Stack>
             <Stack
