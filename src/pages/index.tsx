@@ -9,7 +9,12 @@ import {
   Stack,
   Text,
 } from "office-ui-fabric-react"
-import { Card } from "@uifabric/react-cards"
+import {
+  Card,
+  ICardStyles,
+  ICardItemStyles,
+  ICardSectionStyles,
+} from "@uifabric/react-cards"
 import { Element, scroller } from "react-scroll"
 import useMedia from "use-media"
 
@@ -24,19 +29,46 @@ if (process.env.NODE_ENV !== "production") {
   whyDidYouRender(React)
 }
 
+const cardStyle: ICardStyles = {
+  root: {
+    maxWidth: 767,
+    selectors: {
+      "@media(max-width: 479)": {
+        maxWidth: 335,
+      },
+    },
+  },
+}
+
+const cardImageStyle: ICardItemStyles = {
+  root: {
+    width: 180,
+    selectors: {
+      ["@media(max-width: 479px)"]: {
+        width: 335,
+      },
+    },
+  },
+}
+
+const cardContentStyle: ICardSectionStyles = {
+  root: {
+    textAlign: "center",
+    paddingRight: 12,
+    selectors: {
+      "@media(max-width: 479)": {
+        textAlign: "center",
+        paddingRight: 12,
+        paddingLeft: 12,
+        paddingBottom: 12,
+      },
+    },
+  },
+}
+
 const App = props => {
   const isSmall = useMedia(Small)
   initializeIcons()
-
-  const cardSectionStyle = isSmall
-    ? {
-        root: {
-          textAlign: "center",
-          paddingRight: 12,
-          paddingLeft: 12,
-        },
-      }
-    : { root: { textAlign: "center", paddingRight: 12 } }
 
   return (
     <Layout banner={props.data.drainBanner.childImageSharp.fluid}>
@@ -68,7 +100,7 @@ const App = props => {
                 },
               }}
             >
-              We offer a fast & efficient drainage service across the{" "}
+              We offer a fast &amp; efficient drainage service across the{" "}
               <Link
                 onClick={() =>
                   scroller.scrollTo("areas-we-cover", {
@@ -98,20 +130,14 @@ const App = props => {
               styles={{ root: { marginTop: 40 } }}
               wrap
             >
-              <Card
-                compact={!isSmall}
-                tokens={{ maxWidth: isSmall ? 335 : 767 }}
-              >
-                <Card.Item
-                  fill
-                  styles={{ root: { width: isSmall ? 335 : 180 } }}
-                >
+              <Card compact={!isSmall} styles={cardStyle}>
+                <Card.Item fill styles={cardImageStyle}>
                   <Img
                     fluid={props.data.blockedDrains.childImageSharp.fluid}
                     alt="Blocked Drain with Ladders in Dudley"
                   />
                 </Card.Item>
-                <Card.Section grow styles={cardSectionStyle}>
+                <Card.Section grow styles={cardContentStyle}>
                   <Text
                     as="h3"
                     variant="xLarge"
@@ -146,10 +172,7 @@ const App = props => {
                 </Card.Section>
               </Card>
 
-              <Card
-                compact={!isSmall}
-                tokens={{ maxWidth: isSmall ? 335 : 767 }}
-              >
+              <Card compact={!isSmall} styles={cardStyle}>
                 <Card.Item
                   fill
                   styles={{ root: { width: isSmall ? 335 : 180 } }}
@@ -159,7 +182,7 @@ const App = props => {
                     alt="Commercial Drains on the Street"
                   />
                 </Card.Item>
-                <Card.Section grow styles={cardSectionStyle}>
+                <Card.Section grow styles={cardContentStyle}>
                   <Text
                     as="h3"
                     variant="xLarge"
@@ -205,7 +228,7 @@ const App = props => {
                     alt="Man performing High Pressure Jetting in Dudley"
                   />
                 </Card.Item>
-                <Card.Section grow styles={cardSectionStyle}>
+                <Card.Section grow styles={cardContentStyle}>
                   <Text
                     as="h3"
                     variant="xLarge"

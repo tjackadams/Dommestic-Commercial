@@ -67,10 +67,10 @@ const cfg = {
         policy: [{ userAgent: "*", allow: "/" }],
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-purgecss`,
-    //   options: {},
-    // },
+    {
+      resolve: `gatsby-plugin-purgecss`,
+      options: {},
+    },
   ],
 }
 
