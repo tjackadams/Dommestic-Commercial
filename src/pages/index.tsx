@@ -9,6 +9,7 @@ import {
   loadTheme,
   DefaultPalette,
   Fabric,
+  initializeIcons,
 } from "office-ui-fabric-react"
 
 import { App as MyApp } from "../components"
@@ -30,14 +31,17 @@ loadTheme({
   },
 })
 
+initializeIcons(undefined, { disableWarnings: true })
+
 interface IAppProps extends IWithResponsiveModeState {
-  images: any
+  data: any
 }
 
 @withResponsiveMode
 class App extends React.Component<IAppProps> {
   public render(): JSX.Element {
-    const { images, responsiveMode = ResponsiveMode.small } = this.props
+    console.log(this.props)
+    const { data, responsiveMode = ResponsiveMode.small } = this.props
 
     const isMobile = responsiveMode <= ResponsiveMode.small
     const isTablet =
@@ -47,9 +51,21 @@ class App extends React.Component<IAppProps> {
 
     return (
       <>
-        {isMobile && <MobileLayout>mobile</MobileLayout>}
-        {isTablet && <TabletLayout>tablet</TabletLayout>}
-        {isDesktop && <DesktopLayout>desktop</DesktopLayout>}
+        {isMobile && (
+          <MobileLayout banner={data.drainBanner.childImageSharp.fluid}>
+            mobile
+          </MobileLayout>
+        )}
+        {isTablet && (
+          <TabletLayout banner={data.drainBanner.childImageSharp.fluid}>
+            tablet
+          </TabletLayout>
+        )}
+        {isDesktop && (
+          <DesktopLayout banner={data.drainBanner.childImageSharp.fluid}>
+            desktop
+          </DesktopLayout>
+        )}
       </>
     )
   }

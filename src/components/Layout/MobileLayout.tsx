@@ -1,12 +1,32 @@
 import React from "react"
-import { Fabric, Stack } from "office-ui-fabric-react"
-
-export class MobileLayout extends React.Component {
+import Img from "gatsby-image"
+import { Fabric, Stack, DefaultPalette } from "office-ui-fabric-react"
+import { MobileHeader } from "../Header/index"
+import { ILayoutProps } from "./Layout.types"
+export class MobileLayout extends React.Component<ILayoutProps> {
   public render(): JSX.Element {
+    const { banner } = this.props
+
     return (
       <Fabric>
-        <Stack>
-          <Stack.Item>{this.props.children}</Stack.Item>
+        <Stack styles={{ root: { width: "calc(100vw - (100vw - 100%))" } }}>
+          <Stack.Item
+            styles={{
+              root: {
+                backgroundColor: DefaultPalette.white,
+                padding: 6,
+              },
+            }}
+          >
+            <MobileHeader />
+          </Stack.Item>
+          <Stack.Item grow styles={{ root: { width: "100%" } }}>
+            <Img
+              fluid={banner}
+              alt="Water in a sink flowing down the drain."
+              style={{ filter: "brightness(65%) saturate(135%)" }}
+            />
+          </Stack.Item>
         </Stack>
       </Fabric>
     )
