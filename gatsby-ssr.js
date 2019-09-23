@@ -14,14 +14,13 @@ export const replaceRenderer = ({
   library.setRTL(false)
 
   let responsiveLib = require("office-ui-fabric-react/lib/utilities/decorators/withResponsiveMode")
-  responsiveLib.setResponsiveMode(responsiveLib.ResponsiveMode.xxxLarge)
+  responsiveLib.setResponsiveMode(responsiveLib.ResponsiveMode.small)
 
-    const { html, css } = renderStatic(() => {
-      return renderToString(bodyComponent)
-    })
+  const { html, css } = renderStatic(() => {
+    return renderToString(bodyComponent)
+  })
 
-    replaceBodyHTMLString(html)
+  replaceBodyHTMLString(html)
 
-    setHeadComponents([<style dangerouslySetInnerHTML={{ __html: css }} />])
-
+  setHeadComponents([<style dangerouslySetInnerHTML={{ __html: css }} />])
 }

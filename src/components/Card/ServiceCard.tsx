@@ -1,84 +1,72 @@
 import React from "react"
 import Img from "gatsby-image"
 import {
-  FontWeights,
-  initializeIcons,
-  Link,
-  Separator,
-  Stack,
-  Text,
-  ITextStyles,
+  classNamesFunction,
+  styled,
+  IStyleFunction,
+  ScreenWidthMinUhfMobile,
 } from "office-ui-fabric-react"
+import { Card } from "@uifabric/react-cards"
 import {
-  Card,
-  ICardStyles,
-  ICardItemStyles,
-  ICardSectionStyles,
-} from "@uifabric/react-cards"
-import {
-  withResponsiveMode,
-  IWithResponsiveModeState,
-  ResponsiveMode,
-} from "office-ui-fabric-react/lib/utilities/decorators/withResponsiveMode"
+  IServiceCardProps,
+  IServiceCardStyleProps,
+  IServiceCardStyles,
+} from "./ServiceCard.types"
 
-const cardStyle: ICardStyles = {
-  root: {
-    maxWidth: 767,
-    selectors: {
-      ["@media(max-width: 479px)"]: {
-        maxWidth: 335,
+const getStyles: IStyleFunction<
+  IServiceCardStyleProps,
+  IServiceCardStyles
+> = props => {
+  return {
+    root: {
+      maxWidth: 335,
+      selectors: {
+        [`@media screen and (min-width: ${ScreenWidthMinUhfMobile}px)`]: {
+          maxWidth: ScreenWidthMinUhfMobile,
+        },
       },
     },
-  },
-}
-
-const cardImageStyle: ICardItemStyles = {
-  root: {
-    width: 180,
-    selectors: {
-      ["@media(max-width: 479px)"]: {
-        width: 335,
+    image: {
+      width: 335,
+      selectors: {
+        [`@media screen and (min-width: ${ScreenWidthMinUhfMobile}px)`]: {
+          width: 180,
+        },
       },
     },
-  },
-}
-
-const cardContentStyle: ICardSectionStyles = {
-  root: {
-    textAlign: "center",
-    paddingRight: 12,
-    selectors: {
-      ["@media(max-width: 479px)"]: {
-        textAlign: "center",
-        paddingRight: 12,
-        paddingLeft: 12,
-        paddingBottom: 12,
+    content: {
+      textAlign: "center",
+      paddingRight: 12,
+      paddingLeft: 12,
+      paddingBottom: 12,
+      width: "100%",
+      selectors: {
+        [`@media screen and (min-width: ${ScreenWidthMinUhfMobile}px)`]: {
+          paddingLeft: 0,
+          paddingBottom: 0,
+        },
       },
     },
-  },
+  }
 }
 
-interface IServiceCardProps extends IWithResponsiveModeState {
-  image: any
-  imageAlt: string
-}
+const getClassNames = classNamesFunction<
+  IServiceCardStyleProps,
+  IServiceCardStyles
+>()
 
-@withResponsiveMode
-class ServiceCard extends React.PureComponent<IServiceCardProps> {
+export class ServiceCardBase extends React.Component<IServiceCardProps> {
   public render(): JSX.Element {
-    const {
-      image,
-      imageAlt,
-      responsiveMode = ResponsiveMode.xLarge,
-    } = this.props
-    const isSmallUp = responsiveMode > ResponsiveMode.small
+    const { image, imageAlt, styles, isSmallDown = false, theme } = this.props
+
+    const classNames = getClassNames(styles, { theme })
 
     return (
-      <Card compact={isSmallUp} styles={cardStyle}>
-        <Card.Item fill styles={cardImageStyle}>
+      <Card compact={!isSmallDown} className={classNames.root}>
+        <Card.Item fill className={classNames.image}>
           <Img fluid={image} alt={imageAlt} />
         </Card.Item>
-        <Card.Section grow styles={cardContentStyle}>
+        <Card.Section className={classNames.content}>
           {this.props.children}
         </Card.Section>
       </Card>
@@ -86,4 +74,8 @@ class ServiceCard extends React.PureComponent<IServiceCardProps> {
   }
 }
 
-export default ServiceCard
+export const ServiceCard: React.StatelessComponent<IServiceCardProps> = styled<
+  IServiceCardProps,
+  IServiceCardStyleProps,
+  IServiceCardStyles
+>(ServiceCardBase, getStyles, undefined, { scope: "ServiceCard" })

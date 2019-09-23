@@ -9,6 +9,7 @@ import {
   Stack,
   Text,
   ITextStyles,
+  mergeStyleSets,
 } from "office-ui-fabric-react"
 import {
   Card,
@@ -18,7 +19,8 @@ import {
 } from "@uifabric/react-cards"
 import { Element, scroller } from "react-scroll"
 
-import { ContactSection, SEO, ServiceCard } from "../components"
+import { ServiceCard } from "../components/Card"
+import { ContactSection, SEO } from "../components"
 import Layout from "../components/Layout"
 
 import {
@@ -31,43 +33,19 @@ interface IAppProps extends IWithResponsiveModeState {
   data: any
 }
 
-const cardStyle: ICardStyles = {
-  root: {
-    maxWidth: 767,
-    transition: "none",
-    selectors: {
-      ["@media(max-width: 479px)"]: {
-        maxWidth: 335,
-      },
-    },
+const classNames = mergeStyleSets({
+  cardHeader: {
+    fontWeight: FontWeights.semibold,
+    marginTop: "0.4rem",
+    marginBottom: 0,
+    transform: "none",
   },
-}
-
-const cardImageStyle: ICardItemStyles = {
-  root: {
-    width: 180,
-    selectors: {
-      ["@media(max-width: 479px)"]: {
-        width: 335,
-      },
-    },
+  cardContentText: {
+    fontWeight: FontWeights.semilight,
+    marginBottom: 0,
+    transform: "none",
   },
-}
-
-const cardContentStyle: ICardSectionStyles = {
-  root: {
-    textAlign: "center",
-    paddingRight: 12,
-    selectors: {
-      ["@media(max-width: 479px)"]: {
-        textAlign: "center",
-        paddingRight: 12,
-        paddingLeft: 12,
-        paddingBottom: 12,
-      },
-    },
-  },
-}
+})
 
 const cardHeaderTextStyle: ITextStyles = {
   root: {
@@ -90,11 +68,29 @@ initializeIcons(undefined, { disableWarnings: true })
 
 @withResponsiveMode
 class App extends React.Component<IAppProps> {
+  private _timer: NodeJS.Timeout
+
+  constructor(props: Readonly<IAppProps>) {
+    super(props)
+
+    this._timer = setTimeout(() => {
+      console.log("force update")
+      this.forceUpdate()
+    }, 200)
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this._timer)
+  }
+
   public render(): JSX.Element {
     const { data, responsiveMode = ResponsiveMode.xLarge } = this.props
     const isLargeDown = responsiveMode <= ResponsiveMode.large
     const isMediumDown = responsiveMode <= ResponsiveMode.medium
     const isSmallUp = responsiveMode > ResponsiveMode.small
+    const isSmallDown = responsiveMode <= ResponsiveMode.small
+
+    console.log("responsive mode: ", responsiveMode)
 
     return (
       <Layout banner={data.drainBanner.childImageSharp.fluid}>
@@ -163,13 +159,18 @@ class App extends React.Component<IAppProps> {
                 <ServiceCard
                   image={data.blockedDrains.childImageSharp.fluid}
                   imageAlt="Blocked Drain with Ladders in Dudley"
+                  isSmallDown={isSmallDown}
                 >
-                  <Text as="h3" variant="xLarge" styles={cardHeaderTextStyle}>
+                  <Text
+                    as="h3"
+                    variant="xLarge"
+                    className={classNames.cardHeader}
+                  >
                     Blocked Drains
                   </Text>
                   <Text
                     as="p"
-                    styles={cardContextTextStyle}
+                    className={classNames.cardContentText}
                     variant="mediumPlus"
                   >
                     Domestic &#38; Commercial Drain Services provide a bespoke
@@ -186,13 +187,18 @@ class App extends React.Component<IAppProps> {
                 <ServiceCard
                   image={data.commercialDrain.childImageSharp.fluid}
                   imageAlt="Commercial Drains on the Street"
+                  isSmallDown={isSmallDown}
                 >
-                  <Text as="h3" variant="xLarge" styles={cardHeaderTextStyle}>
+                  <Text
+                    as="h3"
+                    variant="xLarge"
+                    className={classNames.cardHeader}
+                  >
                     Drainage
                   </Text>
                   <Text
                     as="p"
-                    styles={cardContextTextStyle}
+                    className={classNames.cardContentText}
                     variant="mediumPlus"
                   >
                     Our drainage service covers both <i>Commercial Drains</i>{" "}
@@ -207,13 +213,18 @@ class App extends React.Component<IAppProps> {
                 <ServiceCard
                   image={data.drainJetting.childImageSharp.fluid}
                   imageAlt="Man performing High Pressure Jetting in Dudley"
+                  isSmallDown={isSmallDown}
                 >
-                  <Text as="h3" variant="xLarge" styles={cardHeaderTextStyle}>
+                  <Text
+                    as="h3"
+                    variant="xLarge"
+                    className={classNames.cardHeader}
+                  >
                     Drain Cleaning
                   </Text>
                   <Text
                     as="p"
-                    styles={cardContextTextStyle}
+                    className={classNames.cardContentText}
                     variant="mediumPlus"
                   >
                     Most drainage problems can be solved without pulling out the
