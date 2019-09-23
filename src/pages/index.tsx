@@ -12,6 +12,17 @@ import {
 } from "office-ui-fabric-react"
 
 import { App as MyApp } from "../components"
+import {
+  IWithResponsiveModeState,
+  withResponsiveMode,
+  ResponsiveMode,
+} from "office-ui-fabric-react/lib/utilities/decorators/withResponsiveMode"
+
+import {
+  MobileLayout,
+  TabletLayout,
+  DesktopLayout,
+} from "../components/Layout/index"
 
 loadTheme({
   palette: {
@@ -19,29 +30,29 @@ loadTheme({
   },
 })
 
-// const LoadableApp = Loadable({
-//   loader: () => import("../components/App"),
-//   loading() {
-//     return (
-//       <Fabric>
-//         <Stack
-//           horizontal
-//           horizontalAlign="center"
-//           verticalAlign="center"
-//           tokens={{ childrenGap: 40, padding: 60 }}
-//           styles={{ root: { width: "calc(100vw - (100vw - 100%))" } }}
-//         >
-//           <Stack.Item grow>
-//             <ProgressIndicator description="Loading.." />
-//           </Stack.Item>
-//         </Stack>
-//       </Fabric>
-//     )
-//   },
-// })
+interface IAppProps extends IWithResponsiveModeState {
+  images: any
+}
 
-const App = (props: any) => {
-  return <MyApp data={props.data} />
+@withResponsiveMode
+class App extends React.Component<IAppProps> {
+  public render(): JSX.Element {
+    const { images, responsiveMode = ResponsiveMode.small } = this.props
+
+    const isMobile = responsiveMode <= ResponsiveMode.small
+    const isTablet =
+      responsiveMode <= ResponsiveMode.large &&
+      responsiveMode > ResponsiveMode.small
+    const isDesktop = responsiveMode > ResponsiveMode.large
+
+    return (
+      <>
+        {isMobile && <MobileLayout>mobile</MobileLayout>}
+        {isTablet && <TabletLayout>tablet</TabletLayout>}
+        {isDesktop && <DesktopLayout>desktop</DesktopLayout>}
+      </>
+    )
+  }
 }
 
 export default App

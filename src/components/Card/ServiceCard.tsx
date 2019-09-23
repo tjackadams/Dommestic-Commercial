@@ -74,7 +74,7 @@ export class ServiceCardBase extends React.Component<IServiceCardProps> {
   }
 }
 
-export const ServiceCard: React.StatelessComponent<IServiceCardProps> = styled<
+export const ServiceCard: React.FunctionComponent<IServiceCardProps> = styled<
   IServiceCardProps,
   IServiceCardStyleProps,
   IServiceCardStyles
