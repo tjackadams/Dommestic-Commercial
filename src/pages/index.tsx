@@ -1,18 +1,10 @@
 import React from "react"
-import Loadable from "react-loadable"
-
-import "./index.css"
 import { graphql } from "gatsby"
 import {
-  Stack,
-  ProgressIndicator,
   loadTheme,
   DefaultPalette,
-  Fabric,
   initializeIcons,
 } from "office-ui-fabric-react"
-
-import { App as MyApp } from "../components"
 import {
   IWithResponsiveModeState,
   withResponsiveMode,
@@ -24,6 +16,9 @@ import {
   TabletLayout,
   DesktopLayout,
 } from "../components/Layout/index"
+import SEO from "../components/SEO"
+
+import "./index.css"
 
 loadTheme({
   palette: {
@@ -51,6 +46,7 @@ class App extends React.Component<IAppProps> {
 
     return (
       <>
+        <SEO />
         {isMobile && (
           <MobileLayout banner={data.drainBanner.childImageSharp.fluid}>
             mobile
