@@ -1,6 +1,8 @@
 import React from "react"
 import Img from "gatsby-image"
 import { Fabric, Stack, DefaultPalette } from "office-ui-fabric-react"
+
+import { MobileFooter } from "../"
 import { MobileHeader } from "../Header/index"
 import { ILayoutProps } from "./Layout.types"
 export class MobileLayout extends React.Component<ILayoutProps> {
@@ -45,6 +47,16 @@ export class MobileLayout extends React.Component<ILayoutProps> {
                 {this.props.children}
               </Stack.Item>
             </Stack>
+          </Stack.Item>
+          <Stack.Item
+            styles={{
+              root: {
+                backgroundColor: DefaultPalette.neutralPrimary,
+                color: DefaultPalette.white,
+              },
+            }}
+          >
+            <MobileFooter />
           </Stack.Item>
         </Stack>
       </Fabric>

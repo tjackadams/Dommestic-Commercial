@@ -3,7 +3,7 @@ import Img from "gatsby-image"
 import { Fabric, Stack, DefaultPalette } from "office-ui-fabric-react"
 import { Depths } from "@uifabric/fluent-theme/lib/fluent/FluentDepths"
 
-import { MapContainer } from "../"
+import { DesktopFooter, MapContainer } from "../"
 import { TabletHeader } from "../Header/index"
 import { ILayoutProps } from "./Layout.types"
 
@@ -52,12 +52,22 @@ export class TabletLayout extends React.Component<ILayoutProps> {
               </Stack.Item>
             </Stack>
           </Stack.Item>
-          <Stack.Item
+          {/* <Stack.Item
             styles={{
               root: { height: 480, width: "calc(100vw - (100vw - 100%))" },
             }}
           >
             <MapContainer />
+          </Stack.Item> */}
+          <Stack.Item
+            styles={{
+              root: {
+                backgroundColor: DefaultPalette.neutralPrimary,
+                color: DefaultPalette.white,
+              },
+            }}
+          >
+            <DesktopFooter />
           </Stack.Item>
         </Stack>
       </Fabric>

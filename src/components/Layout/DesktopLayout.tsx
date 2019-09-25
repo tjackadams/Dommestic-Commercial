@@ -8,7 +8,7 @@ import {
   Text,
 } from "office-ui-fabric-react"
 
-import { MapContainer } from "../"
+import { DesktopFooter, MapContainer } from "../"
 import { DesktopHeader } from "../Header/index"
 import { ILayoutProps } from "./Layout.types"
 import { Depths } from "@uifabric/fluent-theme/lib/fluent/FluentDepths"
@@ -92,7 +92,16 @@ export class DesktopLayout extends React.Component<ILayoutProps> {
           >
             <MapContainer />
           </Stack.Item>
-          <Stack.Item>footer</Stack.Item>
+          <Stack.Item
+            styles={{
+              root: {
+                backgroundColor: DefaultPalette.neutralPrimary,
+                color: DefaultPalette.white,
+              },
+            }}
+          >
+            <DesktopFooter />
+          </Stack.Item>
         </Stack>
       </Fabric>
     )
