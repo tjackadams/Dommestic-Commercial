@@ -14,7 +14,7 @@ export const replaceRenderer = ({
   library.setRTL(false)
 
   let responsiveLib = require("office-ui-fabric-react/lib/utilities/decorators/withResponsiveMode")
-  responsiveLib.setResponsiveMode(responsiveLib.ResponsiveMode.small)
+  responsiveLib.setResponsiveMode(responsiveLib.ResponsiveMode.large)
 
   const { html, css } = renderStatic(() => {
     return renderToString(bodyComponent)
