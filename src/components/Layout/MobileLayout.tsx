@@ -36,7 +36,7 @@ export class MobileLayout extends React.Component<ILayoutProps> {
                     maxWidth: 375,
                     marginBottom: 40,
                     paddingTop: 10,
-                    paddingBottom: 10,
+                    paddingBottom: 40,
                     paddingLeft: "4%",
                     paddingRight: "4%",
                   },

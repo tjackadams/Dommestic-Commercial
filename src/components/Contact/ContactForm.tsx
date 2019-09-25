@@ -7,6 +7,8 @@ import {
   MessageBarType,
   PrimaryButton,
   ProgressIndicator,
+  Text,
+  FontSizes,
 } from "office-ui-fabric-react"
 import { FormikTextField } from "formik-office-ui-fabric-react"
 
@@ -34,11 +36,24 @@ interface ContactFormValues {
   enquiry: string
 }
 
-const ContactForm: React.SFC<{}> = () => {
+export const ContactForm: React.SFC<{}> = () => {
   const [state, setState] = useState({ isSuccess: false, isFailed: false })
 
   return (
     <>
+      <Text
+        as="h2"
+        block
+        variant="xxLarge"
+        styles={{
+          root: {
+            fontSize: FontSizes.xxLarge,
+            color: DefaultPalette.neutralDark,
+          },
+        }}
+      >
+        Contact us
+      </Text>
       {state.isSuccess && !state.isFailed && (
         <MessageBar
           messageBarType={MessageBarType.success}
@@ -163,7 +178,3 @@ const ContactForm: React.SFC<{}> = () => {
     </>
   )
 }
-
-ContactForm.whyDidYouRender = true
-
-export default ContactForm

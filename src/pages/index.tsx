@@ -7,6 +7,8 @@ import {
   Stack,
   Text,
   FontWeights,
+  Separator,
+  StackItem,
 } from "office-ui-fabric-react"
 import {
   IWithResponsiveModeState,
@@ -21,7 +23,21 @@ import {
 } from "../components/Layout/index"
 import SEO from "../components/SEO"
 
-import { HorizontalCard, VerticalCard, Services } from "../components"
+import {
+  AreasWeCover,
+  ContactForm,
+  ContactInformation,
+  HorizontalCard,
+  VerticalCard,
+  Recommendation,
+  Services,
+  ServiceOneContent,
+  ServiceOneHeader,
+  ServiceTwoContent,
+  ServiceTwoHeader,
+  ServiceThreeContent,
+  ServiceThreeHeader,
+} from "../components"
 
 import "./index.css"
 
@@ -70,84 +86,54 @@ class App extends React.Component<IAppProps> {
                     <VerticalCard
                       image={data.blockedDrains.childImageSharp.fluid}
                       imageAlt="Blocked Drain with Ladders in Dudley"
-                      title={
-                        <Text
-                          as="h3"
-                          variant="xLarge"
-                          styles={serviceHeaderStyle}
-                        >
-                          Blocked Drains
-                        </Text>
-                      }
+                      title={<ServiceOneHeader />}
                     >
-                      <Text
-                        as="p"
-                        variant="mediumPlus"
-                        styles={serviceContentStyle}
-                      >
-                        Domestic &#38; Commercial Drain Services provide a
-                        bespoke service for clearing and unblocking all types of
-                        blocked drains. This includes, but is not limited to{" "}
-                        <i>
-                          Blocked Drains, Blocked Sewers, Blocked Toilets,
-                          Blocked Sinks, Blocked Basins and Blocked Baths.
-                        </i>
-                      </Text>
+                      <ServiceOneContent />
                     </VerticalCard>
                   </Stack.Item>
                   <Stack.Item>
                     <VerticalCard
                       image={data.commercialDrain.childImageSharp.fluid}
                       imageAlt="Commercial Drains on the Street"
-                      title={
-                        <Text
-                          as="h3"
-                          variant="xLarge"
-                          styles={serviceHeaderStyle}
-                        >
-                          Drainage
-                        </Text>
-                      }
+                      title={<ServiceTwoHeader />}
                     >
-                      <Text
-                        as="p"
-                        variant="mediumPlus"
-                        styles={serviceContentStyle}
-                      >
-                        Our drainage service covers both{" "}
-                        <i>Commercial Drains</i> and <i>Domestic Drains</i>. We
-                        understand how important it is to our customers that
-                        projects are managed effectively to ensure quick and
-                        successful completion with minimal disturbances for the
-                        business or residential property.
-                      </Text>
+                      <ServiceTwoContent />
                     </VerticalCard>
                   </Stack.Item>
                   <Stack.Item>
                     <VerticalCard
                       image={data.drainJetting.childImageSharp.fluid}
                       imageAlt="Man performing High Pressure Jetting in Dudley"
-                      title={
-                        <Text
-                          as="h3"
-                          variant="xLarge"
-                          styles={serviceHeaderStyle}
-                        >
-                          Drain Cleaning
-                        </Text>
-                      }
+                      title={<ServiceThreeHeader />}
                     >
-                      <Text
-                        as="p"
-                        variant="mediumPlus"
-                        styles={serviceContentStyle}
-                      >
-                        Most drainage problems can be solved without pulling out
-                        the "big guns", but sometimes there are blockages that
-                        are so stubborn, they require something special. Let us
-                        help with our <i>high pressure jetting </i>service!
-                      </Text>
+                      <ServiceThreeContent />
                     </VerticalCard>
+                  </Stack.Item>
+                </Stack>
+              </Stack.Item>
+              <Stack.Item>
+                <Stack tokens={{ childrenGap: 12 }}>
+                  <Separator styles={{ root: { marginTop: 20 } }} />
+                </Stack>
+              </Stack.Item>
+              <Stack.Item styles={{ root: { textAlign: "center" } }}>
+                <Recommendation />
+              </Stack.Item>
+              <Stack.Item>
+                <Stack tokens={{ childrenGap: 12 }}>
+                  <Separator styles={{ root: { marginTop: 20 } }} />
+                </Stack>
+              </Stack.Item>
+              <Stack.Item>
+                <Stack horizontalAlign="center" tokens={{ childrenGap: 40 }}>
+                  <Stack.Item styles={{ root: { textAlign: "center" } }}>
+                    <AreasWeCover />
+                  </Stack.Item>
+                  <Stack.Item styles={{ root: { textAlign: "center" } }}>
+                    <ContactInformation />
+                  </Stack.Item>
+                  <Stack.Item>
+                    <ContactForm />
                   </Stack.Item>
                 </Stack>
               </Stack.Item>
@@ -173,7 +159,8 @@ class App extends React.Component<IAppProps> {
                       image={data.blockedDrains.childImageSharp.fluid}
                       imageAlt="Blocked Drain with Ladders in Dudley"
                     >
-                      {this.getServiceOne()}
+                      <ServiceOneHeader />
+                      <ServiceOneContent />
                     </HorizontalCard>
                   </Stack.Item>
                   <Stack.Item>
@@ -181,7 +168,8 @@ class App extends React.Component<IAppProps> {
                       image={data.commercialDrain.childImageSharp.fluid}
                       imageAlt="Commercial Drains on the Street"
                     >
-                      {this.getServiceTwo()}
+                      <ServiceTwoHeader />
+                      <ServiceTwoContent />
                     </HorizontalCard>
                   </Stack.Item>
                   <Stack.Item>
@@ -189,8 +177,43 @@ class App extends React.Component<IAppProps> {
                       image={data.drainJetting.childImageSharp.fluid}
                       imageAlt="Man performing High Pressure Jetting in Dudley"
                     >
-                      {this.getServiceThree()}
+                      <ServiceThreeHeader />
+                      <ServiceThreeContent />
                     </HorizontalCard>
+                  </Stack.Item>
+                </Stack>
+              </Stack.Item>
+              <Stack.Item>
+                <Stack tokens={{ childrenGap: 12 }}>
+                  <Separator styles={{ root: { marginTop: 20 } }} />
+                </Stack>
+              </Stack.Item>
+              <Stack.Item styles={{ root: { textAlign: "center" } }}>
+                <Recommendation />
+              </Stack.Item>
+              <Stack.Item>
+                <Stack tokens={{ childrenGap: 12 }}>
+                  <Separator styles={{ root: { marginTop: 20 } }} />
+                </Stack>
+              </Stack.Item>
+              <Stack.Item>
+                <Stack
+                  horizontal
+                  horizontalAlign="space-between"
+                  tokens={{ childrenGap: 40 }}
+                >
+                  <Stack.Item>
+                    <Stack>
+                      <Stack.Item>
+                        <AreasWeCover />
+                      </Stack.Item>
+                      <Stack.Item>
+                        <ContactInformation />
+                      </Stack.Item>
+                    </Stack>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <ContactForm />
                   </Stack.Item>
                 </Stack>
               </Stack.Item>
@@ -216,7 +239,8 @@ class App extends React.Component<IAppProps> {
                       image={data.blockedDrains.childImageSharp.fluid}
                       imageAlt="Blocked Drain with Ladders in Dudley"
                     >
-                      {this.getServiceOne()}
+                      <ServiceOneHeader />
+                      <ServiceOneContent />
                     </HorizontalCard>
                   </Stack.Item>
                   <Stack.Item>
@@ -224,7 +248,8 @@ class App extends React.Component<IAppProps> {
                       image={data.commercialDrain.childImageSharp.fluid}
                       imageAlt="Commercial Drains on the Street"
                     >
-                      {this.getServiceTwo()}
+                      <ServiceTwoHeader />
+                      <ServiceTwoContent />
                     </HorizontalCard>
                   </Stack.Item>
                   <Stack.Item>
@@ -232,8 +257,43 @@ class App extends React.Component<IAppProps> {
                       image={data.drainJetting.childImageSharp.fluid}
                       imageAlt="Man performing High Pressure Jetting in Dudley"
                     >
-                      {this.getServiceThree()}
+                      <ServiceThreeHeader />
+                      <ServiceThreeContent />
                     </HorizontalCard>
+                  </Stack.Item>
+                </Stack>
+              </Stack.Item>
+              <Stack.Item>
+                <Stack tokens={{ childrenGap: 12 }}>
+                  <Separator styles={{ root: { marginTop: 20 } }} />
+                </Stack>
+              </Stack.Item>
+              <Stack.Item styles={{ root: { textAlign: "center" } }}>
+                <Recommendation />
+              </Stack.Item>
+              <Stack.Item>
+                <Stack tokens={{ childrenGap: 12 }}>
+                  <Separator styles={{ root: { marginTop: 20 } }} />
+                </Stack>
+              </Stack.Item>
+              <Stack.Item>
+                <Stack
+                  horizontal
+                  horizontalAlign="space-between"
+                  tokens={{ childrenGap: 40 }}
+                >
+                  <Stack.Item>
+                    <Stack>
+                      <Stack.Item>
+                        <AreasWeCover />
+                      </Stack.Item>
+                      <Stack.Item>
+                        <ContactInformation />
+                      </Stack.Item>
+                    </Stack>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <ContactForm />
                   </Stack.Item>
                 </Stack>
               </Stack.Item>
@@ -243,73 +303,6 @@ class App extends React.Component<IAppProps> {
       </>
     )
   }
-
-  private getServiceOne = () => {
-    return (
-      <>
-        <Text as="h3" variant="xLarge" styles={serviceHeaderStyle}>
-          Blocked Drains
-        </Text>
-        <Text as="p" variant="mediumPlus" styles={serviceContentStyle}>
-          Domestic &#38; Commercial Drain Services provide a bespoke service for
-          clearing and unblocking all types of blocked drains. This includes,
-          but is not limited to{" "}
-          <i>
-            Blocked Drains, Blocked Sewers, Blocked Toilets, Blocked Sinks,
-            Blocked Basins and Blocked Baths.
-          </i>
-        </Text>
-      </>
-    )
-  }
-
-  private getServiceTwo = () => {
-    return (
-      <>
-        <Text as="h3" variant="xLarge" styles={serviceHeaderStyle}>
-          Drainage
-        </Text>
-        <Text as="p" variant="mediumPlus" styles={serviceContentStyle}>
-          Our drainage service covers both <i>Commercial Drains</i> and{" "}
-          <i>Domestic Drains</i>. We understand how important it is to our
-          customers that projects are managed effectively to ensure quick and
-          successful completion with minimal disturbances for the business or
-          residential property.
-        </Text>
-      </>
-    )
-  }
-
-  private getServiceThree = () => {
-    return (
-      <>
-        <Text as="h3" variant="xLarge" styles={serviceHeaderStyle}>
-          Drain Cleaning
-        </Text>
-        <Text as="p" variant="mediumPlus" styles={serviceContentStyle}>
-          Most drainage problems can be solved without pulling out the "big
-          guns", but sometimes there are blockages that are so stubborn, they
-          require something special. Let us help with our{" "}
-          <i>high pressure jetting </i>service!
-        </Text>
-      </>
-    )
-  }
-}
-
-const serviceHeaderStyle = {
-  root: {
-    fontWeight: FontWeights.semibold,
-    marginTop: "0.4rem",
-    marginBottom: 0,
-  },
-}
-
-const serviceContentStyle = {
-  root: {
-    fontWeight: FontWeights.semilight,
-    marginBottom: 0,
-  },
 }
 
 export default App

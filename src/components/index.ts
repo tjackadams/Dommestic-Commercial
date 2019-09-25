@@ -8,3 +8,4 @@ export { default as App } from "./App"
 
 export * from "./Content"
 export * from "./Card"
+export * from "./Contact"
