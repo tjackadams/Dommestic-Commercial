@@ -4,6 +4,9 @@ import {
   loadTheme,
   DefaultPalette,
   initializeIcons,
+  Stack,
+  Text,
+  FontWeights,
 } from "office-ui-fabric-react"
 import {
   IWithResponsiveModeState,
@@ -17,6 +20,8 @@ import {
   DesktopLayout,
 } from "../components/Layout/index"
 import SEO from "../components/SEO"
+
+import { HorizontalCard, VerticalCard, Services } from "../components"
 
 import "./index.css"
 
@@ -49,22 +54,262 @@ class App extends React.Component<IAppProps> {
         <SEO />
         {isMobile && (
           <MobileLayout banner={data.drainBanner.childImageSharp.fluid}>
-            mobile
+            <Stack>
+              <Stack.Item>
+                <Services />
+              </Stack.Item>
+              <Stack.Item>
+                <Stack
+                  horizontal
+                  horizontalAlign="center"
+                  tokens={{ childrenGap: 40 }}
+                  styles={{ root: { marginTop: 40 } }}
+                  wrap
+                >
+                  <Stack.Item>
+                    <VerticalCard
+                      image={data.blockedDrains.childImageSharp.fluid}
+                      imageAlt="Blocked Drain with Ladders in Dudley"
+                      title={
+                        <Text
+                          as="h3"
+                          variant="xLarge"
+                          styles={serviceHeaderStyle}
+                        >
+                          Blocked Drains
+                        </Text>
+                      }
+                    >
+                      <Text
+                        as="p"
+                        variant="mediumPlus"
+                        styles={serviceContentStyle}
+                      >
+                        Domestic &#38; Commercial Drain Services provide a
+                        bespoke service for clearing and unblocking all types of
+                        blocked drains. This includes, but is not limited to{" "}
+                        <i>
+                          Blocked Drains, Blocked Sewers, Blocked Toilets,
+                          Blocked Sinks, Blocked Basins and Blocked Baths.
+                        </i>
+                      </Text>
+                    </VerticalCard>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <VerticalCard
+                      image={data.commercialDrain.childImageSharp.fluid}
+                      imageAlt="Commercial Drains on the Street"
+                      title={
+                        <Text
+                          as="h3"
+                          variant="xLarge"
+                          styles={serviceHeaderStyle}
+                        >
+                          Drainage
+                        </Text>
+                      }
+                    >
+                      <Text
+                        as="p"
+                        variant="mediumPlus"
+                        styles={serviceContentStyle}
+                      >
+                        Our drainage service covers both{" "}
+                        <i>Commercial Drains</i> and <i>Domestic Drains</i>. We
+                        understand how important it is to our customers that
+                        projects are managed effectively to ensure quick and
+                        successful completion with minimal disturbances for the
+                        business or residential property.
+                      </Text>
+                    </VerticalCard>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <VerticalCard
+                      image={data.drainJetting.childImageSharp.fluid}
+                      imageAlt="Man performing High Pressure Jetting in Dudley"
+                      title={
+                        <Text
+                          as="h3"
+                          variant="xLarge"
+                          styles={serviceHeaderStyle}
+                        >
+                          Drain Cleaning
+                        </Text>
+                      }
+                    >
+                      <Text
+                        as="p"
+                        variant="mediumPlus"
+                        styles={serviceContentStyle}
+                      >
+                        Most drainage problems can be solved without pulling out
+                        the "big guns", but sometimes there are blockages that
+                        are so stubborn, they require something special. Let us
+                        help with our <i>high pressure jetting </i>service!
+                      </Text>
+                    </VerticalCard>
+                  </Stack.Item>
+                </Stack>
+              </Stack.Item>
+            </Stack>
           </MobileLayout>
         )}
         {isTablet && (
           <TabletLayout banner={data.drainBanner.childImageSharp.fluid}>
-            tablet
+            <Stack>
+              <Stack.Item>
+                <Services />
+              </Stack.Item>
+              <Stack.Item>
+                <Stack
+                  horizontal
+                  horizontalAlign="center"
+                  tokens={{ childrenGap: 40 }}
+                  styles={{ root: { marginTop: 40 } }}
+                  wrap
+                >
+                  <Stack.Item>
+                    <HorizontalCard
+                      image={data.blockedDrains.childImageSharp.fluid}
+                      imageAlt="Blocked Drain with Ladders in Dudley"
+                    >
+                      {this.getServiceOne()}
+                    </HorizontalCard>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <HorizontalCard
+                      image={data.commercialDrain.childImageSharp.fluid}
+                      imageAlt="Commercial Drains on the Street"
+                    >
+                      {this.getServiceTwo()}
+                    </HorizontalCard>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <HorizontalCard
+                      image={data.drainJetting.childImageSharp.fluid}
+                      imageAlt="Man performing High Pressure Jetting in Dudley"
+                    >
+                      {this.getServiceThree()}
+                    </HorizontalCard>
+                  </Stack.Item>
+                </Stack>
+              </Stack.Item>
+            </Stack>
           </TabletLayout>
         )}
         {isDesktop && (
           <DesktopLayout banner={data.drainBanner.childImageSharp.fluid}>
-            desktop
+            <Stack>
+              <Stack.Item>
+                <Services />
+              </Stack.Item>
+              <Stack.Item>
+                <Stack
+                  horizontal
+                  horizontalAlign="center"
+                  tokens={{ childrenGap: 40 }}
+                  styles={{ root: { marginTop: 40 } }}
+                  wrap
+                >
+                  <Stack.Item>
+                    <HorizontalCard
+                      image={data.blockedDrains.childImageSharp.fluid}
+                      imageAlt="Blocked Drain with Ladders in Dudley"
+                    >
+                      {this.getServiceOne()}
+                    </HorizontalCard>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <HorizontalCard
+                      image={data.commercialDrain.childImageSharp.fluid}
+                      imageAlt="Commercial Drains on the Street"
+                    >
+                      {this.getServiceTwo()}
+                    </HorizontalCard>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <HorizontalCard
+                      image={data.drainJetting.childImageSharp.fluid}
+                      imageAlt="Man performing High Pressure Jetting in Dudley"
+                    >
+                      {this.getServiceThree()}
+                    </HorizontalCard>
+                  </Stack.Item>
+                </Stack>
+              </Stack.Item>
+            </Stack>
           </DesktopLayout>
         )}
       </>
     )
   }
+
+  private getServiceOne = () => {
+    return (
+      <>
+        <Text as="h3" variant="xLarge" styles={serviceHeaderStyle}>
+          Blocked Drains
+        </Text>
+        <Text as="p" variant="mediumPlus" styles={serviceContentStyle}>
+          Domestic &#38; Commercial Drain Services provide a bespoke service for
+          clearing and unblocking all types of blocked drains. This includes,
+          but is not limited to{" "}
+          <i>
+            Blocked Drains, Blocked Sewers, Blocked Toilets, Blocked Sinks,
+            Blocked Basins and Blocked Baths.
+          </i>
+        </Text>
+      </>
+    )
+  }
+
+  private getServiceTwo = () => {
+    return (
+      <>
+        <Text as="h3" variant="xLarge" styles={serviceHeaderStyle}>
+          Drainage
+        </Text>
+        <Text as="p" variant="mediumPlus" styles={serviceContentStyle}>
+          Our drainage service covers both <i>Commercial Drains</i> and{" "}
+          <i>Domestic Drains</i>. We understand how important it is to our
+          customers that projects are managed effectively to ensure quick and
+          successful completion with minimal disturbances for the business or
+          residential property.
+        </Text>
+      </>
+    )
+  }
+
+  private getServiceThree = () => {
+    return (
+      <>
+        <Text as="h3" variant="xLarge" styles={serviceHeaderStyle}>
+          Drain Cleaning
+        </Text>
+        <Text as="p" variant="mediumPlus" styles={serviceContentStyle}>
+          Most drainage problems can be solved without pulling out the "big
+          guns", but sometimes there are blockages that are so stubborn, they
+          require something special. Let us help with our{" "}
+          <i>high pressure jetting </i>service!
+        </Text>
+      </>
+    )
+  }
+}
+
+const serviceHeaderStyle = {
+  root: {
+    fontWeight: FontWeights.semibold,
+    marginTop: "0.4rem",
+    marginBottom: 0,
+  },
+}
+
+const serviceContentStyle = {
+  root: {
+    fontWeight: FontWeights.semilight,
+    marginBottom: 0,
+  },
 }
 
 export default App

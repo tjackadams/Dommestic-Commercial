@@ -9,6 +9,7 @@ import {
 } from "office-ui-fabric-react"
 import { DesktopHeader } from "../Header/index"
 import { ILayoutProps } from "./Layout.types"
+import { Depths } from "@uifabric/fluent-theme/lib/fluent/FluentDepths"
 
 export class DesktopLayout extends React.Component<ILayoutProps> {
   public render(): JSX.Element {
@@ -61,6 +62,29 @@ export class DesktopLayout extends React.Component<ILayoutProps> {
               </Text>
             </Text>
           </Stack.Item>
+          <Stack.Item>
+            <Stack horizontalAlign="center">
+              <Stack.Item
+                styles={{
+                  root: {
+                    backgroundColor: DefaultPalette.white,
+                    maxWidth: 800,
+                    marginTop: 20,
+                    marginBottom: 40,
+                    paddingTop: 40,
+                    paddingBottom: 40,
+                    paddingLeft: "8%",
+                    paddingRight: "8%",
+                    boxShadow: Depths.depth4,
+                  },
+                }}
+              >
+                {this.props.children}
+              </Stack.Item>
+            </Stack>
+          </Stack.Item>
+          <Stack.Item>map</Stack.Item>
+          <Stack.Item>footer</Stack.Item>
         </Stack>
       </Fabric>
     )

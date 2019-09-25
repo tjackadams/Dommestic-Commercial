@@ -8,6 +8,10 @@ export interface IServiceCardProps {
   styles?: IStyleFunctionOrObject<IServiceCardStyleProps, IServiceCardStyles>
 }
 
+export interface IVerticalServiceCardProps extends IServiceCardProps {
+  title: JSX.Element
+}
+
 export type IServiceCardStyleProps = Pick<
   IServiceCardProps,
   "theme" | "isSmallDown"

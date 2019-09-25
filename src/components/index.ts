@@ -5,3 +5,6 @@ export { default as Layout } from "./Layout"
 export { default as SEO } from "./SEO"
 export { default as ContactSection } from "./Contact/ContactSection"
 export { default as App } from "./App"
+
+export * from "./Content"
+export * from "./Card"

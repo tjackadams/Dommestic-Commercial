@@ -27,6 +27,25 @@ export class MobileLayout extends React.Component<ILayoutProps> {
               style={{ filter: "brightness(65%) saturate(135%)" }}
             />
           </Stack.Item>
+          <Stack.Item>
+            <Stack horizontalAlign="center">
+              <Stack.Item
+                styles={{
+                  root: {
+                    backgroundColor: DefaultPalette.white,
+                    maxWidth: 375,
+                    marginBottom: 40,
+                    paddingTop: 10,
+                    paddingBottom: 10,
+                    paddingLeft: "4%",
+                    paddingRight: "4%",
+                  },
+                }}
+              >
+                {this.props.children}
+              </Stack.Item>
+            </Stack>
+          </Stack.Item>
         </Stack>
       </Fabric>
     )
