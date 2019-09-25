@@ -11,7 +11,7 @@ import {
 import { Depths } from "@uifabric/fluent-theme/lib/fluent/FluentDepths"
 import { Element } from "react-scroll"
 
-import { Footer, Header, MapContainer } from "./"
+import { Footer, Header } from "./"
 import {
   withResponsiveMode,
   IWithResponsiveModeState,
@@ -139,7 +139,7 @@ class Layout extends React.PureComponent<ILayoutProps> {
               styles={{ root: { width: "100%" } }}
             >
               <Stack.Item styles={{ root: { height: 480, width: "100%" } }}>
-                <MapContainer />
+                {/* <MapContainer /> */}
               </Stack.Item>
             </Stack>
             <Stack

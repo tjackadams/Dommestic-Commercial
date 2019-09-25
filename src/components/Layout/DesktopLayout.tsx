@@ -7,6 +7,8 @@ import {
   FontWeights,
   Text,
 } from "office-ui-fabric-react"
+
+import { MapContainer } from "../"
 import { DesktopHeader } from "../Header/index"
 import { ILayoutProps } from "./Layout.types"
 import { Depths } from "@uifabric/fluent-theme/lib/fluent/FluentDepths"
@@ -83,7 +85,13 @@ export class DesktopLayout extends React.Component<ILayoutProps> {
               </Stack.Item>
             </Stack>
           </Stack.Item>
-          <Stack.Item>map</Stack.Item>
+          <Stack.Item
+            styles={{
+              root: { height: 480, width: "calc(100vw - (100vw - 100%))" },
+            }}
+          >
+            <MapContainer />
+          </Stack.Item>
           <Stack.Item>footer</Stack.Item>
         </Stack>
       </Fabric>

@@ -1,9 +1,11 @@
 import React from "react"
 import Img from "gatsby-image"
 import { Fabric, Stack, DefaultPalette } from "office-ui-fabric-react"
+import { Depths } from "@uifabric/fluent-theme/lib/fluent/FluentDepths"
+
+import { MapContainer } from "../"
 import { TabletHeader } from "../Header/index"
 import { ILayoutProps } from "./Layout.types"
-import { Depths } from "@uifabric/fluent-theme/lib/fluent/FluentDepths"
 
 export class TabletLayout extends React.Component<ILayoutProps> {
   public render(): JSX.Element {
@@ -49,6 +51,13 @@ export class TabletLayout extends React.Component<ILayoutProps> {
                 {this.props.children}
               </Stack.Item>
             </Stack>
+          </Stack.Item>
+          <Stack.Item
+            styles={{
+              root: { height: 480, width: "calc(100vw - (100vw - 100%))" },
+            }}
+          >
+            <MapContainer />
           </Stack.Item>
         </Stack>
       </Fabric>
