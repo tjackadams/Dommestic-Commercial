@@ -87,7 +87,7 @@ export class DesktopLayout extends React.Component<ILayoutProps> {
           </Stack.Item>
           <Stack.Item
             styles={{
-              root: { height: 480, width: "calc(100vw - (100vw - 100%))" },
+              root: { height: 480 },
             }}
           >
             <MapContainer />
