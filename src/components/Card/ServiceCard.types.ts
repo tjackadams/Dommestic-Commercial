@@ -11,14 +11,3 @@ export interface IServiceCardProps {
 export interface IVerticalServiceCardProps extends IServiceCardProps {
   title: JSX.Element
 }
-
-export type IServiceCardStyleProps = Pick<
-  IServiceCardProps,
-  "theme" | "isSmallDown"
->
-
-export interface IServiceCardStyles {
-  root: IStyle
-  image: IStyle
-  content: IStyle
-}

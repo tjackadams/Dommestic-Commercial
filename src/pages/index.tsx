@@ -5,10 +5,7 @@ import {
   DefaultPalette,
   initializeIcons,
   Stack,
-  Text,
-  FontWeights,
   Separator,
-  StackItem,
 } from "office-ui-fabric-react"
 import {
   IWithResponsiveModeState,
@@ -56,7 +53,6 @@ interface IAppProps extends IWithResponsiveModeState {
 @withResponsiveMode
 class App extends React.Component<IAppProps> {
   public render(): JSX.Element {
-    console.log(this.props)
     const { data, responsiveMode = ResponsiveMode.small } = this.props
 
     const isMobile = responsiveMode <= ResponsiveMode.small
