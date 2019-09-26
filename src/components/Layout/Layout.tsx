@@ -11,13 +11,16 @@ import { Depths } from "@uifabric/fluent-theme/lib/fluent/FluentDepths"
 
 import { Footer, Header, MapContainer } from "../"
 import { MobileSelector, TabletSelector } from "../../styling"
+import { getClassNames } from "./Layout.styles"
 
 export class Layout extends React.Component<{ banner: any }> {
   public render(): JSX.Element {
     const { banner } = this.props
+    let { footer, layoutContainer, mapContainer, sloganText } = getClassNames()
+
     return (
       <Fabric>
-        <Stack styles={{ root: { width: "calc(100vw - (100vw - 100%))" } }}>
+        <Stack className={layoutContainer}>
           <Stack.Item
             styles={{
               root: {
@@ -35,24 +38,7 @@ export class Layout extends React.Component<{ banner: any }> {
               alt="Water in a sink flowing down the drain."
               style={{ filter: "brightness(65%) saturate(135%)" }}
             />
-            <Text
-              as="h1"
-              variant="xxLarge"
-              styles={{
-                root: {
-                  position: "absolute",
-                  top: "10%",
-                  left: "20%",
-                  color: DefaultPalette.white,
-                  fontWeight: FontWeights.semibold,
-                  selectors: {
-                    [MobileSelector]: {
-                      display: "none",
-                    },
-                  },
-                },
-              }}
-            >
+            <Text as="h1" variant="xxLarge" className={sloganText}>
               Providing Domestic &amp; Commercial Drain Services
               <Text
                 block
@@ -108,28 +94,10 @@ export class Layout extends React.Component<{ banner: any }> {
               </Stack.Item>
             </Stack>
           </Stack.Item>
-          <Stack.Item
-            styles={{
-              root: {
-                height: 480,
-                selectors: {
-                  [MobileSelector]: {
-                    display: "none",
-                  },
-                },
-              },
-            }}
-          >
+          <Stack.Item className={mapContainer}>
             <MapContainer />
           </Stack.Item>
-          <Stack.Item
-            styles={{
-              root: {
-                backgroundColor: DefaultPalette.neutralPrimary,
-                color: DefaultPalette.white,
-              },
-            }}
-          >
+          <Stack.Item className={footer}>
             <Footer />
           </Stack.Item>
         </Stack>

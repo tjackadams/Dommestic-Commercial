@@ -6,6 +6,7 @@ import {
   initializeIcons,
   Stack,
   Separator,
+  mergeStyles,
 } from "office-ui-fabric-react"
 
 import {
@@ -25,7 +26,6 @@ import {
   ContactForm,
 } from "../components"
 
-import "./index.css"
 import { MobileSelector } from "../styling"
 
 loadTheme({
@@ -36,6 +36,17 @@ loadTheme({
 
 initializeIcons(undefined, { disableWarnings: true })
 
+mergeStyles({
+  selectors: {
+    ":global(body), :global(html), :global(#___gatsby)": {
+      margin: 0,
+      padding: 0,
+      height: "100vh",
+      backgroundColor: DefaultPalette.neutralLight,
+    },
+  },
+})
+
 class App extends React.Component<any> {
   public render(): JSX.Element {
     const { data } = this.props
@@ -44,9 +55,7 @@ class App extends React.Component<any> {
       <Layout banner={data.drainBanner.childImageSharp.fluid}>
         <SEO />
         <Stack>
-          <Stack.Item>
-            <Services />
-          </Stack.Item>
+          <Services />
           <Stack.Item>
             <Stack
               horizontal
@@ -55,40 +64,36 @@ class App extends React.Component<any> {
               styles={{ root: { marginTop: 40 } }}
               wrap
             >
-              <Stack.Item>
-                <ServiceCard
-                  image={data.blockedDrains.childImageSharp.fluid}
-                  imageAlt="Blocked Drain with Ladders in Dudley"
-                  title={<ServiceOneHeader />}
-                >
-                  <ServiceOneContent />
-                </ServiceCard>
-              </Stack.Item>
-              <Stack.Item>
-                <ServiceCard
-                  image={data.commercialDrain.childImageSharp.fluid}
-                  imageAlt="Commercial Drains on the Street"
-                  title={<ServiceTwoHeader />}
-                >
-                  <ServiceTwoContent />
-                </ServiceCard>
-              </Stack.Item>
-              <Stack.Item>
-                <ServiceCard
-                  image={data.drainJetting.childImageSharp.fluid}
-                  imageAlt="Man performing High Pressure Jetting in Dudley"
-                  title={<ServiceThreeHeader />}
-                >
-                  <ServiceThreeContent />
-                </ServiceCard>
-              </Stack.Item>
+              <ServiceCard
+                image={data.blockedDrains.childImageSharp.fluid}
+                imageAlt="Blocked Drain with Ladders in Dudley"
+                title={<ServiceOneHeader />}
+              >
+                <ServiceOneContent />
+              </ServiceCard>
+
+              <ServiceCard
+                image={data.commercialDrain.childImageSharp.fluid}
+                imageAlt="Commercial Drains on the Street"
+                title={<ServiceTwoHeader />}
+              >
+                <ServiceTwoContent />
+              </ServiceCard>
+
+              <ServiceCard
+                image={data.drainJetting.childImageSharp.fluid}
+                imageAlt="Man performing High Pressure Jetting in Dudley"
+                title={<ServiceThreeHeader />}
+              >
+                <ServiceThreeContent />
+              </ServiceCard>
             </Stack>
           </Stack.Item>
-          <Stack.Item>
-            <Stack tokens={{ childrenGap: 12 }}>
-              <Separator styles={{ root: { marginTop: 20 } }} />
-            </Stack>
-          </Stack.Item>
+
+          <Stack tokens={{ childrenGap: 12 }}>
+            <Separator styles={{ root: { marginTop: 20 } }} />
+          </Stack>
+
           <Stack.Item styles={{ root: { textAlign: "center" } }}>
             <Recommendation />
           </Stack.Item>

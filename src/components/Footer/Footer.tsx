@@ -7,153 +7,81 @@ import {
   Credits,
   OpeningTimes,
 } from "../"
-import { MobileSelector } from "../../styling"
+
+import { getClassNames } from "./Footer.styles"
 
 export class Footer extends React.Component {
   public render(): JSX.Element {
-    return (
-      <Stack
-        tokens={{ childrenGap: 20 }}
-        styles={{ root: { marginTop: 20, marginBottom: 20 } }}
-      >
-        <Stack.Item>
-          <Stack
-            horizontal
-            horizontalAlign="center"
-            verticalAlign="center"
-            tokens={{ childrenGap: 40 }}
-            styles={{
-              root: {
-                selectors: {
-                  [MobileSelector]: {
-                    flexDirection: "column",
-                  },
-                },
-              },
-            }}
-          >
-            <Stack.Item
-              styles={{
-                root: {
-                  selectors: {
-                    [MobileSelector]: {
-                      textAlign: "center",
-                      marginLeft: "0 !important",
-                    },
-                  },
-                },
-              }}
-            >
-              <OpeningTimes />
-            </Stack.Item>
-            <Stack.Item
-              styles={{
-                root: {
-                  height: 120,
-                  selectors: {
-                    [MobileSelector]: {
-                      display: "none",
-                    },
-                  },
-                },
-              }}
-            >
-              <Separator vertical />
-            </Stack.Item>
-            <Stack.Item
-              styles={{
-                root: {
-                  display: "none",
-                  width: "60%",
-                  selectors: {
-                    [MobileSelector]: {
-                      display: "block",
-                      marginLeft: "0 !important",
-                      marginTop: 10,
-                    },
-                  },
-                },
-              }}
-            >
-              <Separator />
-            </Stack.Item>
-            <Stack.Item
-              styles={{
-                root: {
-                  selectors: {
-                    [MobileSelector]: {
-                      textAlign: "center",
-                      marginLeft: "0 !important",
-                    },
-                  },
-                },
-              }}
-            >
-              <AdditionalContactInformation />
-            </Stack.Item>
-            <Stack.Item
-              styles={{
-                root: {
-                  textAlign: "center",
-                  display: "none",
-                  marginTop: 20,
-                  selectors: {
-                    [MobileSelector]: {
-                      display: "block",
-                      marginLeft: "0 !important",
-                    },
-                  },
-                },
-              }}
-            >
-              <CopyrightInformation />
-            </Stack.Item>
-            <Stack.Item
-              styles={{
-                root: {
-                  textAlign: "center",
-                  display: "none",
-                  marginTop: 10,
-                  selectors: {
-                    [MobileSelector]: {
-                      display: "block",
-                      marginLeft: "0 !important",
-                    },
-                  },
-                },
-              }}
-            >
-              <Credits />
-            </Stack.Item>
-          </Stack>
-        </Stack.Item>
+    let {
+      footerDesktopRoot,
+      footerDesktopHeight,
+      footerDesktopSeparator,
+      footerDesktopGutter,
+      footerDesktopCredits,
+      footerMobileRoot,
+      footerMobileSeparator,
+      footerTextAlignCenter,
+    } = getClassNames()
 
-        <Stack.Item
-          styles={{
-            root: {
-              selectors: {
-                [MobileSelector]: {
-                  display: "none",
-                },
-              },
-            },
-          }}
-        >
-          <Stack
-            horizontal
-            horizontalAlign="space-evenly"
-            tokens={{ childrenGap: 60 }}
-            styles={{ root: { marginTop: 60 } }}
-          >
-            <Stack.Item>
-              <CopyrightInformation />
-            </Stack.Item>
-            <Stack.Item styles={{ root: { textAlign: "right" } }}>
-              <Credits />
-            </Stack.Item>
-          </Stack>
-        </Stack.Item>
-      </Stack>
+    return (
+      <>
+        <Stack tokens={{ childrenGap: 20 }} className={footerDesktopRoot}>
+          <Stack.Item className={footerDesktopHeight}>
+            <Stack
+              horizontal
+              horizontalAlign="center"
+              verticalAlign="center"
+              tokens={{ childrenGap: 40 }}
+            >
+              <Stack.Item>
+                <OpeningTimes />
+              </Stack.Item>
+              <Stack.Item className={footerDesktopSeparator}>
+                <Separator vertical />
+              </Stack.Item>
+              <Stack.Item>
+                <AdditionalContactInformation />
+              </Stack.Item>
+            </Stack>
+          </Stack.Item>
+          <Stack.Item>
+            <Stack
+              horizontal
+              horizontalAlign="space-evenly"
+              tokens={{ childrenGap: 60 }}
+              className={footerDesktopGutter}
+            >
+              <Stack.Item>
+                <CopyrightInformation />
+              </Stack.Item>
+              <Stack.Item className={footerDesktopCredits}>
+                <Credits />
+              </Stack.Item>
+            </Stack>
+          </Stack.Item>
+        </Stack>
+        <Stack tokens={{ childrenGap: 20 }} className={footerMobileRoot}>
+          <Stack.Item>
+            <Stack tokens={{ childrenGap: 40 }}>
+              <Stack.Item className={footerTextAlignCenter}>
+                <OpeningTimes />
+              </Stack.Item>
+            </Stack>
+          </Stack.Item>
+          <Stack.Item className={footerMobileSeparator}>
+            <Separator />
+          </Stack.Item>
+          <Stack.Item className={footerTextAlignCenter}>
+            <AdditionalContactInformation />
+          </Stack.Item>
+          <Stack.Item className={footerTextAlignCenter}>
+            <CopyrightInformation />
+          </Stack.Item>
+          <Stack.Item className={footerTextAlignCenter}>
+            <Credits />
+          </Stack.Item>
+        </Stack>
+      </>
     )
   }
 }

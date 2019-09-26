@@ -8,6 +8,13 @@ export const replaceRenderer = ({
   replaceBodyHTMLString,
   setHeadComponents,
 }) => {
+  let library = require("office-ui-fabric-react/lib/Utilities")
+  library.setSSR(true)
+  library.setRTL(false)
+
+  let responsiveLib = require("office-ui-fabric-react/lib/utilities/decorators/withResponsiveMode")
+  responsiveLib.setResponsiveMode(responsiveLib.ResponsiveMode.xLarge)
+
   const { html, css } = renderStatic(() => {
     return renderToString(bodyComponent)
   })
