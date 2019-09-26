@@ -31,6 +31,25 @@ const cfg = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-favicon`,
+      options: {
+        logo: "./src/images/favicon.png",
+        lang: "en-GB",
+        background: "#FFFFFF",
+        theme_color: "#00b294",
+        icons: {
+          android: true,
+          appleIcon: true,
+          appleStartup: true,
+          coast: false,
+          favicons: true,
+          firefox: true,
+          yandex: false,
+          windows: false,
+        },
+      },
+    },
+    {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: config.GOOGLE_ANALYTICS_TRACKINGID,
