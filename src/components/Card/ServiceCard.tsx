@@ -3,6 +3,7 @@ import Img from "gatsby-image"
 import { ScreenWidthMinUhfMobile } from "office-ui-fabric-react"
 import { Card } from "@uifabric/react-cards"
 import { MobileSelector } from "../../styling"
+import { getClassNames } from "./ServiceCard.styles"
 
 export class ServiceCard extends React.Component<{
   image: any
@@ -12,70 +13,34 @@ export class ServiceCard extends React.Component<{
   public render(): JSX.Element {
     const { children, image, imageAlt, title } = this.props
 
+    let {
+      compactCard,
+      compactCardImage,
+      compactCardSection,
+      card,
+      cardTitle,
+      cardImage,
+      cardSection,
+    } = getClassNames()
+
     return (
       <>
-        <Card
-          compact
-          styles={{
-            root: {
-              maxWidth: ScreenWidthMinUhfMobile,
-              selectors: {
-                [MobileSelector]: {
-                  display: "none",
-                },
-              },
-            },
-          }}
-        >
-          <Card.Item
-            fill
-            styles={{
-              root: {
-                width: 180,
-              },
-            }}
-          >
+        <Card compact className={compactCard}>
+          <Card.Item fill className={compactCardImage}>
             <Img fluid={image} alt={imageAlt} />
           </Card.Item>
-          <Card.Section
-            styles={{ root: { textAlign: "center", paddingRight: 12 } }}
-          >
+          <Card.Section className={compactCardSection}>
             {title}
             {children}
           </Card.Section>
         </Card>
 
-        <Card
-          styles={{
-            root: {
-              display: "none",
-              maxWidth: 335,
-              selectors: {
-                [MobileSelector]: {
-                  display: "block",
-                },
-              },
-            },
-          }}
-        >
-          <Card.Item styles={{ root: { textAlign: "center", paddingTop: 5 } }}>
-            {title}
-          </Card.Item>
-          <Card.Item fill styles={{ root: { width: 335 } }}>
+        <Card className={card}>
+          <Card.Item className={cardTitle}>{title}</Card.Item>
+          <Card.Item fill className={cardImage}>
             <Img fluid={image} alt={imageAlt} />
           </Card.Item>
-          <Card.Section
-            styles={{
-              root: {
-                textAlign: "center",
-                paddingRight: 12,
-                paddingLeft: 12,
-                paddingBottom: 12,
-              },
-            }}
-          >
-            {children}
-          </Card.Section>
+          <Card.Section className={cardSection}>{children}</Card.Section>
         </Card>
       </>
     )

@@ -13,45 +13,27 @@ import { Element } from "react-scroll"
 
 import { DesktopNavMenu, MobileNavMenu } from "../"
 import { MobileSelector, TabletSelector } from "../../styling"
+import { getClassNames } from "./Header.styles"
 
 export class Header extends React.Component {
   public render(): JSX.Element {
+    let {
+      headerWrapper,
+      headerHideMobile,
+      headerTitle,
+      headerSubtitle,
+      headerSubtitleContainer,
+    } = getClassNames()
+
     return (
       <Element name="home">
         <Stack
           horizontal
           verticalAlign="center"
           tokens={{ childrenGap: 14 }}
-          styles={{
-            root: {
-              justifyContent: "center",
-              minHeight: 60,
-              selectors: {
-                [MobileSelector]: {
-                  minHeight: 40,
-                },
-                [TabletSelector]: {
-                  justifyContent: "space-evenly",
-                },
-              },
-            },
-          }}
+          className={headerWrapper}
         >
-          <Stack.Item
-            grow
-            styles={{
-              root: {
-                selectors: {
-                  [MobileSelector]: {
-                    display: "none",
-                  },
-                  [TabletSelector]: {
-                    display: "none",
-                  },
-                },
-              },
-            }}
-          ></Stack.Item>
+          <Stack.Item grow className={headerHideMobile}></Stack.Item>
 
           <Stack.Item
             styles={{
@@ -69,63 +51,16 @@ export class Header extends React.Component {
           </Stack.Item>
 
           <Stack.Item>
-            <Text
-              styles={{
-                root: {
-                  fontSize: FontSizes.xLarge,
-                  fontWeight: FontWeights.semibold,
-                  selectors: {
-                    [MobileSelector]: {
-                      fontSize: FontSizes.large,
-                    },
-                    [TabletSelector]: {
-                      fontSize: FontSizes.large,
-                    },
-                  },
-                },
-              }}
-            >
+            <Text className={headerTitle}>
               Domestic &#38; Commercial Drain Services
             </Text>
           </Stack.Item>
 
-          <Stack.Item
-            styles={{
-              root: {
-                selectors: {
-                  [MobileSelector]: {
-                    display: "none",
-                  },
-                  [TabletSelector]: {
-                    display: "none",
-                  },
-                },
-              },
-            }}
-          >
+          <Stack.Item className={headerHideMobile}>
             <Separator vertical />
           </Stack.Item>
-          <Stack.Item
-            styles={{
-              root: {
-                marginRight: 60,
-                selectors: {
-                  [MobileSelector]: {
-                    display: "none",
-                  },
-                  [TabletSelector]: {
-                    display: "none",
-                  },
-                },
-              },
-            }}
-          >
-            <Text
-              variant="xLarge"
-              styles={{ root: { fontWeight: FontWeights.semibold } }}
-            >
-              West Midlands
-            </Text>
+          <Stack.Item className={headerSubtitleContainer}>
+            <Text className={headerSubtitle}>West Midlands</Text>
           </Stack.Item>
 
           <Stack.Item

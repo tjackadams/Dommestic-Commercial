@@ -9,18 +9,10 @@ import {
 } from "office-ui-fabric-react"
 import { Element } from "react-scroll"
 
-export class AreasWeCover extends React.Component<{}> {
+export class AreasWeCover extends React.Component {
   public render(): JSX.Element {
     return (
       <Element name="areas-we-cover">
-        <Text
-          as="h2"
-          block
-          variant="xxLarge"
-          styles={{ root: { display: "none" } }}
-        >
-          Areas we Service
-        </Text>
         <Text
           as="h2"
           block

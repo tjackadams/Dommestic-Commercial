@@ -52,7 +52,7 @@ class App extends React.Component<any> {
     const { data } = this.props
 
     return (
-      <Layout banner={data.drainBanner.childImageSharp.fluid}>
+      <Layout bannerImage={data.drainBanner.childImageSharp.fluid}>
         <SEO />
         <Stack>
           <Services />
