@@ -183,7 +183,7 @@ export class OpeningTimes extends React.Component<{}> {
           <br />
           Thursday 9:00 am - 6:00 pm
           <br />
-          Friday 9:00 am - 7:00 pm
+          Friday 9:00 am - 5:00 pm
           <br />
           Saturday 9:00 am - 5:00 pm
           <br />
