@@ -105,33 +105,31 @@ export const ContactForm: React.SFC = () => {
           values: ContactFormValues,
           actions: FormikActions<ContactFormValues>
         ) => {
-          setTimeout(() => {
-            fetch("/?no-cache=1", {
-              method: "POST",
-              headers: { "Content-Type": "application/x-www-form-urlencoded" },
-              body: encode({
-                ...values,
-                "form-name": "contact",
-                "g-recaptcha-response": state["g-recaptcha-response"],
-              }),
+          fetch("/?no-cache=1", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: encode({
+              ...values,
+              "form-name": "contact",
+              "g-recaptcha-response": state["g-recaptcha-response"],
+            }),
+          })
+            .then(() => {
+              actions.resetForm()
+              setState({ ...state, isFailed: false, isSuccess: true })
+              actions.setSubmitting(false)
+              recaptchaRef.current.reset()
             })
-              .then(() => {
-                actions.resetForm()
-                setState({ ...state, isFailed: false, isSuccess: true })
-                actions.setSubmitting(false)
-                recaptchaRef.current.reset()
-              })
-              .catch(err => {
-                console.error(
-                  "An error occurred while submitting the form. Error: ",
-                  err
-                )
+            .catch(err => {
+              console.error(
+                "An error occurred while submitting the form. Error: ",
+                err
+              )
 
-                setState({ ...state, isFailed: true, isSuccess: false })
-                actions.setSubmitting(false)
-                recaptchaRef.current.reset()
-              })
-          }, 1100)
+              setState({ ...state, isFailed: true, isSuccess: false })
+              actions.setSubmitting(false)
+              recaptchaRef.current.reset()
+            })
         }}
         render={(props: FormikProps<ContactFormValues>) => (
           <Form
