@@ -31,25 +31,6 @@ const cfg = {
   },
   plugins: [
     {
-      resolve: `gatsby-plugin-favicon`,
-      options: {
-        logo: "./src/images/favicon.png",
-        lang: "en-GB",
-        background: "#FFFFFF",
-        theme_color: "#00b294",
-        icons: {
-          android: true,
-          appleIcon: true,
-          appleStartup: true,
-          coast: false,
-          favicons: true,
-          firefox: true,
-          yandex: false,
-          windows: false,
-        },
-      },
-    },
-    {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: config.GOOGLE_ANALYTICS_TRACKINGID,
@@ -85,7 +66,27 @@ if (process.env.CONTEXT === "production") {
       trackingId: config.GOOGLE_ANALYTICS_TRACKINGID,
     },
   }
+  const faviconCfg = {
+    resolve: `gatsby-plugin-favicon`,
+    options: {
+      logo: "./src/images/favicon.png",
+      lang: "en-GB",
+      background: "#FFFFFF",
+      theme_color: "#00b294",
+      icons: {
+        android: true,
+        appleIcon: true,
+        appleStartup: true,
+        coast: false,
+        favicons: true,
+        firefox: true,
+        yandex: false,
+        windows: false,
+      },
+    },
+  }
   cfg.plugins.push(googleAnalyticsCfg)
+  cfg.plugins.push(faviconCfg)
 }
 
 module.exports = cfg
