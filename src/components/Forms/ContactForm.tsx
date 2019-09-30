@@ -167,11 +167,14 @@ export const ContactForm: React.SFC = () => {
               resizable={false}
               component={FormikTextField}
             />
-            <Recaptcha
-              ref={recaptchaRef}
-              sitekey={RECAPTCHA_KEY}
-              onChange={handleRecaptcha}
-            />
+            <div style={{ marginTop: "1em" }}>
+              <Recaptcha
+                ref={recaptchaRef}
+                sitekey={RECAPTCHA_KEY}
+                onChange={handleRecaptcha}
+              />
+            </div>
+
             <footer style={{ marginTop: "2em" }}>
               <div style={{ float: "right" }}>
                 <PrimaryButton

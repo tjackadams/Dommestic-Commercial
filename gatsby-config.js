@@ -1,8 +1,7 @@
 const path = require("path")
 
-// Initialize dotenv
 require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`, // or '.env'
+  path: `.env`,
 })
 
 const config = require("gatsby-plugin-config")

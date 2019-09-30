@@ -7,6 +7,7 @@ import {
   Stack,
   Separator,
   mergeStyles,
+  mergeStyleSets,
 } from "office-ui-fabric-react"
 
 import {
@@ -47,9 +48,57 @@ mergeStyles({
   },
 })
 
+interface IAppStyles {
+  serviceCardWrapper: string
+  recommendationWrapper: string
+  contactWrapper: string
+  contactInfoWrapper: string
+  areasWeCoverWrapper: string
+}
+
+const getClassNames = (): IAppStyles => {
+  return mergeStyleSets({
+    serviceCardWrapper: {
+      marginTop: 40,
+    },
+    recommendationWrapper: {
+      textAlign: "center",
+    },
+    contactWrapper: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      marginTop: "0px !important ",
+      selectors: {
+        [MobileSelector]: {
+          flexDirection: "column",
+          alignItems: "center",
+          marginTop: "40px",
+        },
+      },
+    },
+    contactInfoWrapper: {
+      selectors: {
+        [MobileSelector]: { marginLeft: "0 !important" },
+      },
+    },
+    areasWeCoverWrapper: {
+      selectors: {
+        [MobileSelector]: { marginLeft: "0 !important" },
+      },
+    },
+  })
+}
+
 class App extends React.Component<any> {
   public render(): JSX.Element {
     const { data } = this.props
+    const {
+      serviceCardWrapper,
+      recommendationWrapper,
+      contactWrapper,
+      contactInfoWrapper,
+      areasWeCoverWrapper,
+    } = getClassNames()
 
     return (
       <Layout bannerImage={data.drainBanner.childImageSharp.fluid}>
@@ -61,7 +110,7 @@ class App extends React.Component<any> {
               horizontal
               horizontalAlign="center"
               tokens={{ childrenGap: 40 }}
-              styles={{ root: { marginTop: 40 } }}
+              className={serviceCardWrapper}
               wrap
             >
               <ServiceCard
@@ -94,7 +143,7 @@ class App extends React.Component<any> {
             <Separator styles={{ root: { marginTop: 20 } }} />
           </Stack>
 
-          <Stack.Item styles={{ root: { textAlign: "center" } }}>
+          <Stack.Item className={recommendationWrapper}>
             <Recommendation />
           </Stack.Item>
           <Stack.Item>
@@ -103,21 +152,7 @@ class App extends React.Component<any> {
             </Stack>
           </Stack.Item>
           <Stack.Item>
-            <Stack
-              horizontal
-              horizontalAlign="space-between"
-              tokens={{ childrenGap: 40 }}
-              styles={{
-                root: {
-                  selectors: {
-                    [MobileSelector]: {
-                      flexDirection: "column",
-                      alignItems: "center",
-                    },
-                  },
-                },
-              }}
-            >
+            <Stack tokens={{ childrenGap: 40 }} className={contactWrapper}>
               <Stack.Item>
                 <Stack>
                   <Stack.Item
@@ -131,28 +166,12 @@ class App extends React.Component<any> {
                   >
                     <AreasWeCover />
                   </Stack.Item>
-                  <Stack.Item
-                    styles={{
-                      root: {
-                        selectors: {
-                          [MobileSelector]: { textAlign: "center" },
-                        },
-                      },
-                    }}
-                  >
+                  <Stack.Item className={contactInfoWrapper}>
                     <ContactInformation />
                   </Stack.Item>
                 </Stack>
               </Stack.Item>
-              <Stack.Item
-                styles={{
-                  root: {
-                    selectors: {
-                      [MobileSelector]: { marginLeft: "0 !important" },
-                    },
-                  },
-                }}
-              >
+              <Stack.Item className={areasWeCoverWrapper}>
                 <ContactForm />
               </Stack.Item>
             </Stack>
