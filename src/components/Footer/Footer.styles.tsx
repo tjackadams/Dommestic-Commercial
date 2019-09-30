@@ -26,7 +26,7 @@ export const getClassNames = (): IFooterClassNames => {
     footerDesktopHeight: {
       height: 240,
     },
-      footerDesktopSeparator: {
+    footerDesktopSeparator: {
       height: 120,
     },
     footerDesktopGutter: {
@@ -50,7 +50,11 @@ export const getClassNames = (): IFooterClassNames => {
       paddingLeft: "20%",
     },
     footerTextAlignCenter: {
-      textAlign: "center",
+      selectors: {
+        [MobileSelector]: {
+          textAlign: "center",
+        },
+      },
     },
   })
 }
