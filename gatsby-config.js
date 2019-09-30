@@ -56,6 +56,12 @@ const cfg = {
         policy: [{ userAgent: "*", allow: "/" }],
       },
     },
+    {
+      resolve: "gatsby-plugin-netlify",
+      options: {
+        mergeSecurityHeaders: false,
+      },
+    },
   ],
 }
 
