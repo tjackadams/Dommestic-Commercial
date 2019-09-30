@@ -48,7 +48,6 @@ export const ContactForm: React.SFC = () => {
   })
 
   const handleRecaptcha = (value: any) => {
-    console.log(value)
     setState({ ...state, "g-recaptcha-response": value })
   }
 
@@ -113,7 +112,6 @@ export const ContactForm: React.SFC = () => {
               body: encode({
                 ...values,
                 "form-name": "contact",
-                subject: "New Website Enquiry",
                 "g-recaptcha-response": state["g-recaptcha-response"],
               }),
             })
@@ -121,6 +119,7 @@ export const ContactForm: React.SFC = () => {
                 actions.resetForm()
                 setState({ ...state, isFailed: false, isSuccess: true })
                 actions.setSubmitting(false)
+                recaptchaRef.current.reset()
               })
               .catch(err => {
                 console.error(
@@ -130,6 +129,7 @@ export const ContactForm: React.SFC = () => {
 
                 setState({ ...state, isFailed: true, isSuccess: false })
                 actions.setSubmitting(false)
+                recaptchaRef.current.reset()
               })
           }, 1100)
         }}
