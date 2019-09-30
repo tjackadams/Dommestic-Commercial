@@ -11,6 +11,8 @@ import {
   FontSizes,
 } from "office-ui-fabric-react"
 import { FormikTextField } from "formik-office-ui-fabric-react"
+import Recaptcha from "react-google-recaptcha"
+import ReCAPTCHA from "react-google-recaptcha"
 
 const schema = Yup.object().shape({
   fullName: Yup.string()
@@ -30,14 +32,26 @@ const encode = (data: any) => {
     .join("&")
 }
 
+const RECAPTCHA_KEY = process.env.GATSBY_SITE_RECAPTCHA_KEY
+
 interface ContactFormValues {
   fullName: string
   phoneNumber: string
   enquiry: string
 }
 
-export const ContactForm: React.SFC<{}> = () => {
-  const [state, setState] = useState({ isSuccess: false, isFailed: false })
+export const ContactForm: React.SFC = () => {
+  const [state, setState] = useState({
+    isSuccess: false,
+    isFailed: false,
+    "g-recaptcha-response": "",
+  })
+
+  const handleRecaptcha = value => {
+    setState({ "g-recaptcha-response": value, ...state })
+  }
+
+  const recaptchaRef = React.createRef<ReCAPTCHA>()
 
   return (
     <>
@@ -59,7 +73,9 @@ export const ContactForm: React.SFC<{}> = () => {
           messageBarType={MessageBarType.success}
           isMultiline={false}
           dismissButtonAriaLabel="Close"
-          onDismiss={() => setState({ isFailed: false, isSuccess: false })}
+          onDismiss={() =>
+            setState({ isFailed: false, isSuccess: false, ...state })
+          }
         >
           We'll be in touch shortly.
         </MessageBar>
@@ -69,7 +85,9 @@ export const ContactForm: React.SFC<{}> = () => {
           messageBarType={MessageBarType.error}
           isMultiline={false}
           dismissButtonAriaLabel="Close"
-          onDismiss={() => setState({ isFailed: false, isSuccess: false })}
+          onDismiss={() =>
+            setState({ isFailed: false, isSuccess: false, ...state })
+          }
         >
           Looks like an error occurred whilst submitting the form. Please
           refresh the page and try it again.
@@ -94,12 +112,13 @@ export const ContactForm: React.SFC<{}> = () => {
               body: encode({
                 "form-name": "contact",
                 subject: "New Website Enquiry",
+                "g-recaptcha-response": state["g-recaptcha-response"],
                 ...values,
               }),
             })
               .then(() => {
                 actions.resetForm()
-                setState({ isFailed: false, isSuccess: true })
+                setState({ isFailed: false, isSuccess: true, ...state })
                 actions.setSubmitting(false)
               })
               .catch(err => {
@@ -108,7 +127,7 @@ export const ContactForm: React.SFC<{}> = () => {
                   err
                 )
 
-                setState({ isFailed: true, isSuccess: false })
+                setState({ isFailed: true, isSuccess: false, ...state })
                 actions.setSubmitting(false)
               })
           }, 1100)
@@ -119,6 +138,7 @@ export const ContactForm: React.SFC<{}> = () => {
             style={{ width: "320px" }}
             data-netlify="true"
             data-netlify-honeypot="bot-field"
+            data-netlify-recaptcha="true"
           >
             <Field type="hidden" name="form-name" value="contact" />
             <p hidden>
@@ -146,6 +166,11 @@ export const ContactForm: React.SFC<{}> = () => {
               rows={5}
               resizable={false}
               component={FormikTextField}
+            />
+            <Recaptcha
+              ref={recaptchaRef}
+              sitekey={RECAPTCHA_KEY}
+              onChange={handleRecaptcha}
             />
             <footer style={{ marginTop: "2em" }}>
               <div style={{ float: "right" }}>
