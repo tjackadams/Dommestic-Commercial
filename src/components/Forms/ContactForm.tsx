@@ -40,6 +40,8 @@ interface ContactFormValues {
   enquiry: string
 }
 
+const recaptchaRef = React.createRef<ReCAPTCHA>()
+
 export const ContactForm: React.SFC = () => {
   const [state, setState] = useState({
     isSuccess: false,
@@ -50,8 +52,6 @@ export const ContactForm: React.SFC = () => {
   const handleRecaptcha = (value: any) => {
     setState({ ...state, "g-recaptcha-response": value })
   }
-
-  const recaptchaRef = React.createRef<ReCAPTCHA>()
 
   return (
     <>
