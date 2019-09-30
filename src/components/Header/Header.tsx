@@ -33,7 +33,9 @@ export class Header extends React.Component {
           tokens={{ childrenGap: 14 }}
           className={headerWrapper}
         >
-          <Stack.Item grow className={headerHideMobile}></Stack.Item>
+          <Stack.Item grow className={headerHideMobile}>
+            {" "}
+          </Stack.Item>
 
           <Stack.Item
             styles={{
