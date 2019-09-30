@@ -51,9 +51,10 @@ mergeStyles({
 interface IAppStyles {
   serviceCardWrapper: string
   recommendationWrapper: string
-  contactWrapper: string
   contactInfoWrapper: string
   areasWeCoverWrapper: string
+  contactFormWrapper: string
+  column: string
 }
 
 const getClassNames = (): IAppStyles => {
@@ -63,18 +64,6 @@ const getClassNames = (): IAppStyles => {
     },
     recommendationWrapper: {
       textAlign: "center",
-    },
-    contactWrapper: {
-      flexDirection: "row",
-      justifyContent: "space-between",
-      marginTop: "0px !important ",
-      selectors: {
-        [MobileSelector]: {
-          flexDirection: "column",
-          alignItems: "center",
-          marginTop: "40px",
-        },
-      },
     },
     contactInfoWrapper: {
       selectors: {
@@ -86,6 +75,22 @@ const getClassNames = (): IAppStyles => {
         [MobileSelector]: { marginLeft: "0 !important" },
       },
     },
+    contactFormWrapper: {
+      marginTop: "0px !important ",
+      selectors: {
+        [MobileSelector]: {
+          marginTop: "40px !important",
+        },
+      },
+    },
+    column: {
+      width: "50%",
+      selectors: {
+        [MobileSelector]: {
+          width: "100%",
+        },
+      },
+    },
   })
 }
 
@@ -95,9 +100,10 @@ class App extends React.Component<any> {
     const {
       serviceCardWrapper,
       recommendationWrapper,
-      contactWrapper,
       contactInfoWrapper,
       areasWeCoverWrapper,
+      contactFormWrapper,
+      column,
     } = getClassNames()
 
     return (
@@ -152,18 +158,15 @@ class App extends React.Component<any> {
             </Stack>
           </Stack.Item>
           <Stack.Item>
-            <Stack tokens={{ childrenGap: 40 }} className={contactWrapper}>
-              <Stack.Item>
+            <Stack
+              horizontal
+              horizontalAlign="space-between"
+              wrap
+              tokens={{ childrenGap: 40 }}
+            >
+              <Stack.Item className={column}>
                 <Stack>
-                  <Stack.Item
-                    styles={{
-                      root: {
-                        selectors: {
-                          [MobileSelector]: { textAlign: "center" },
-                        },
-                      },
-                    }}
-                  >
+                  <Stack.Item className={areasWeCoverWrapper}>
                     <AreasWeCover />
                   </Stack.Item>
                   <Stack.Item className={contactInfoWrapper}>
@@ -171,7 +174,7 @@ class App extends React.Component<any> {
                   </Stack.Item>
                 </Stack>
               </Stack.Item>
-              <Stack.Item className={areasWeCoverWrapper}>
+              <Stack.Item className={contactFormWrapper}>
                 <ContactForm />
               </Stack.Item>
             </Stack>
