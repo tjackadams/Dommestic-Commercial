@@ -67,12 +67,12 @@ const getClassNames = (): IAppStyles => {
     },
     contactInfoWrapper: {
       selectors: {
-        [MobileSelector]: { marginLeft: "0 !important" },
+        [MobileSelector]: { marginLeft: "0 !important", textAlign: "center" },
       },
     },
     areasWeCoverWrapper: {
       selectors: {
-        [MobileSelector]: { marginLeft: "0 !important" },
+        [MobileSelector]: { marginLeft: "0 !important", textAlign: "center" },
       },
     },
     contactFormWrapper: {

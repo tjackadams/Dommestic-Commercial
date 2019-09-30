@@ -52,7 +52,11 @@ export class Layout extends React.Component<{ bannerImage: any }> {
             <MapContainer />
           </Stack.Item>
           <Stack.Item className={footer}>
-            <Footer />
+            <Stack horizontalAlign="center">
+              <Stack.Item styles={{ root: { maxWidth: 1080 } }}>
+                <Footer />
+              </Stack.Item>
+            </Stack>
           </Stack.Item>
         </Stack>
       </Fabric>

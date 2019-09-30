@@ -14,3 +14,8 @@ export const SmallDesktopSelector = getScreenSelector(
   ScreenWidthMaxLarge,
   ScreenWidthMaxXLarge
 )
+
+export const TabletAndDesktopSelector = getScreenSelector(
+  ScreenWidthMinMedium,
+  7680
+)
