@@ -47,8 +47,9 @@ export const ContactForm: React.SFC = () => {
     "g-recaptcha-response": "",
   })
 
-  const handleRecaptcha = value => {
-    setState({ "g-recaptcha-response": value, ...state })
+  const handleRecaptcha = (value: any) => {
+    console.log(value)
+    setState({ ...state, "g-recaptcha-response": value })
   }
 
   const recaptchaRef = React.createRef<ReCAPTCHA>()
@@ -74,7 +75,7 @@ export const ContactForm: React.SFC = () => {
           isMultiline={false}
           dismissButtonAriaLabel="Close"
           onDismiss={() =>
-            setState({ isFailed: false, isSuccess: false, ...state })
+            setState({ ...state, isFailed: false, isSuccess: false })
           }
         >
           We'll be in touch shortly.
@@ -86,7 +87,7 @@ export const ContactForm: React.SFC = () => {
           isMultiline={false}
           dismissButtonAriaLabel="Close"
           onDismiss={() =>
-            setState({ isFailed: false, isSuccess: false, ...state })
+            setState({ ...state, isFailed: false, isSuccess: false })
           }
         >
           Looks like an error occurred whilst submitting the form. Please
@@ -110,15 +111,15 @@ export const ContactForm: React.SFC = () => {
               method: "POST",
               headers: { "Content-Type": "application/x-www-form-urlencoded" },
               body: encode({
+                ...values,
                 "form-name": "contact",
                 subject: "New Website Enquiry",
                 "g-recaptcha-response": state["g-recaptcha-response"],
-                ...values,
               }),
             })
               .then(() => {
                 actions.resetForm()
-                setState({ isFailed: false, isSuccess: true, ...state })
+                setState({ ...state, isFailed: false, isSuccess: true })
                 actions.setSubmitting(false)
               })
               .catch(err => {
@@ -127,7 +128,7 @@ export const ContactForm: React.SFC = () => {
                   err
                 )
 
-                setState({ isFailed: true, isSuccess: false, ...state })
+                setState({ ...state, isFailed: true, isSuccess: false })
                 actions.setSubmitting(false)
               })
           }, 1100)
