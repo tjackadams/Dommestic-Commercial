@@ -1,5 +1,9 @@
 import { mergeStyleSets, DefaultPalette, FontWeights } from "@uifabric/styling"
-import { MobileSelector, TabletSelector } from "../../styling"
+import {
+  MobileSelector,
+  TabletSelector,
+  SmallDesktopSelector,
+} from "../../styling"
 import { Depths } from "@uifabric/fluent-theme/lib/fluent/FluentDepths"
 
 export interface ILayoutClassNames {
@@ -30,29 +34,29 @@ export const getClassNames = (): ILayoutClassNames => {
         },
       },
     },
-    contentContainer : {
-        backgroundColor: DefaultPalette.white,
-        maxWidth: 800,
-        marginTop: 20,
-        marginBottom: 40,
-        paddingTop: 40,
-        paddingBottom: 40,
-        paddingLeft: "8%",
-        paddingRight: "8%",
-        boxShadow: Depths.depth4,
-        selectors: {
-            [TabletSelector]: {
-                paddingLeft: "4%",
-                paddingRight: "4%",
-            },
-            [MobileSelector]: {
-                maxWidth: 375,
-                marginTop: 0,
-                paddingTop: 10,
-                paddingLeft: "4%",
-                paddingRight: "4%",
-            },
+    contentContainer: {
+      backgroundColor: DefaultPalette.white,
+      maxWidth: 800,
+      marginTop: 20,
+      marginBottom: 40,
+      paddingTop: 40,
+      paddingBottom: 40,
+      paddingLeft: "8%",
+      paddingRight: "8%",
+      boxShadow: Depths.depth4,
+      selectors: {
+        [TabletSelector]: {
+          paddingLeft: "4%",
+          paddingRight: "4%",
         },
+        [MobileSelector]: {
+          maxWidth: 375,
+          marginTop: 0,
+          paddingTop: 10,
+          paddingLeft: "4%",
+          paddingRight: "4%",
+        },
+      },
     },
     footer: {
       backgroundColor: DefaultPalette.neutralPrimary,
@@ -84,11 +88,18 @@ export const getClassNames = (): ILayoutClassNames => {
     },
     sloganText: {
       position: "absolute",
-      top: "5%",
+      top: "8%",
       left: "25%",
       color: DefaultPalette.white,
       fontWeight: FontWeights.semibold,
       selectors: {
+        [SmallDesktopSelector]: {
+          top: "5%",
+          left: "20%",
+        },
+        [TabletSelector]: {
+          display: "none",
+        },
         [MobileSelector]: {
           display: "none",
         },
@@ -98,6 +109,9 @@ export const getClassNames = (): ILayoutClassNames => {
       color: DefaultPalette.white,
       fontWeight: FontWeights.semilight,
       selectors: {
+        [TabletSelector]: {
+          display: "none",
+        },
         [MobileSelector]: {
           display: "none",
         },
