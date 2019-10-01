@@ -12,7 +12,7 @@ const cfg = {
     description:
       "We offer a fast & efficient Domestic & Commercial drains service in Dudley and across the West Midlands.",
     keywords: "domestic,commercial,drain,dudley,west midlands",
-    siteUrl: "https://www.dudleydrains.com",
+    siteUrl: "https://www.dudleydrains.co.uk",
     image: "",
     author: {
       name: "",
@@ -20,7 +20,7 @@ const cfg = {
     },
     organization: {
       name: "Domestic & Commercial Drain Services",
-      url: "https://www.dudleydrains.com",
+      url: "https://www.dudleydrains.co.uk",
       logo: "",
     },
     social: {
