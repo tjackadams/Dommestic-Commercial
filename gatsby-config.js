@@ -6,8 +6,6 @@ require("dotenv").config({
 
 const config = require("gatsby-plugin-config")
 
-console.log("config: ", config)
-
 const cfg = {
   siteMetadata: {
     title: "Domestic & Commercial Drain Services in West Midlands, UK",
