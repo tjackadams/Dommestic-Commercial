@@ -28,32 +28,7 @@ const cfg = {
       fbAppID: "",
     },
   },
-  plugins: [
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: path.join(__dirname, `src`, `images`),
-      },
-    },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    `gatsby-plugin-sitemap`,
-    `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-typescript`,
-    {
-      resolve: "gatsby-plugin-robots-txt",
-      options: {
-        policy: [{ userAgent: "*", allow: "/" }],
-      },
-    },
-    {
-      resolve: "gatsby-plugin-netlify",
-      options: {
-        mergeSecurityHeaders: false,
-      },
-    },
-  ],
+  plugins: [],
 }
 
 if (process.env.CONTEXT === "production") {
@@ -88,5 +63,32 @@ if (process.env.CONTEXT === "production") {
   cfg.plugins.push(googleAnalyticsCfg)
   cfg.plugins.push(faviconCfg)
 }
+
+cfg.plugins.concat([
+  {
+    resolve: `gatsby-source-filesystem`,
+    options: {
+      name: `images`,
+      path: path.join(__dirname, `src`, `images`),
+    },
+  },
+  `gatsby-transformer-sharp`,
+  `gatsby-plugin-sharp`,
+  `gatsby-plugin-sitemap`,
+  `gatsby-plugin-react-helmet`,
+  `gatsby-plugin-typescript`,
+  {
+    resolve: "gatsby-plugin-robots-txt",
+    options: {
+      policy: [{ userAgent: "*", allow: "/" }],
+    },
+  },
+  {
+    resolve: "gatsby-plugin-netlify",
+    options: {
+      mergeSecurityHeaders: false,
+    },
+  },
+])
 
 module.exports = cfg
