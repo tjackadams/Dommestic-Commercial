@@ -64,7 +64,7 @@ if (process.env.CONTEXT === "production") {
   cfg.plugins.push(faviconCfg)
 }
 
-cfg.plugins.concat([
+cfg.plugins = cfg.plugins.concat([
   {
     resolve: `gatsby-source-filesystem`,
     options: {
