@@ -6,6 +6,8 @@ require("dotenv").config({
 
 const config = require("gatsby-plugin-config")
 
+console.log("config: ", config)
+
 const cfg = {
   siteMetadata: {
     title: "Domestic & Commercial Drain Services in West Midlands, UK",
@@ -29,14 +31,6 @@ const cfg = {
     },
   },
   plugins: [
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: config.GOOGLE_ANALYTICS_TRACKINGID,
-        head: false,
-        respectDNT: true,
-      },
-    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -69,6 +63,9 @@ if (process.env.CONTEXT === "production") {
     resolve: "gatsby-plugin-google-analytics",
     options: {
       trackingId: config.GOOGLE_ANALYTICS_TRACKINGID,
+      head: true,
+      respectDNT: true,
+      anonymize: true,
     },
   }
   const faviconCfg = {
