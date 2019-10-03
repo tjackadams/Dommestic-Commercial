@@ -6,7 +6,7 @@ require("dotenv").config({
 
 const config = require("gatsby-plugin-config")
 
-console.log("Tracking Id: ", config.GOOGLE_ANALYTICS_TRACKINGID)
+console.log("Tracking Id: ", config.default.GOOGLE_ANALYTICS_TRACKINGID)
 
 const cfg = {
   siteMetadata: {
@@ -34,7 +34,7 @@ const cfg = {
     {
       resolve: "gatsby-plugin-google-analytics",
       options: {
-        trackingId: config.GOOGLE_ANALYTICS_TRACKINGID,
+        trackingId: config.default.GOOGLE_ANALYTICS_TRACKINGID,
       },
     },
     {
