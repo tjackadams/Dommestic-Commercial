@@ -6,7 +6,7 @@ require("dotenv").config({
 
 const config = require("gatsby-plugin-config")
 
-console.log("Configuration: ", config)
+console.log("Tracking Id: ", config.GOOGLE_ANALYTICS_TRACKINGID)
 
 const cfg = {
   siteMetadata: {
