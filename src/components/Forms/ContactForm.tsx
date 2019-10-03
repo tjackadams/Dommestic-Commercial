@@ -2,17 +2,16 @@ import React, { useState } from "react"
 import { Formik, FormikActions, FormikProps, Form, Field } from "formik"
 import * as Yup from "yup"
 import {
-  DefaultPalette,
   MessageBar,
   MessageBarType,
   PrimaryButton,
   ProgressIndicator,
   Text,
-  FontSizes,
 } from "office-ui-fabric-react"
 import { FormikTextField } from "formik-office-ui-fabric-react"
 import Recaptcha from "react-google-recaptcha"
 import ReCAPTCHA from "react-google-recaptcha"
+import { getClassNames } from "./ContactForm.styles"
 
 const schema = Yup.object().shape({
   fullName: Yup.string()
@@ -53,19 +52,11 @@ export const ContactForm: React.SFC = () => {
     setState({ ...state, "g-recaptcha-response": value })
   }
 
+  const { title, submitButton } = getClassNames()
+
   return (
     <>
-      <Text
-        as="h2"
-        block
-        variant="xxLarge"
-        styles={{
-          root: {
-            fontSize: FontSizes.xxLarge,
-            color: DefaultPalette.neutralDark,
-          },
-        }}
-      >
+      <Text as="h2" block variant="xxLarge" className={title}>
         Contact us
       </Text>
       {state.isSuccess && !state.isFailed && (
@@ -179,14 +170,7 @@ export const ContactForm: React.SFC = () => {
                 <PrimaryButton
                   type="submit"
                   disabled={props.isSubmitting}
-                  styles={{
-                    rootHovered: {
-                      backgroundColor: DefaultPalette.teal,
-                    },
-                    rootPressed: {
-                      backgroundColor: DefaultPalette.teal,
-                    },
-                  }}
+                  className={submitButton}
                 >
                   Send
                 </PrimaryButton>

@@ -1,52 +1,68 @@
 import React from "react"
 import {
-  DefaultPalette,
-  FontSizes,
   FontWeights,
   Stack,
   Text,
-  ITextStyles,
+  mergeStyleSets,
+  getTheme,
 } from "office-ui-fabric-react"
 import { Link } from "react-scroll"
 
-const linkStyles: ITextStyles = {
-  root: {
-    color: DefaultPalette.neutralDark,
-    cursor: "pointer",
-    fontSize: FontSizes.large,
-    fontWeight: FontWeights.semilight,
-    border: "1px solid transparent",
-    selectors: {
-      ":hover": {
-        color: DefaultPalette.tealLight,
-        borderBottom: `1px solid ${DefaultPalette.tealLight}`,
+interface IDesktopNavClassNames {
+  menuLink: string
+  menuContainer: string
+}
+
+const getClassNames = (): IDesktopNavClassNames => {
+  const theme = getTheme()
+  return mergeStyleSets({
+    menuLink: {
+      color: theme.palette.neutralDark,
+      cursor: "pointer",
+      fontWeight: FontWeights.semilight,
+      border: "1px solid transparent",
+      selectors: {
+        ":hover": {
+          color: theme.palette.tealLight,
+          borderBottom: `1px solid ${theme.palette.tealLight}`,
+        },
       },
     },
-  },
+    menuContainer: {
+      paddingTop: 4,
+    },
+  })
 }
 
 export class DesktopNavMenu extends React.Component {
   public render(): JSX.Element {
+    const { menuContainer, menuLink } = getClassNames()
     return (
       <Stack
         horizontal
         verticalAlign="center"
         tokens={{ childrenGap: 20 }}
-        styles={{ root: { paddingTop: 4 } }}
+        className={menuContainer}
       >
         <Stack.Item>
           <Link activeClass="active" to="home" spy smooth offset={-70}>
-            <Text styles={linkStyles}>Home</Text>
+            <Text variant="large" className={menuLink}>
+              Home
+            </Text>
           </Link>
         </Stack.Item>
         <Stack.Item>
           <Link activeClass="active" to="services" spy smooth offset={-70}>
-            <Text styles={linkStyles}>Services</Text>
+            <Text variant="large" className={menuLink}>
+              Services
+            </Text>
           </Link>
         </Stack.Item>
         <Stack.Item>
           <Link activeClass="active" to="contact" spy smooth offset={-70}>
-            <Text styles={linkStyles}>Contact</Text>
+            <Text variant="large" className={menuLink}>
+              Contact
+            </Text>
           </Link>
         </Stack.Item>
       </Stack>

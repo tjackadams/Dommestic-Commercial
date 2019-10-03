@@ -18,6 +18,7 @@ export const getClassNames = (): IFooterClassNames => {
       marginBottom: 20,
     },
     footerDesktopSeparator: {
+      paddingTop: "12%",
       height: 120,
       width: "5%",
       selectors: {

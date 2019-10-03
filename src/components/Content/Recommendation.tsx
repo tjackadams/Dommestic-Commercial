@@ -20,6 +20,7 @@ const getClassNames = (): IRecommendationStyles => {
     reason: {
       fontSize: FontSizes.xxLarge,
       fontWeight: FontWeights.regular,
+      lineHeight: 54,
     },
   })
 }

@@ -28,7 +28,7 @@ export class Footer extends React.Component {
           <Stack
             horizontal
             horizontalAlign="center"
-            verticalAlign="center"
+            verticalAlign="start"
             tokens={{ childrenGap: 40 }}
             wrap
           >

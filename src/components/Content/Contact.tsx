@@ -1,32 +1,17 @@
 import React from "react"
-import {
-  Text,
-  FontSizes,
-  DefaultPalette,
-  FontWeights,
-  Link,
-  Icon,
-} from "office-ui-fabric-react"
+import { Text, FontWeights, Link, Icon, Stack } from "office-ui-fabric-react"
 import { Element } from "react-scroll"
+import { getClassNames } from "./Contact.styles"
 
 export class AreasWeCover extends React.Component {
   public render(): JSX.Element {
+    const { addressText, awcTitle } = getClassNames()
     return (
       <Element name="areas-we-cover">
-        <Text
-          as="h2"
-          block
-          variant="xxLarge"
-          styles={{
-            root: {
-              fontSize: FontSizes.xxLarge,
-              color: DefaultPalette.neutralDark,
-            },
-          }}
-        >
+        <Text as="h2" block variant="xxLarge" className={awcTitle}>
           Areas we Service
         </Text>
-        <Text as="p" block variant="mediumPlus">
+        <Text as="p" block variant="mediumPlus" className={addressText}>
           Dudley
           <br />
           Wolverhampton
@@ -52,21 +37,20 @@ export class AreasWeCover extends React.Component {
   }
 }
 
-export class ContactInformation extends React.Component<{}> {
+export class ContactInformation extends React.Component {
   public render(): JSX.Element {
+    const {
+      addressText,
+      contactLink,
+      contactLinkContainer,
+      contactIcon,
+      contactText,
+      awcTitle,
+    } = getClassNames()
+
     return (
       <Element name="contact">
-        <Text
-          as="h2"
-          block
-          variant="xxLarge"
-          styles={{
-            root: {
-              fontSize: FontSizes.xxLarge,
-              color: DefaultPalette.neutralDark,
-            },
-          }}
-        >
+        <Text as="h2" block variant="xxLarge" className={awcTitle}>
           Contact Information
         </Text>
         <Text
@@ -77,7 +61,7 @@ export class ContactInformation extends React.Component<{}> {
         >
           Domestic &#38; Commercial Drain Services
         </Text>
-        <Text as="p" block variant="mediumPlus">
+        <Text as="p" block variant="mediumPlus" className={addressText}>
           67 Merryfield Road
           <br />
           Dudley
@@ -87,81 +71,39 @@ export class ContactInformation extends React.Component<{}> {
           DY1 2ND
           <br />
         </Text>
-        <div style={{ paddingTop: 4 }}>
-          <Link
-            as="a"
-            href="tel:01384357446"
-            styles={{
-              root: {
-                selectors: {
-                  ":hover": {
-                    color: DefaultPalette.teal,
-                    textDecoration: "none",
-                  },
-                },
-              },
-            }}
-          >
-            <Icon
-              iconName="phone"
-              styles={{ root: { position: "relative", top: 2 } }}
-            />
+        <Stack styles={{ root: { marginTop: 20 } }}>
+          <Stack.Item className={contactLinkContainer}>
+            <Link as="a" href="tel:01384357446" className={contactLink}>
+              <Icon iconName="phone" className={contactIcon} />
 
-            <Text variant="mediumPlus" styles={{ root: { marginLeft: 4 } }}>
-              01384 357446
-            </Text>
-          </Link>
-        </div>
-        <div style={{ paddingTop: 4 }}>
-          <Link
-            as="a"
-            href="tel:07974243764"
-            styles={{
-              root: {
-                selectors: {
-                  ":hover": {
-                    color: DefaultPalette.teal,
-                    textDecoration: "none",
-                  },
-                },
-              },
-            }}
-          >
-            <Icon
-              iconName="phone"
-              styles={{ root: { position: "relative", top: 2 } }}
-            />
+              <Text variant="mediumPlus" className={contactText}>
+                01384 357446
+              </Text>
+            </Link>
+          </Stack.Item>
+          <Stack.Item className={contactLinkContainer}>
+            <Link as="a" href="tel:07974243764" className={contactLink}>
+              <Icon iconName="phone" className={contactIcon} />
 
-            <Text variant="mediumPlus" styles={{ root: { marginLeft: 4 } }}>
-              07974 243764
-            </Text>
-          </Link>
-        </div>
-        <div style={{ paddingTop: 4 }}>
-          <Link
-            as="a"
-            href="mailto:&#115;&#116;&#101;&#118;&#101;&#116;&#111;&#109;&#107;&#105;&#110;&#115;&#53;&#51;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;"
-            styles={{
-              root: {
-                selectors: {
-                  ":hover": {
-                    color: DefaultPalette.teal,
-                    textDecoration: "none",
-                  },
-                },
-              },
-            }}
-          >
-            <Icon
-              iconName="mail"
-              styles={{ root: { position: "relative", top: 2 } }}
-            />
+              <Text variant="mediumPlus" className={contactText}>
+                07974 243764
+              </Text>
+            </Link>
+          </Stack.Item>
+          <Stack.Item className={contactLinkContainer}>
+            <Link
+              as="a"
+              href="mailto:&#115;&#116;&#101;&#118;&#101;&#116;&#111;&#109;&#107;&#105;&#110;&#115;&#53;&#51;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;"
+              className={contactLink}
+            >
+              <Icon iconName="mail" className={contactIcon} />
 
-            <Text variant="mediumPlus" styles={{ root: { marginLeft: 4 } }}>
-              &#115;&#116;&#101;&#118;&#101;&#116;&#111;&#109;&#107;&#105;&#110;&#115;&#53;&#51;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;
-            </Text>
-          </Link>
-        </div>
+              <Text variant="mediumPlus" className={contactText}>
+                &#115;&#116;&#101;&#118;&#101;&#116;&#111;&#109;&#107;&#105;&#110;&#115;&#53;&#51;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;
+              </Text>
+            </Link>
+          </Stack.Item>
+        </Stack>
       </Element>
     )
   }
@@ -169,12 +111,13 @@ export class ContactInformation extends React.Component<{}> {
 
 export class OpeningTimes extends React.Component<{}> {
   public render(): JSX.Element {
+    const { addressText } = getClassNames()
     return (
       <>
         <Text as="h3" variant="xLarge" block>
           Opening Times
         </Text>
-        <Text as="p" variant="mediumPlus">
+        <Text as="p" variant="mediumPlus" className={addressText}>
           Monday 9:00 am - 6:00 pm
           <br />
           Tuesday 9:00 am - 6:00 pm
@@ -196,12 +139,20 @@ export class OpeningTimes extends React.Component<{}> {
 
 export class AdditionalContactInformation extends React.Component<{}> {
   public render(): JSX.Element {
+    const {
+      addressText,
+      contactLink,
+      contactLinkContainer,
+      contactIcon,
+      contactText,
+    } = getClassNames()
+
     return (
       <>
-        <Text as="h3" variant="xLarge" block>
+        <Text as="h3" variant="xLarge" block nowrap>
           Domestic &#38; Commercial Drain Services
         </Text>
-        <Text as="p" variant="mediumPlus">
+        <Text as="p" variant="mediumPlus" className={addressText}>
           67 Merryfield Road
           <br />
           Dudley
@@ -211,81 +162,39 @@ export class AdditionalContactInformation extends React.Component<{}> {
           DY1 2ND
           <br />
         </Text>
-        <div style={{ paddingTop: 4 }}>
-          <Link
-            as="a"
-            href="tel:01384357446"
-            styles={{
-              root: {
-                selectors: {
-                  ":hover": {
-                    color: DefaultPalette.teal,
-                    textDecoration: "none",
-                  },
-                },
-              },
-            }}
-          >
-            <Icon
-              iconName="phone"
-              styles={{ root: { position: "relative", top: 2 } }}
-            />
+        <Stack styles={{ root: { marginTop: 20 } }}>
+          <Stack.Item className={contactLinkContainer}>
+            <Link as="a" href="tel:01384357446" className={contactLink}>
+              <Icon iconName="phone" className={contactIcon} />
 
-            <Text variant="mediumPlus" styles={{ root: { marginLeft: 4 } }}>
-              01384 357446
-            </Text>
-          </Link>
-        </div>
-        <div style={{ paddingTop: 4 }}>
-          <Link
-            as="a"
-            href="tel:07974243764"
-            styles={{
-              root: {
-                selectors: {
-                  ":hover": {
-                    color: DefaultPalette.teal,
-                    textDecoration: "none",
-                  },
-                },
-              },
-            }}
-          >
-            <Icon
-              iconName="phone"
-              styles={{ root: { position: "relative", top: 2 } }}
-            />
+              <Text variant="mediumPlus" className={contactText}>
+                01384 357446
+              </Text>
+            </Link>
+          </Stack.Item>
+          <Stack.Item className={contactLinkContainer}>
+            <Link as="a" href="tel:07974243764" className={contactLink}>
+              <Icon iconName="phone" className={contactIcon} />
 
-            <Text variant="mediumPlus" styles={{ root: { marginLeft: 4 } }}>
-              07974 243764
-            </Text>
-          </Link>
-        </div>
-        <div style={{ paddingTop: 4 }}>
-          <Link
-            as="a"
-            href="mailto:&#115;&#116;&#101;&#118;&#101;&#116;&#111;&#109;&#107;&#105;&#110;&#115;&#53;&#51;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;"
-            styles={{
-              root: {
-                selectors: {
-                  ":hover": {
-                    color: DefaultPalette.teal,
-                    textDecoration: "none",
-                  },
-                },
-              },
-            }}
-          >
-            <Icon
-              iconName="mail"
-              styles={{ root: { position: "relative", top: 2 } }}
-            />
+              <Text variant="mediumPlus" className={contactText}>
+                07974 243764
+              </Text>
+            </Link>
+          </Stack.Item>
+          <Stack.Item className={contactLinkContainer}>
+            <Link
+              as="a"
+              href="mailto:&#115;&#116;&#101;&#118;&#101;&#116;&#111;&#109;&#107;&#105;&#110;&#115;&#53;&#51;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;"
+              className={contactLink}
+            >
+              <Icon iconName="mail" className={contactIcon} />
 
-            <Text variant="mediumPlus" styles={{ root: { marginLeft: 4 } }}>
-              &#115;&#116;&#101;&#118;&#101;&#116;&#111;&#109;&#107;&#105;&#110;&#115;&#53;&#51;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;
-            </Text>
-          </Link>
-        </div>
+              <Text variant="mediumPlus" className={contactText}>
+                &#115;&#116;&#101;&#118;&#101;&#116;&#111;&#109;&#107;&#105;&#110;&#115;&#53;&#51;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;
+              </Text>
+            </Link>
+          </Stack.Item>
+        </Stack>
       </>
     )
   }

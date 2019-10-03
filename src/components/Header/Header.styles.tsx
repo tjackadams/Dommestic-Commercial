@@ -5,8 +5,11 @@ export interface IHeaderClassNames {
   headerWrapper: string
   headerHideMobile: string
   headerTitle: string
-    headerSubtitleContainer: string
+  headerSubtitleContainer: string
   headerSubtitle: string
+  headerPhoneLink: string
+  headerPhoneIcon: string
+  headerPhoneText: string
 }
 export const getClassNames = (): IHeaderClassNames => {
   return mergeStyleSets({
@@ -45,19 +48,36 @@ export const getClassNames = (): IHeaderClassNames => {
       },
     },
     headerSubtitleContainer: {
-        marginRight: 60,
-        selectors: {
-            [MobileSelector]: {
-                display: "none",
-            },
-            [TabletSelector]: {
-                display: "none",
-            },
+      marginRight: 60,
+      selectors: {
+        [MobileSelector]: {
+          display: "none",
         },
+        [TabletSelector]: {
+          display: "none",
+        },
+      },
     },
     headerSubtitle: {
-        fontWeight: FontWeights.semibold,
-        fontSize: FontSizes.xLarge
+      fontWeight: FontWeights.semibold,
+      fontSize: FontSizes.xLarge,
+    },
+    headerPhoneLink: {
+      color: "inherit",
+      selectors: {
+        ":hover": {
+          textDecoration: "none",
+        },
+      },
+    },
+    headerPhoneIcon: {
+      fontSize: FontSizes.xLarge,
+      position: "relative",
+      top: 3,
+    },
+    headerPhoneText: {
+      marginLeft: 10,
+      fontWeight: FontWeights.regular,
     },
   })
 }

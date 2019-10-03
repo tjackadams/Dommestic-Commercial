@@ -1,14 +1,5 @@
 import React from "react"
-import {
-  Stack,
-  Text,
-  FontWeights,
-  Separator,
-  FontSizes,
-  Link,
-  DefaultPalette,
-  Icon,
-} from "office-ui-fabric-react"
+import { Stack, Text, Separator, Link, Icon } from "office-ui-fabric-react"
 import { Element } from "react-scroll"
 
 import { DesktopNavMenu, MobileNavMenu } from "../"
@@ -23,6 +14,9 @@ export class Header extends React.Component {
       headerTitle,
       headerSubtitle,
       headerSubtitleContainer,
+      headerPhoneLink,
+      headerPhoneIcon,
+      headerPhoneText,
     } = getClassNames()
 
     return (
@@ -100,39 +94,10 @@ export class Header extends React.Component {
               tokens={{ childrenGap: 20 }}
             >
               <Stack.Item>
-                <Link
-                  styles={{
-                    root: {
-                      color: "inherit",
-                      selectors: {
-                        ":hover": {
-                          textDecoration: "none",
-                          color: DefaultPalette.tealLight,
-                        },
-                      },
-                    },
-                  }}
-                  href="tel:07974243764"
-                >
-                  <Icon
-                    iconName="Phone"
-                    styles={{
-                      root: {
-                        fontSize: FontSizes.xLarge,
-                        position: "relative",
-                        top: 3,
-                      },
-                    }}
-                  />
+                <Link className={headerPhoneLink} href="tel:07974243764">
+                  <Icon iconName="Phone" className={headerPhoneIcon} />
 
-                  <Text
-                    styles={{
-                      root: {
-                        marginLeft: 10,
-                        fontSize: FontSizes.xLarge,
-                      },
-                    }}
-                  >
+                  <Text variant="xLarge" className={headerPhoneText}>
                     07974 243764
                   </Text>
                 </Link>

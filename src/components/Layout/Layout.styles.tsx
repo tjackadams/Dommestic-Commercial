@@ -1,4 +1,4 @@
-import { mergeStyleSets, DefaultPalette, FontWeights } from "@uifabric/styling"
+import { mergeStyleSets, FontWeights, getTheme } from "@uifabric/styling"
 import {
   MobileSelector,
   TabletSelector,
@@ -19,6 +19,7 @@ export interface ILayoutClassNames {
 }
 
 export const getClassNames = (): ILayoutClassNames => {
+  const theme = getTheme()
   return mergeStyleSets({
     banner: {
       width: "100%",
@@ -35,7 +36,7 @@ export const getClassNames = (): ILayoutClassNames => {
       },
     },
     contentContainer: {
-      backgroundColor: DefaultPalette.white,
+      backgroundColor: theme.palette.white,
       maxWidth: 800,
       marginTop: 20,
       marginBottom: 40,
@@ -59,11 +60,11 @@ export const getClassNames = (): ILayoutClassNames => {
       },
     },
     footer: {
-      backgroundColor: DefaultPalette.neutralPrimary,
-      color: DefaultPalette.white,
+      backgroundColor: theme.palette.neutralPrimary,
+      color: theme.palette.white,
     },
     header: {
-      backgroundColor: DefaultPalette.white,
+      backgroundColor: theme.palette.white,
       padding: 6,
       position: "fixed",
       zIndex: 999999,
@@ -95,7 +96,7 @@ export const getClassNames = (): ILayoutClassNames => {
       position: "absolute",
       top: "8%",
       left: "25%",
-      color: DefaultPalette.white,
+      color: theme.palette.white,
       fontWeight: FontWeights.semibold,
       selectors: {
         [SmallDesktopSelector]: {
@@ -111,7 +112,7 @@ export const getClassNames = (): ILayoutClassNames => {
       },
     },
     sloganSubtitle: {
-      color: DefaultPalette.white,
+      color: theme.palette.white,
       fontWeight: FontWeights.semilight,
       selectors: {
         [TabletSelector]: {

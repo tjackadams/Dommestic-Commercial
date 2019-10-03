@@ -1,9 +1,10 @@
 import React from "react"
-import { CommandBar, DefaultPalette, Stack } from "office-ui-fabric-react"
+import { CommandBar, Stack, getTheme } from "office-ui-fabric-react"
 import { scroller } from "react-scroll"
 
 export class MobileNavMenu extends React.Component {
   public render(): JSX.Element {
+    const theme = getTheme()
     return (
       <Stack>
         <Stack.Item>
@@ -21,7 +22,7 @@ export class MobileNavMenu extends React.Component {
                   }),
                 iconProps: {
                   iconName: "home",
-                  color: DefaultPalette.tealLight,
+                  color: theme.palette.tealLight,
                 },
               },
               {
@@ -34,6 +35,7 @@ export class MobileNavMenu extends React.Component {
                   }),
                 iconProps: {
                   iconName: "CRMServices",
+                  color: theme.palette.tealLight,
                 },
               },
               {
@@ -46,6 +48,7 @@ export class MobileNavMenu extends React.Component {
                   }),
                 iconProps: {
                   iconName: "Phone",
+                  color: theme.palette.tealLight,
                 },
               },
             ]}
