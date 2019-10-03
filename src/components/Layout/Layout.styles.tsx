@@ -71,7 +71,12 @@ export const getClassNames = (): ILayoutClassNames => {
       height: 60,
       selectors: {
         [TabletSelector]: { position: "unset", zIndex: "auto" },
-        [MobileSelector]: { position: "unset", zIndex: "auto" },
+        [MobileSelector]: {
+          position: "unset",
+          zIndex: "auto",
+          paddingLeft: 0,
+          paddingRight: 0,
+        },
       },
     },
     layoutContainer: {
