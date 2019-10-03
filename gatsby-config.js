@@ -33,7 +33,6 @@ const cfg = {
       resolve: "gatsby-plugin-google-analytics",
       options: {
         trackingId: config.GOOGLE_ANALYTICS_TRACKINGID,
-        head: true,
       },
     },
     {
