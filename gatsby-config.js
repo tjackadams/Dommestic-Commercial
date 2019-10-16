@@ -10,7 +10,8 @@ console.log("Tracking Id: ", config.default.GOOGLE_ANALYTICS_TRACKINGID)
 
 const cfg = {
   siteMetadata: {
-    title: "Domestic & Commercial Drain Services in West Midlands, UK",
+    title:
+      "Blocked Drain | Domestic & Commercial Drain Services in West Midlands, UK",
     description:
       "We offer a fast & efficient Domestic & Commercial drains service in Dudley and across the West Midlands.",
     keywords: "domestic,commercial,drain,dudley,west midlands",
