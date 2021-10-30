@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
+
 import {
   DefaultPalette,
   loadTheme,
@@ -12,7 +13,6 @@ import {
 
 import {
   Layout,
-  SEO,
   Services,
   ServiceCard,
   ServiceOneHeader,
@@ -28,6 +28,7 @@ import {
 } from "../components"
 
 import { MobileSelector } from "../styling"
+import Helmet from "react-helmet"
 
 loadTheme({
   palette: {
@@ -137,7 +138,22 @@ class App extends React.Component<any> {
 
     return (
       <Layout bannerImage={data.drainBanner.childImageSharp.fluid}>
-        <SEO />
+        <Helmet>
+          <html lang="en-GB" dir="ltr" />
+          <title>
+            Blocked Drains | Domestic & Commercial Drain Services in West
+            Midlands, UK
+          </title>
+          <meta
+            name="description"
+            content="We offer a fast & efficient Domestic & Commercial drains service in Dudley and across the West Midlands."
+          />
+          <meta
+            name="keywords"
+            content="domestic,commercial,drain,dudley,west midlands, blocked"
+          />
+          <link rel="canonical" href="https://www.dudleydrains.co.uk" />
+        </Helmet>
         <Stack>
           <Services />
           <Stack.Item className={spacer}>

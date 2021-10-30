@@ -6,8 +6,6 @@ require("dotenv").config({
 
 const config = require("gatsby-plugin-config")
 
-console.log("Tracking Id: ", config.default.GOOGLE_ANALYTICS_TRACKINGID)
-
 const cfg = {
   siteMetadata: {
     title:
@@ -16,7 +14,6 @@ const cfg = {
       "We offer a fast & efficient Domestic & Commercial drains service in Dudley and across the West Midlands.",
     keywords: "domestic,commercial,drain,dudley,west midlands",
     siteUrl: "https://www.dudleydrains.co.uk",
-    image: "",
     author: {
       name: "",
       minibio: "",
@@ -24,14 +21,29 @@ const cfg = {
     organization: {
       name: "Domestic & Commercial Drain Services",
       url: "https://www.dudleydrains.co.uk",
-      logo: "",
-    },
-    social: {
-      twitter: "",
-      fbAppID: "",
     },
   },
   plugins: [
+    {
+      resolve: "gatsby-plugin-seo",
+      options: {
+        siteName: "Domestic & Commercial Drain Services",
+        defaultSiteImage: "/images/commercial-drain.png",
+        siteUrl: "https://www.dudleydrains.co.uk",
+        globalSchema: `{
+            "@type": "WebSite",
+            "@id": "https://www.dudleydrains.co.uk/#website",
+            "url": "https://www.dudleydrains.co.uk/",
+            "name": "Blocked Drains | Domestic & Commercial Drain Services in West Midlands, UKe",
+            "image": {
+              "@type": "ImageObject",
+              "@id": "https://www.dudleydrains.co.uk/#logo",
+              "url": "https://www.dudleydrains.co.uk/images/commercial-drain.png",
+              "caption": "Domestic & Commercial Drain Service Logo"
+            }
+          }`,
+      },
+    },
     {
       resolve: "gatsby-plugin-google-analytics",
       options: {
