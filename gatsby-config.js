@@ -25,26 +25,6 @@ const cfg = {
   },
   plugins: [
     {
-      resolve: "gatsby-plugin-seo",
-      options: {
-        siteName: "Domestic & Commercial Drain Services",
-        defaultSiteImage: "/images/commercial-drain.png",
-        siteUrl: "https://www.dudleydrains.co.uk",
-        globalSchema: `{
-            "@type": "WebSite",
-            "@id": "https://www.dudleydrains.co.uk/#website",
-            "url": "https://www.dudleydrains.co.uk/",
-            "name": "Blocked Drains | Domestic & Commercial Drain Services in West Midlands, UKe",
-            "image": {
-              "@type": "ImageObject",
-              "@id": "https://www.dudleydrains.co.uk/#logo",
-              "url": "https://www.dudleydrains.co.uk/images/commercial-drain.png",
-              "caption": "Domestic & Commercial Drain Service Logo"
-            }
-          }`,
-      },
-    },
-    {
       resolve: "gatsby-plugin-google-analytics",
       options: {
         trackingId: config.default.GOOGLE_ANALYTICS_TRACKINGID,
