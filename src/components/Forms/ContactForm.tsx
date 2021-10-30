@@ -19,6 +19,9 @@ const schema = Yup.object().shape({
     .max(50, "Full Name is too long!")
     .required("Full Name is required."),
   phoneNumber: Yup.string().required("Please enter a valid phone number."),
+  emailAddress: Yup.string()
+    .email()
+    .required("Please enter a valid email address."),
   enquiry: Yup.string()
     .min(2, "Please add some more details to your enquiry.")
     .max(500, "Thats too much information, please shorten your enquiry.")
@@ -88,6 +91,7 @@ export const ContactForm: React.SFC = () => {
         initialValues={{
           fullName: "",
           phoneNumber: "",
+          emailAddress: "",
           enquiry: "",
           "bot-field": "",
         }}
@@ -145,6 +149,12 @@ export const ContactForm: React.SFC = () => {
             <Field
               label="Phone Number"
               name="phoneNumber"
+              required
+              component={FormikTextField}
+            />
+            <Field
+              label="Email Address"
+              name="emailAddress"
               required
               component={FormikTextField}
             />
