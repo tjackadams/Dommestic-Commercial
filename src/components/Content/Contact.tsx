@@ -118,19 +118,19 @@ export class OpeningTimes extends React.Component<{}> {
           Opening Times
         </Text>
         <Text as="p" variant="mediumPlus" className={addressText}>
-          Monday 9:00 am - 6:00 pm
+          Monday 9:00 am - 5:00 pm
           <br />
-          Tuesday 9:00 am - 6:00 pm
+          Tuesday 9:00 am - 5:00 pm
           <br />
           Wednesday 9:00 am - 5:00 pm
           <br />
-          Thursday 9:00 am - 6:00 pm
+          Thursday 9:00 am - 5:00 pm
           <br />
           Friday 9:00 am - 5:00 pm
           <br />
-          Saturday 9:00 am - 5:00 pm
+          Saturday 9:00 am - 2:00 pm
           <br />
-          Sunday 9:00 am - 2:00 pm
+          Sunday Closed
         </Text>
       </>
     )
