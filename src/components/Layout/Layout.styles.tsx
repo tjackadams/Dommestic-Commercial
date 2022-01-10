@@ -1,10 +1,9 @@
-import { mergeStyleSets, FontWeights, getTheme } from "@uifabric/styling"
+import { Depths, mergeStyleSets, FontWeights, getTheme } from "@fluentui/react"
 import {
   MobileSelector,
   TabletSelector,
   SmallDesktopSelector,
 } from "../../styling"
-import { Depths } from "@uifabric/fluent-theme/lib/fluent/FluentDepths"
 
 export interface ILayoutClassNames {
   banner: string

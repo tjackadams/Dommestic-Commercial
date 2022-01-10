@@ -5,7 +5,7 @@ import {
   Text,
   mergeStyleSets,
   getTheme,
-} from "office-ui-fabric-react"
+} from "@fluentui/react"
 import { Link } from "react-scroll"
 
 interface IDesktopNavClassNames {

@@ -1,5 +1,5 @@
 import React from "react"
-import { FontWeights, Link, Text, mergeStyleSets } from "office-ui-fabric-react"
+import { FontWeights, Link, Text, mergeStyleSets } from "@fluentui/react"
 import { Element, scroller } from "react-scroll"
 
 interface IServicesClassNames {

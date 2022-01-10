@@ -1,5 +1,5 @@
 import React from "react"
-import { Text, FontWeights, Link, Icon, Stack } from "office-ui-fabric-react"
+import { Text, FontWeights, Link, Icon, Stack } from "@fluentui/react"
 import { Element } from "react-scroll"
 import { getClassNames } from "./Contact.styles"
 

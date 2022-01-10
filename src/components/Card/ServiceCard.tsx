@@ -1,7 +1,7 @@
 import React from "react"
-import Img from "gatsby-image"
-import { ScreenWidthMinUhfMobile } from "office-ui-fabric-react"
-import { Card } from "@uifabric/react-cards"
+import { GatsbyImage } from "gatsby-plugin-image";
+import { ScreenWidthMinUhfMobile } from "@fluentui/react"
+import { Card } from "@fluentui/react-card"
 import { MobileSelector } from "../../styling"
 import { getClassNames } from "./ServiceCard.styles"
 
@@ -23,26 +23,24 @@ export class ServiceCard extends React.Component<{
       cardSection,
     } = getClassNames()
 
-    return (
-      <>
-        <Card compact className={compactCard}>
-          <Card.Item fill className={compactCardImage}>
-            <Img fluid={image} alt={imageAlt} />
-          </Card.Item>
-          <Card.Section className={compactCardSection}>
-            {title}
-            {children}
-          </Card.Section>
-        </Card>
+    return <>
+      <Card compact className={compactCard}>
+        <Card.Item fill className={compactCardImage}>
+          <GatsbyImage image={image} alt={imageAlt} />
+        </Card.Item>
+        <Card.Section className={compactCardSection}>
+          {title}
+          {children}
+        </Card.Section>
+      </Card>
 
-        <Card className={card}>
-          <Card.Item className={cardTitle}>{title}</Card.Item>
-          <Card.Item fill className={cardImage}>
-            <Img fluid={image} alt={imageAlt} />
-          </Card.Item>
-          <Card.Section className={cardSection}>{children}</Card.Section>
-        </Card>
-      </>
-    )
+      <Card className={card}>
+        <Card.Item className={cardTitle}>{title}</Card.Item>
+        <Card.Item fill className={cardImage}>
+          <GatsbyImage image={image} alt={imageAlt} />
+        </Card.Item>
+        <Card.Section className={cardSection}>{children}</Card.Section>
+      </Card>
+    </>;
   }
 }

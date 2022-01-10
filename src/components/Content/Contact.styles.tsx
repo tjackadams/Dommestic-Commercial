@@ -1,4 +1,4 @@
-import { mergeStyleSets, FontSizes, getTheme } from "@uifabric/styling"
+import { mergeStyleSets, FontSizes, getTheme } from "@fluentui/react"
 
 interface IContactClassNames {
   contactLink: string

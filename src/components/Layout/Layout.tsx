@@ -1,6 +1,6 @@
 import React from "react"
-import Img from "gatsby-image"
-import { Fabric, Stack, Text } from "office-ui-fabric-react"
+import { GatsbyImage } from "gatsby-plugin-image";
+import { Fabric, Stack, Text } from "@fluentui/react"
 
 import { Footer, Header, MapContainer } from "../"
 import { getClassNames } from "./Layout.styles"
@@ -28,11 +28,10 @@ export class Layout extends React.Component<{ bannerImage: any }> {
           </Stack.Item>
           <Stack.Item className={bannerSpacer}> </Stack.Item>
           <Stack.Item grow className={banner}>
-            <Img
-              fluid={bannerImage}
+            <GatsbyImage
+              image={bannerImage}
               alt="Water in a sink flowing down the drain."
-              style={{ filter: "brightness(65%) saturate(135%)" }}
-            />
+              style={{ filter: "brightness(65%) saturate(135%)" }} />
             <Text as="h1" variant="xxLarge" className={sloganText}>
               Providing Domestic &amp; Commercial Drain Services
               <Text block variant="xLarge" className={sloganSubtitle}>
@@ -60,6 +59,6 @@ export class Layout extends React.Component<{ bannerImage: any }> {
           </Stack.Item>
         </Stack>
       </Fabric>
-    )
+    );
   }
 }

@@ -1,4 +1,4 @@
-import { mergeStyleSets, FontSizes, FontWeights } from "@uifabric/styling"
+import { mergeStyleSets, FontSizes, FontWeights } from "@fluentui/react"
 import { MobileSelector, TabletSelector } from "../../styling"
 
 export interface IHeaderClassNames {

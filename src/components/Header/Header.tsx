@@ -1,5 +1,5 @@
 import React from "react"
-import { Stack, Text, Separator, Link, Icon } from "office-ui-fabric-react"
+import { Stack, Text, Separator, Link, Icon } from "@fluentui/react"
 import { Element } from "react-scroll"
 
 import { DesktopNavMenu, MobileNavMenu } from "../"

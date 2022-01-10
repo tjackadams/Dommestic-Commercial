@@ -1,5 +1,5 @@
 import { MobileSelector, TabletAndDesktopSelector } from "../../styling"
-import { mergeStyleSets } from "@uifabric/styling"
+import { mergeStyleSets } from "@fluentui/react"
 
 export interface IFooterClassNames {
   footerRoot: string

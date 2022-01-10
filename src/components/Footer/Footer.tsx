@@ -1,5 +1,5 @@
 import React from "react"
-import { Stack, Separator } from "office-ui-fabric-react"
+import { Stack, Separator } from "@fluentui/react"
 
 import {
   AdditionalContactInformation,

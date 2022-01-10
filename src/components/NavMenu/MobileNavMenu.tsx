@@ -1,5 +1,5 @@
 import React from "react"
-import { CommandBar, Stack, getTheme } from "office-ui-fabric-react"
+import { CommandBar, Stack, getTheme } from "@fluentui/react"
 import { scroller } from "react-scroll"
 
 export class MobileNavMenu extends React.Component {

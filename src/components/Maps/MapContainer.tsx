@@ -1,6 +1,6 @@
 import React from "react"
 import { renderToString } from "react-dom/server"
-import { Stack, Separator, Text } from "office-ui-fabric-react"
+import { Stack, Separator, Text } from "@fluentui/react"
 import GoogleMap from "google-map-react"
 
 const coords = { lat: 52.511172, lng: -2.115357 }

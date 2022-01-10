@@ -1,4 +1,4 @@
-import { mergeStyleSets, getTheme } from "@uifabric/styling"
+import { mergeStyleSets, getTheme } from "@fluentui/react"
 
 interface IContactFormClassNames {
   title: string

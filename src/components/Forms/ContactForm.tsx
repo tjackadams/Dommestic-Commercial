@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Formik, FormikActions, FormikProps, Form, Field } from "formik"
+import { Formik, FormikHelpers, FormikProps, Form, Field } from "formik"
 import * as Yup from "yup"
 import {
   MessageBar,
@@ -7,8 +7,8 @@ import {
   PrimaryButton,
   ProgressIndicator,
   Text,
-} from "office-ui-fabric-react"
-import { FormikTextField } from "formik-office-ui-fabric-react"
+} from "@fluentui/react"
+import { FormikTextField } from "formik-fluent-ui-react"
 import Recaptcha from "react-google-recaptcha"
 import ReCAPTCHA from "react-google-recaptcha"
 import { getClassNames } from "./ContactForm.styles"
@@ -98,7 +98,7 @@ export const ContactForm: React.SFC = () => {
         validationSchema={schema}
         onSubmit={(
           values: ContactFormValues,
-          actions: FormikActions<ContactFormValues>
+          actions: FormikHelpers<ContactFormValues>
         ) => {
           fetch("/?no-cache=1", {
             method: "POST",

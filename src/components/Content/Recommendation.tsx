@@ -1,10 +1,5 @@
 import React from "react"
-import {
-  FontWeights,
-  Text,
-  mergeStyleSets,
-  FontSizes,
-} from "office-ui-fabric-react"
+import { FontWeights, Text, mergeStyleSets, FontSizes } from "@fluentui/react"
 
 interface IRecommendationStyles {
   title: string

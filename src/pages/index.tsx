@@ -9,7 +9,7 @@ import {
   Separator,
   mergeStyles,
   mergeStyleSets,
-} from "office-ui-fabric-react"
+} from "@fluentui/react"
 
 import {
   Layout,
@@ -137,7 +137,7 @@ class App extends React.Component<any> {
     } = getClassNames()
 
     return (
-      <Layout bannerImage={data.drainBanner.childImageSharp.fluid}>
+      <Layout bannerImage={data.drainBanner.childImageSharp.gatsbyImageData}>
         <Helmet>
           <html lang="en-GB" dir="ltr" />
           <title>
@@ -165,7 +165,7 @@ class App extends React.Component<any> {
               wrap
             >
               <ServiceCard
-                image={data.blockedDrains.childImageSharp.fluid}
+                image={data.blockedDrains.childImageSharp.gatsbyImageData}
                 imageAlt="Blocked Drain with Ladders in Dudley"
                 title={<ServiceOneHeader />}
               >
@@ -173,7 +173,7 @@ class App extends React.Component<any> {
               </ServiceCard>
 
               <ServiceCard
-                image={data.commercialDrain.childImageSharp.fluid}
+                image={data.commercialDrain.childImageSharp.gatsbyImageData}
                 imageAlt="Commercial Drains on the Street"
                 title={<ServiceTwoHeader />}
               >
@@ -181,7 +181,7 @@ class App extends React.Component<any> {
               </ServiceCard>
 
               <ServiceCard
-                image={data.drainJetting.childImageSharp.fluid}
+                image={data.drainJetting.childImageSharp.gatsbyImageData}
                 imageAlt="Man performing High Pressure Jetting in Dudley"
                 title={<ServiceThreeHeader />}
               >
@@ -224,41 +224,32 @@ class App extends React.Component<any> {
           </Stack.Item>
         </Stack>
       </Layout>
-    )
+    );
   }
 }
 
 export default App
 
-export const query = graphql`
-  query {
-    drainBanner: file(relativePath: { eq: "drain-banner.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 3840) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-    blockedDrains: file(relativePath: { eq: "blocked-drains.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 300) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-    commercialDrain: file(relativePath: { eq: "commercial-drain.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 300) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-    drainJetting: file(relativePath: { eq: "drain-jetting.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 300) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
+export const query = graphql`{
+  drainBanner: file(relativePath: {eq: "drain-banner.jpg"}) {
+    childImageSharp {
+      gatsbyImageData(layout: FULL_WIDTH)
     }
   }
+  blockedDrains: file(relativePath: {eq: "blocked-drains.jpg"}) {
+    childImageSharp {
+      gatsbyImageData(width: 300, layout: CONSTRAINED)
+    }
+  }
+  commercialDrain: file(relativePath: {eq: "commercial-drain.jpg"}) {
+    childImageSharp {
+      gatsbyImageData(width: 300, layout: CONSTRAINED)
+    }
+  }
+  drainJetting: file(relativePath: {eq: "drain-jetting.jpg"}) {
+    childImageSharp {
+      gatsbyImageData(width: 300, layout: CONSTRAINED)
+    }
+  }
+}
 `
