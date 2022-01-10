@@ -1,0 +1,10 @@
+$primary:#008272;
+$bs-body-bg: rgb(237, 235, 233);
+
+
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+:root {
+    --bs-body-bg: rgb(237, 235, 233);
+}
