@@ -1,10 +1,12 @@
 import type { NextPage } from "next";
 import Image from "next/image";
+import { Container, Col, Row } from "react-bootstrap";
 
 import drainBannerImage from "../public/drain-banner.jpg";
 import blockedDrainImage from "../public/blocked-drains.jpg";
 import commercialDrainImage from "../public/commercial-drains.jpg";
 import drainJettingImage from "../public/drain-jetting.jpg";
+import ContactForm from "../components/contactForm";
 
 const Home: NextPage = () => {
   return (
@@ -24,7 +26,7 @@ const Home: NextPage = () => {
         </div>
       </div>
       <div className="d-flex justify-content-center">
-        <div className="d-flex flex-column w-75 p-4 justify-content-center bg-white border">
+        <div className="d-flex flex-column w-75 p-5 justify-content-center bg-white border">
           <h2 className="display-5 text-center" id="#services">
             <strong>Our Services</strong>
           </h2>
@@ -113,33 +115,36 @@ const Home: NextPage = () => {
             <li>Fully insured, up to £2 million.</li>
             <li>We do the dirty work, so you don't have to.</li>
           </ul>
-          <div className="d-flex flex-wrap justify-content-around align-items-start">
-            <div className="w-50">
-              <h2 className="display-5 ">
-                <strong>Areas we Service</strong>
-              </h2>
-              <ul className="list-unstyled fs-4 lh-lg mb-4">
-                <li>Dudley</li>
-                <li>Wolverhampton</li>
-                <li>Cradley Heath</li>
-                <li>Halesowen</li>
-                <li>Netherton</li>
-                <li>Stourbridge</li>
-                <li>Tipton</li>
-              </ul>
-              <p className="lead">
-                Can't see your area listed above? <br />
-                We may still be able to help. Please do not hesitate to contact
-                us with your enquiry.
-              </p>
-            </div>
-            <div className="w-50">
-              <h2 className="display-5 ">
-                <strong>Contact us</strong>
-              </h2>
-              <form></form>
-            </div>
-          </div>
+
+          <Container fluid>
+            <Row xs={1} md={2}>
+              <Col>
+                <h2 className="display-5 ">
+                  <strong>Areas we Service</strong>
+                </h2>
+                <ul className="list-unstyled fs-4 lh-lg mb-4">
+                  <li>Dudley</li>
+                  <li>Wolverhampton</li>
+                  <li>Cradley Heath</li>
+                  <li>Halesowen</li>
+                  <li>Netherton</li>
+                  <li>Stourbridge</li>
+                  <li>Tipton</li>
+                </ul>
+                <p className="lead">
+                  Can't see your area listed above? <br />
+                  We may still be able to help. Please do not hesitate to
+                  contact us with your enquiry.
+                </p>
+              </Col>
+              <Col>
+                <h2 className="display-5 ">
+                  <strong>Contact us</strong>
+                </h2>
+                <ContactForm />
+              </Col>
+            </Row>
+          </Container>
         </div>
       </div>
     </>
