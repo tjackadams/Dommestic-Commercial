@@ -97,9 +97,9 @@ const Home: NextPage = () => {
                   <h5 className="card-title">Drain Cleaning</h5>
                   <p className="card-text">
                     Most drainage problems can be solved without pulling out the
-                    "big guns", but sometimes there are blockages that are so
-                    stubborn, they require something special. Let us help with
-                    our high pressure jetting service!
+                    &quot;big guns&quot;, but sometimes there are blockages that
+                    are so stubborn, they require something special. Let us help
+                    with our high pressure jetting service!
                   </p>
                 </div>
               </div>
@@ -113,7 +113,7 @@ const Home: NextPage = () => {
             <li>Fast & reliable service.</li>
             <li>No VAT charges.</li>
             <li>Fully insured, up to £2 million.</li>
-            <li>We do the dirty work, so you don't have to.</li>
+            <li>We do the dirty work, so you don&#39;t have to.</li>
           </ul>
 
           <Container fluid>
@@ -132,7 +132,7 @@ const Home: NextPage = () => {
                   <li>Tipton</li>
                 </ul>
                 <p className="lead">
-                  Can't see your area listed above? <br />
+                  Can&#39;t see your area listed above? <br />
                   We may still be able to help. Please do not hesitate to
                   contact us with your enquiry.
                 </p>
