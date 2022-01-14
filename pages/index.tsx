@@ -49,7 +49,11 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
       </div>
       <div className="d-flex justify-content-center">
         <div className="d-flex flex-column w-75 p-5 justify-content-center bg-white border">
-          <h2 className="display-5 text-center" id="#services">
+          <h2
+            className="display-5 text-center"
+            id="services"
+            style={{ scrollMarginTop: 100 }}
+          >
             <strong>Our Services</strong>
           </h2>
           <p className="text-center mb-4">
@@ -176,7 +180,11 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
           <Container fluid>
             <Row>
               <Col>
-                <h2 className="display-5 ">
+                <h2
+                  className="display-5"
+                  id="contact"
+                  style={{ scrollMarginTop: 100 }}
+                >
                   <strong>Contact Information</strong>
                 </h2>
                 <p className="fw-bold">Domestic & Commercial Drain Services</p>
