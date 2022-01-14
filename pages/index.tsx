@@ -7,7 +7,7 @@ import Spacer from "../components/spacer";
 
 import { OpeningTime, openingTimes } from "../configuration/opening-times";
 
-import drainBannerImage from "../public/drain-banner.jpg";
+import drainBannerImage from "../public/drain-banner-dark.jpg";
 import blockedDrainImage from "../public/blocked-drains.jpg";
 import commercialDrainImage from "../public/commercial-drains.jpg";
 import drainJettingImage from "../public/drain-jetting.jpg";
