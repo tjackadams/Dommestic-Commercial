@@ -1,15 +1,15 @@
 import Footer from "./footer";
 import Header from "./header";
 
-type LayoutProps = {
+interface LayoutProps {
   children?: React.ReactNode;
-};
+}
 
 export default function Layout({ children }: LayoutProps) {
   return (
     <>
       <Header />
-      <main>{children}</main>
+      <main className="mb-4">{children}</main>
       <Footer />
     </>
   );

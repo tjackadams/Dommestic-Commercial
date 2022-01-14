@@ -1,14 +1,36 @@
-import type { NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 import Image from "next/image";
 import { Container, Col, Row } from "react-bootstrap";
+
+import ContactForm from "../components/contactForm";
+import Spacer from "../components/spacer";
+
+import { OpeningTime, openingTimes } from "../configuration/opening-times";
 
 import drainBannerImage from "../public/drain-banner.jpg";
 import blockedDrainImage from "../public/blocked-drains.jpg";
 import commercialDrainImage from "../public/commercial-drains.jpg";
 import drainJettingImage from "../public/drain-jetting.jpg";
-import ContactForm from "../components/contactForm";
+import React, { useContext, useEffect } from "react";
+import AppContext from "../appContext";
 
-const Home: NextPage = () => {
+export const getStaticProps: GetStaticProps<{
+  openingTimes: OpeningTime[];
+}> = async (context) => {
+  return {
+    props: {
+      openingTimes,
+    },
+  };
+};
+
+const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
+  const { setOpeningTimes } = useContext(AppContext);
+
+  useEffect(() => {
+    setOpeningTimes(openingTimes);
+  }, [openingTimes]);
+
   return (
     <>
       <div
@@ -105,6 +127,7 @@ const Home: NextPage = () => {
               </div>
             </div>
           </div>
+          <Spacer />
           <h2 className="display-5 text-center">
             <strong>Why do our customers recommend us?</strong>
           </h2>
@@ -115,6 +138,8 @@ const Home: NextPage = () => {
             <li>Fully insured, up to £2 million.</li>
             <li>We do the dirty work, so you don&#39;t have to.</li>
           </ul>
+
+          <Spacer />
 
           <Container fluid>
             <Row xs={1} md={2}>
@@ -133,8 +158,8 @@ const Home: NextPage = () => {
                 </ul>
                 <p className="lead">
                   Can&#39;t see your area listed above? <br />
-                  We may still be able to help. Please do not hesitate to
-                  contact us with your enquiry.
+                  We may still be able to help. <br />
+                  Please do not hesitate to contact us with your enquiry.
                 </p>
               </Col>
               <Col>
@@ -142,6 +167,46 @@ const Home: NextPage = () => {
                   <strong>Contact us</strong>
                 </h2>
                 <ContactForm />
+              </Col>
+            </Row>
+          </Container>
+
+          <Spacer />
+
+          <Container fluid>
+            <Row>
+              <Col>
+                <h2 className="display-5 ">
+                  <strong>Contact Information</strong>
+                </h2>
+                <p className="fw-bold">Domestic & Commercial Drain Services</p>
+                <ul className="list-unstyled">
+                  <li>67 Merryfield Road</li>
+                  <li>Dudley</li>
+                  <li>West Midlands</li>
+                  <li>DY1 2ND</li>
+                </ul>
+                <ul className="list-unstyled text-primary lh-lg">
+                  <li>
+                    <a className="text-decoration-none" href="tel:01384357446">
+                      <i className="bi bi-telephone"></i> 01384 357446
+                    </a>
+                  </li>
+                  <li>
+                    <a className="text-decoration-none" href="tel:07974243764">
+                      <i className="bi bi-telephone"></i> 07974 243764
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="text-decoration-none"
+                      href="mailto:stevetomkins53@gmail.com"
+                    >
+                      <i className="bi bi-envelope"></i>{" "}
+                      stevetomkins53@gmail.com
+                    </a>
+                  </li>
+                </ul>
               </Col>
             </Row>
           </Container>

@@ -1,9 +1,8 @@
 $primary:#008272;
 $bs-body-bg: rgb(237, 235, 233);
 
-
-
 @import "../node_modules/bootstrap/scss/bootstrap";
+@import "../node_modules/bootstrap-icons/font/bootstrap-icons.scss";
 
 :root {
     --bs-body-bg: rgb(237, 235, 233);
