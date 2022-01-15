@@ -54,7 +54,7 @@ export default function Footer() {
             {state?.openingTimes &&
               state.openingTimes.map((openingTime) => {
                 return (
-                  <li>
+                  <li key={openingTime.day}>
                     {openingTime.day} {openingTime.opens}
                     {openingTime.opens !== "Closed"
                       ? " - " + openingTime.closes
