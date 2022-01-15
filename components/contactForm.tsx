@@ -28,7 +28,7 @@ const encode = (data: any) => {
 const RECAPTCHA_KEY = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_KEY || "";
 
 export default function ContactForm() {
-  const recaptchaRef = createRef();
+  const recaptchaRef = createRef<ReCAPTCHA>();
   return (
     <Formik
       initialValues={{
@@ -39,7 +39,7 @@ export default function ContactForm() {
       }}
       validationSchema={validationSchema}
       onSubmit={(values, actions) => {
-        const recaptchaValue = recaptchaRef.current.getValue();
+        const recaptchaValue = recaptchaRef.current?.getValue();
 
         fetch("/", {
           method: "POST",
@@ -53,7 +53,7 @@ export default function ContactForm() {
           .then(() => {
             actions.resetForm();
             actions.setSubmitting(false);
-            recaptchaRef.current.reset();
+            recaptchaRef.current?.reset();
           })
           .catch((err) => {
             console.error(
@@ -62,7 +62,7 @@ export default function ContactForm() {
             );
 
             actions.setSubmitting(false);
-            recaptchaRef.current.reset();
+            recaptchaRef.current?.reset();
           });
       }}
     >
@@ -83,7 +83,7 @@ export default function ContactForm() {
           onSubmit={handleSubmit}
         >
           <label hidden>
-            Don’t fill this out: <input name="bot-field" />
+            Don&#39;t fill this out: <input name="bot-field" />
           </label>
           <Form.Group controlId="fullName">
             <Form.Label>Full Name</Form.Label>
@@ -147,7 +147,6 @@ export default function ContactForm() {
               ref={recaptchaRef}
               sitekey={RECAPTCHA_KEY}
               size="normal"
-              id="recaptcha-google"
             />
           </Form.Group>
           <div className="d-flex justify-content-end mt-4">
