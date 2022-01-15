@@ -9,8 +9,7 @@ import { OpeningTime } from "../configuration/opening-times";
 import "../styling/app.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [openingTimes, setOpeningTimes] =
-    useState<{ openingTimes: OpeningTime[] }>();
+  const [openingTimes, setOpeningTimes] = useState<OpeningTime[]>([]);
 
   const value = { openingTimes, setOpeningTimes };
 

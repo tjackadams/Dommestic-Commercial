@@ -1,12 +1,11 @@
 import { createContext } from "react";
 import { OpeningTime } from "./configuration/opening-times";
 
-const AppContext = createContext<{
+export interface AppState {
   openingTimes: OpeningTime[];
-  setOpeningTimes: Function;
-}>({
-  openingTimes: [],
-  setOpeningTimes: () => {},
-});
+  setOpeningTimes: (openingTimes: OpeningTime[]) => void;
+}
+
+const AppContext = createContext<AppState | undefined>(undefined);
 
 export default AppContext;
