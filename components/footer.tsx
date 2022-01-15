@@ -4,12 +4,12 @@ import AppContext from "../appContext";
 import Map from "./map";
 
 export default function Footer() {
-  const { openingTimes } = useContext(AppContext);
+  const state = useContext(AppContext);
 
   return (
     <footer>
       <div className="w-100" style={{ height: 600 }}>
-        <Map openingTimes={openingTimes} />
+        <Map openingTimes={state?.openingTimes ?? []} />
       </div>
       <div className="d-flex flex-wrap justify-content-evenly align-items-start text-white p-4 bg-dark">
         <div className="flex-shrink-1">
@@ -51,8 +51,8 @@ export default function Footer() {
         <div className="flex-shrink-1">
           <p className="fw-bold">Opening Times</p>
           <ul className="list-unstyled lh-lg">
-            {openingTimes &&
-              openingTimes.map((openingTime) => {
+            {state?.openingTimes &&
+              state.openingTimes.map((openingTime) => {
                 return (
                   <li>
                     {openingTime.day} {openingTime.opens}
