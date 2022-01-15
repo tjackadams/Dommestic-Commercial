@@ -1,12 +1,11 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import GoogleMap from "google-map-react";
-import AppContext from "../appContext";
 import { OpeningTime } from "../configuration/opening-times";
 
 const coords = { lat: 52.511172, lng: -2.115357 };
 const MAPS_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "";
 
-const getInfoWindowString = (place, openingTimes: OpeningTime[]) => {
+const getInfoWindowString = (place: Place, openingTimes: OpeningTime[]) => {
   const times = openingTimes
     .map((openingTime) => {
       let node = "<li>";
@@ -30,9 +29,20 @@ const getInfoWindowString = (place, openingTimes: OpeningTime[]) => {
     </div>`;
 };
 
-const handleApiLoaded = (map, maps, places, openingTimes: OpeningTime[]) => {
-  const markers = [];
-  const infowindows = [];
+const handleApiLoaded = (
+  map: any,
+  maps: {
+    Marker: new (arg0: {
+      position: { lat: number; lng: number };
+      map: any;
+    }) => any;
+    InfoWindow: new (arg0: { content: string }) => any;
+  },
+  places: Place[],
+  openingTimes: OpeningTime[]
+) => {
+  const markers: any[] = [];
+  const infowindows: any[] = [];
 
   places.forEach((place) => {
     markers.push(
@@ -62,8 +72,19 @@ const handleApiLoaded = (map, maps, places, openingTimes: OpeningTime[]) => {
 interface MapProps {
   openingTimes: OpeningTime[];
 }
+
+interface Place {
+  name: string;
+  geometry: {
+    location: {
+      lat: number;
+      lng: number;
+    };
+  };
+}
+
 export default function Map({ openingTimes }: MapProps) {
-  const [state, setState] = useState({
+  const [state, setState] = useState<{ places: Place[] }>({
     places: [
       {
         name: "Dommestic & Commercial Drains",
