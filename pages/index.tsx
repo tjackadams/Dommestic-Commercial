@@ -25,11 +25,11 @@ export const getStaticProps: GetStaticProps<{
 };
 
 const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
-  const { setOpeningTimes } = useContext(AppContext);
+  const state = useContext(AppContext);
 
   useEffect(() => {
-    setOpeningTimes(openingTimes);
-  }, [openingTimes]);
+    state?.setOpeningTimes(state?.openingTimes ?? []);
+  }, [state]);
 
   return (
     <>
