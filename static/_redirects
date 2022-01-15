@@ -1,0 +1,7 @@
+/services   /#services
+/Services   /#services
+/contact    /#contact
+/Contact    /#contact
+
+# Optional: Redirect default Netlify subdomain to primary domain
+https://lucid-euclid-0b421b.netlify.com/* https://www.dudleydrains.co.uk/:splat 301!

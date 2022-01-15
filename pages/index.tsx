@@ -56,86 +56,92 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
           >
             <strong>Our Services</strong>
           </h2>
-          <p className="text-center mb-4">
-            We offer a fast & efficient drainage service across the West
-            Midlands to help you when you need it most. Whether it be for
-            Domestic or Commercial drains, our aim is to identify and resolve
-            the issue on the very same day. Contact us today to book our
-            specialist drainage services.
+          <p className="fs-5 fw-light text-center mb-5">
+            We offer a fast & efficient drainage service across the{" "}
+            <strong>West Midlands</strong> to help you when you need it most.
+            Whether it be for Domestic or Commercial drains, our aim is to
+            identify and resolve the issue on the very same day.{" "}
+            <a className="link-primary text-decoration-none">Contact us</a>{" "}
+            today to book our specialist drainage services.
           </p>
-          <div className="card mb-4">
-            <div className="row g-0">
-              <div className="col-md-4">
-                <Image
-                  src={blockedDrainImage}
-                  alt="Blocked Drains"
-                  className="img-fluid rounded-start"
-                />
+
+          <div className="vstack gap-5 mb-3">
+            <div className="card shadow rounded">
+              <div className="row g-0">
+                <div className="col-md-4">
+                  <Image
+                    src={blockedDrainImage}
+                    alt="Blocked Drains"
+                    className="img-fluid rounded-start"
+                  />
+                </div>
+                <div className="col-md-8">
+                  <div className="card-body text-center">
+                    <h5 className="card-title">Blocked Drains</h5>
+                    <p className="card-text fw-light">
+                      Domestic & Commercial Drain Services provide a bespoke
+                      service for clearing and unblocking all types of blocked
+                      drains. This includes, but is not limited to Blocked
+                      Drains, Blocked Sewers, Blocked Toilets, Blocked Sinks,
+                      Blocked Basins and Blocked Baths.
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div className="col-md-8">
-                <div className="card-body">
-                  <h5 className="card-title">Blocked Drains</h5>
-                  <p className="card-text">
-                    Domestic & Commercial Drain Services provide a bespoke
-                    service for clearing and unblocking all types of blocked
-                    drains. This includes, but is not limited to Blocked Drains,
-                    Blocked Sewers, Blocked Toilets, Blocked Sinks, Blocked
-                    Basins and Blocked Baths.
-                  </p>
+            </div>
+            <div className="card shadow rounded">
+              <div className="row g-0">
+                <div className="col-md-4">
+                  <Image
+                    src={commercialDrainImage}
+                    alt="Blocked Commercial Drains"
+                    className="img-fluid rounded-start"
+                  />
+                </div>
+                <div className="col-md-8">
+                  <div className="card-body text-center">
+                    <h5 className="card-title">Drainage</h5>
+                    <p className="card-text fw-light">
+                      Our drainage service covers both Commercial Drains and
+                      Domestic Drains. We understand how important it is to our
+                      customers that projects are managed effectively to ensure
+                      quick and successful completion with minimal disturbances
+                      for the business or residential property.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="card shadow rounded">
+              <div className="row g-0">
+                <div className="col-md-4">
+                  <Image
+                    src={drainJettingImage}
+                    alt="Jetting Blocked Drains"
+                    className="img-fluid rounded-start"
+                  />
+                </div>
+                <div className="col-md-8">
+                  <div className="card-body text-center">
+                    <h5 className="card-title">Drain Cleaning</h5>
+                    <p className="card-text fw-light">
+                      Most drainage problems can be solved without pulling out
+                      the &quot;big guns&quot;, but sometimes there are
+                      blockages that are so stubborn, they require something
+                      special. Let us help with our high pressure jetting
+                      service!
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="card mb-4">
-            <div className="row g-0">
-              <div className="col-md-4">
-                <Image
-                  src={commercialDrainImage}
-                  alt="Blocked Commercial Drains"
-                  className="img-fluid rounded-start"
-                />
-              </div>
-              <div className="col-md-8">
-                <div className="card-body">
-                  <h5 className="card-title">Drainage</h5>
-                  <p className="card-text">
-                    Our drainage service covers both Commercial Drains and
-                    Domestic Drains. We understand how important it is to our
-                    customers that projects are managed effectively to ensure
-                    quick and successful completion with minimal disturbances
-                    for the business or residential property.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="card mb-4">
-            <div className="row g-0">
-              <div className="col-md-4">
-                <Image
-                  src={drainJettingImage}
-                  alt="Jetting Blocked Drains"
-                  className="img-fluid rounded-start"
-                />
-              </div>
-              <div className="col-md-8">
-                <div className="card-body">
-                  <h5 className="card-title">Drain Cleaning</h5>
-                  <p className="card-text">
-                    Most drainage problems can be solved without pulling out the
-                    &quot;big guns&quot;, but sometimes there are blockages that
-                    are so stubborn, they require something special. Let us help
-                    with our high pressure jetting service!
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+
           <Spacer />
           <h2 className="display-5 text-center">
             <strong>Why do our customers recommend us?</strong>
           </h2>
-          <ul className="list-unstyled text-center fs-4 lh-lg mb-4">
+          <ul className="list-unstyled text-center fs-4 lh-lg">
             <li>Excellent reputation for quality & honesty.</li>
             <li>Fast & reliable service.</li>
             <li>No VAT charges.</li>
@@ -145,79 +151,74 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
 
           <Spacer />
 
-          <Container fluid>
-            <Row xs={1} md={2}>
-              <Col>
-                <h2 className="display-5 ">
-                  <strong>Areas we Service</strong>
-                </h2>
-                <ul className="list-unstyled fs-4 lh-lg mb-4">
-                  <li>Dudley</li>
-                  <li>Wolverhampton</li>
-                  <li>Cradley Heath</li>
-                  <li>Halesowen</li>
-                  <li>Netherton</li>
-                  <li>Stourbridge</li>
-                  <li>Tipton</li>
-                </ul>
-                <p className="lead">
-                  Can&#39;t see your area listed above? <br />
-                  We may still be able to help. <br />
-                  Please do not hesitate to contact us with your enquiry.
-                </p>
-              </Col>
-              <Col>
-                <h2 className="display-5 ">
-                  <strong>Contact us</strong>
-                </h2>
-                <ContactForm />
-              </Col>
-            </Row>
-          </Container>
+          <div className="d-flex flex-wrap justify-content-evenly align-items-start">
+            <div>
+              <h2 className="display-5 ">
+                <strong>Areas we Service</strong>
+              </h2>
+              <ul className="list-unstyled fs-4 lh-lg mb-4">
+                <li>Dudley</li>
+                <li>Wolverhampton</li>
+                <li>Cradley Heath</li>
+                <li>Halesowen</li>
+                <li>Netherton</li>
+                <li>Stourbridge</li>
+                <li>Tipton</li>
+              </ul>
+              <p className="lead">
+                Can&#39;t see your area listed above? <br />
+                We may still be able to help. <br />
+                Please do not hesitate to contact us with your enquiry.
+              </p>
+            </div>
+            <div className="flex-shrink-0" style={{ minWidth: 320 }}>
+              <h2 className="display-5 ">
+                <strong>Contact us</strong>
+              </h2>
+              <ContactForm />
+            </div>
+          </div>
 
           <Spacer />
 
-          <Container fluid>
-            <Row>
-              <Col>
-                <h2
-                  className="display-5"
-                  id="contact"
-                  style={{ scrollMarginTop: 100 }}
-                >
-                  <strong>Contact Information</strong>
-                </h2>
-                <p className="fw-bold">Domestic & Commercial Drain Services</p>
-                <ul className="list-unstyled">
-                  <li>67 Merryfield Road</li>
-                  <li>Dudley</li>
-                  <li>West Midlands</li>
-                  <li>DY1 2ND</li>
-                </ul>
-                <ul className="list-unstyled text-primary lh-lg">
-                  <li>
-                    <a className="text-decoration-none" href="tel:01384357446">
-                      <i className="bi bi-telephone"></i> 01384 357446
-                    </a>
-                  </li>
-                  <li>
-                    <a className="text-decoration-none" href="tel:07974243764">
-                      <i className="bi bi-telephone"></i> 07974 243764
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="text-decoration-none"
-                      href="mailto:stevetomkins53@gmail.com"
-                    >
-                      <i className="bi bi-envelope"></i>{" "}
-                      stevetomkins53@gmail.com
-                    </a>
-                  </li>
-                </ul>
-              </Col>
-            </Row>
-          </Container>
+          <div className="d-flex justify-content-evenly align-items-start">
+            <div>
+              <h2
+                className="display-5"
+                id="contact"
+                style={{ scrollMarginTop: 100 }}
+              >
+                <strong>Contact Information</strong>
+              </h2>
+              <p className="fw-bold">Domestic & Commercial Drain Services</p>
+              <ul className="list-unstyled">
+                <li>67 Merryfield Road</li>
+                <li>Dudley</li>
+                <li>West Midlands</li>
+                <li>DY1 2ND</li>
+              </ul>
+              <ul className="list-unstyled text-primary lh-lg">
+                <li>
+                  <a className="text-decoration-none" href="tel:01384357446">
+                    <i className="bi bi-telephone"></i> 01384 357446
+                  </a>
+                </li>
+                <li>
+                  <a className="text-decoration-none" href="tel:07974243764">
+                    <i className="bi bi-telephone"></i> 07974 243764
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="text-decoration-none"
+                    href="mailto:stevetomkins53@gmail.com"
+                  >
+                    <i className="bi bi-envelope"></i> stevetomkins53@gmail.com
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </>
