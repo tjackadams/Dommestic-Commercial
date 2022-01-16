@@ -34,7 +34,7 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
   return (
     <>
       <div
-        className="position-relative overflow-hidden p-3 mb-4 text-center text-white"
+        className="position-relative overflow-hidden p-3 mb-md-4 text-center text-white"
         style={{
           backgroundImage: `url(${drainBannerImage.src})`,
           backgroundRepeat: "no-repeat",
@@ -48,7 +48,7 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
         </div>
       </div>
       <div className="d-flex justify-content-center">
-        <div className="d-flex flex-column w-75 p-5 justify-content-center bg-white border">
+        <div className="d-flex flex-column p-3 p-md-5 justify-content-center bg-white border page-content">
           <h2
             className="display-5 text-center"
             id="services"
@@ -151,8 +151,8 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
 
           <Spacer />
 
-          <div className="d-flex flex-wrap justify-content-evenly align-items-start">
-            <div>
+          <div className="d-flex flex-wrap justify-content-evenly align-items-start ">
+            <div className="text-center text-md-start">
               <h2 className="display-5 ">
                 <strong>Areas we Service</strong>
               </h2>
@@ -171,7 +171,7 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
                 Please do not hesitate to contact us with your enquiry.
               </p>
             </div>
-            <div className="flex-shrink-0" style={{ minWidth: 320 }}>
+            <div className="flex-shrink-0">
               <h2 className="display-5 ">
                 <strong>Contact us</strong>
               </h2>
@@ -182,7 +182,7 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
           <Spacer />
 
           <div className="d-flex justify-content-evenly align-items-start">
-            <div>
+            <div className="text-center text-md-start">
               <h2
                 className="display-5"
                 id="contact"

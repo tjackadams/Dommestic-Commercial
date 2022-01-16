@@ -9,7 +9,7 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <>
       <Header />
-      <main className="mb-4">{children}</main>
+      <main className="mb-md-4">{children}</main>
       <Footer />
     </>
   );

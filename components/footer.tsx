@@ -5,14 +5,12 @@ import Map from "./map";
 export default function Footer() {
   const state = useContext(AppContext);
 
-  console.log(state);
-
   return (
     <footer>
       <div className="w-100" style={{ height: 600 }}>
         <Map openingTimes={state?.openingTimes ?? []} />
       </div>
-      <div className="d-flex flex-wrap justify-content-evenly align-items-start text-white p-4 bg-dark">
+      <div className="d-flex flex-wrap justify-content-evenly align-items-start text-white p-4 bg-dark text-center text-md-start">
         <div className="flex-shrink-1">
           <p className="fw-bold">Domestic & Commercial Drain Services</p>
           <ul className="list-unstyled">
@@ -66,7 +64,7 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <div className="d-flex flex-nowrap justify-content-evenly align-items-center text-white p-2 bg-dark">
+      <div className="d-flex flex-column flex-md-row flex-nowrap justify-content-evenly align-items-center text-white p-2 bg-dark">
         <div>
           <p>© 2022 - Domestic & Commercial Drain Services</p>
         </div>
