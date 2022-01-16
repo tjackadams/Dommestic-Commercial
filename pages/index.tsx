@@ -28,7 +28,7 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
   const state = useContext(AppContext);
 
   useEffect(() => {
-    state?.setOpeningTimes(state?.openingTimes ?? []);
+    state?.setOpeningTimes(openingTimes);
   }, [state]);
 
   return (

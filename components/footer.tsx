@@ -1,10 +1,11 @@
 import { useContext } from "react";
-import { Col, Container, Row } from "react-bootstrap";
 import AppContext from "../appContext";
 import Map from "./map";
 
 export default function Footer() {
   const state = useContext(AppContext);
+
+  console.log(state);
 
   return (
     <footer>
