@@ -1,7 +1,7 @@
 import React, { createRef, useState } from "react";
 import { Formik } from "formik";
 import { Button, Form } from "react-bootstrap";
-import { ReCAPTCHA } from "react-google-recaptcha";
+import ReCAPTCHA from "react-google-recaptcha";
 import * as Yup from "yup";
 
 const validationSchema = Yup.object().shape({
@@ -142,7 +142,7 @@ export default function ContactForm() {
               {errors.enquiry}
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group>
+          <Form.Group className="mt-4">
             <ReCAPTCHA
               ref={recaptchaRef}
               sitekey={RECAPTCHA_KEY}
