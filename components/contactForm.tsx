@@ -3,20 +3,25 @@ import { Formik } from "formik";
 import { Button, Form } from "react-bootstrap";
 import ReCAPTCHA from "react-google-recaptcha";
 import * as Yup from "yup";
+import { useRouter } from "next/router";
 
 const validationSchema = Yup.object().shape({
   fullName: Yup.string()
+    .label("Full Name")
     .min(2, "Please enter your Full Name.")
     .max(50, "Full Name is too long!")
     .required("Full Name is required."),
   phoneNumber: Yup.string().required("Please enter a valid phone number."),
   emailAddress: Yup.string()
+    .label("Email Address")
     .email()
     .required("Please enter a valid email address."),
   enquiry: Yup.string()
+    .label("Enquiry")
     .min(2, "Please add some more details to your enquiry.")
     .max(500, "Thats too much information, please shorten your enquiry.")
     .required("Please ensure enquiry is filled out."),
+  "g-recaptcha-response": Yup.string().required(),
 });
 
 const encode = (data: any) => {
@@ -28,8 +33,36 @@ const encode = (data: any) => {
 const RECAPTCHA_KEY = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_KEY || "";
 
 export default function ContactForm() {
+  const [state, setState] = useState<{ recaptcha: string | null }>({
+    recaptcha: "",
+  });
+  const router = useRouter();
+  const isConfirmationScreenVisible =
+    router.query?.success && router.query.success === "true";
+  const isFormVisible = !isConfirmationScreenVisible;
   const recaptchaRef = createRef<ReCAPTCHA>();
-  return (
+
+  const recaptchaOnChange = (token: string | null) => {
+    console.info("g-recaptcha-response", token);
+    setState({ ...state, recaptcha: token });
+  };
+
+  const ConfirmationMessage = (
+    <>
+      <p>
+        Thank you for submitting this form. Someone should get back to you as
+        soon as possible.
+      </p>
+      <Button
+        variant="primary"
+        onClick={() => router.replace("/", "/", { shallow: true })}
+      >
+        Submit Another Enquiry
+      </Button>
+    </>
+  );
+
+  const ContactFormContent = (
     <Formik
       initialValues={{
         fullName: "",
@@ -39,30 +72,21 @@ export default function ContactForm() {
       }}
       validationSchema={validationSchema}
       onSubmit={(values, actions) => {
-        const recaptchaValue = recaptchaRef.current?.getValue();
+        console.info("Submitting form data: ", values);
 
-        fetch("/", {
+        fetch("/?success=true", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: encode({
             "form-name": "contact",
-            "g-recaptcha-response": recaptchaValue,
             ...values,
           }),
         })
-          .then(() => {
-            actions.resetForm();
-            actions.setSubmitting(false);
-            recaptchaRef.current?.reset();
-          })
           .catch((err) => {
             console.error(
               "An error occurred while submitting the form. Error: ",
               err
             );
-
-            actions.setSubmitting(false);
-            recaptchaRef.current?.reset();
           });
       }}
     >
@@ -85,6 +109,12 @@ export default function ContactForm() {
           <label hidden>
             Don&#39;t fill this out: <input name="bot-field" />
           </label>
+          <input
+            type="hidden"
+            name="g-recaptcha-response"
+            id="g-recaptcha-response"
+            value={state.recaptcha ?? ""}
+          />
           <Form.Group controlId="fullName">
             <Form.Label>Full Name</Form.Label>
             <Form.Control
@@ -93,7 +123,7 @@ export default function ContactForm() {
               value={values.fullName}
               onChange={handleChange}
               onBlur={handleBlur}
-              isInvalid={!!errors.fullName}
+              isInvalid={!!errors.fullName && touched.fullName}
             ></Form.Control>
             <Form.Control.Feedback type="invalid">
               {errors.fullName}
@@ -107,7 +137,7 @@ export default function ContactForm() {
               value={values.phoneNumber}
               onChange={handleChange}
               onBlur={handleBlur}
-              isInvalid={!!errors.phoneNumber}
+              isInvalid={!!errors.phoneNumber && touched.phoneNumber}
             ></Form.Control>
             <Form.Control.Feedback type="invalid">
               {errors.phoneNumber}
@@ -121,7 +151,7 @@ export default function ContactForm() {
               value={values.emailAddress}
               onChange={handleChange}
               onBlur={handleBlur}
-              isInvalid={!!errors.emailAddress}
+              isInvalid={!!errors.emailAddress && touched.emailAddress}
             ></Form.Control>
             <Form.Control.Feedback type="invalid">
               {errors.emailAddress}
@@ -136,7 +166,7 @@ export default function ContactForm() {
               value={values.enquiry}
               onChange={handleChange}
               onBlur={handleBlur}
-              isInvalid={!!errors.enquiry}
+              isInvalid={!!errors.enquiry && touched.enquiry}
             ></Form.Control>
             <Form.Control.Feedback type="invalid">
               {errors.enquiry}
@@ -144,9 +174,9 @@ export default function ContactForm() {
           </Form.Group>
           <Form.Group className="mt-4">
             <ReCAPTCHA
-              ref={recaptchaRef}
               sitekey={RECAPTCHA_KEY}
               size="normal"
+              onChange={recaptchaOnChange}
             />
           </Form.Group>
           <div className="d-flex justify-content-end mt-4">
@@ -158,4 +188,6 @@ export default function ContactForm() {
       )}
     </Formik>
   );
+
+  return <>{isFormVisible ? ContactFormContent : ConfirmationMessage}</>;
 }
