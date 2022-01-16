@@ -29,7 +29,7 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
 
   useEffect(() => {
     state?.setOpeningTimes(openingTimes);
-  }, [openingTimes]);
+  }, [state, openingTimes]);
 
   return (
     <>
