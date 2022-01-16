@@ -5,10 +5,10 @@ export default function Header() {
   return (
     <Navbar collapseOnSelect expand="lg" sticky="top" className="bg-white">
       <Container>
-        <Navbar.Brand href="/" className="fs-4 fw-bold">
+        <Navbar.Brand href="/" className="fs-5 fw-bold">
           Domestic & Commercial Drain Services
         </Navbar.Brand>
-        <Navbar.Brand className="ms-4 fs-5 fw-normal d-none d-lg-block">
+        <Navbar.Brand className="ms-4 fs-6 fw-normal d-none d-lg-block">
           West Midlands
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="nav" />
