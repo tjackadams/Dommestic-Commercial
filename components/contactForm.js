@@ -61,7 +61,7 @@ export default function ContactForm() {
           </div>
         )}
         {netlify.error && (
-          <div class="alert alert-danger" role="alert">
+          <div className="alert alert-danger" role="alert">
             Sorry, we could not reach servers. Because it only works on Netlify,
             our GitHub demo does not provide a response.
           </div>
