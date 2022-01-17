@@ -69,6 +69,7 @@ export default function ContactForm() {
         phoneNumber: "",
         emailAddress: "",
         enquiry: "",
+        "g-recaptcha-response": "",
       }}
       validationSchema={validationSchema}
       onSubmit={(values, actions) => {
@@ -81,13 +82,12 @@ export default function ContactForm() {
             "form-name": "contact",
             ...values,
           }),
-        })
-          .catch((err) => {
-            console.error(
-              "An error occurred while submitting the form. Error: ",
-              err
-            );
-          });
+        }).catch((err) => {
+          console.error(
+            "An error occurred while submitting the form. Error: ",
+            err
+          );
+        });
       }}
     >
       {({
@@ -109,12 +109,12 @@ export default function ContactForm() {
           <label hidden>
             Don&#39;t fill this out: <input name="bot-field" />
           </label>
-          <input
+          <Form.Control
             type="hidden"
             name="g-recaptcha-response"
-            id="g-recaptcha-response"
-            value={state.recaptcha ?? ""}
-          />
+            value={values["g-recaptcha-response"]}
+            onChange={handleChange}
+          ></Form.Control>
           <Form.Group controlId="fullName">
             <Form.Label>Full Name</Form.Label>
             <Form.Control
@@ -173,11 +173,12 @@ export default function ContactForm() {
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mt-4">
-            <ReCAPTCHA
+            {/* <ReCAPTCHA
               sitekey={RECAPTCHA_KEY}
               size="normal"
               onChange={recaptchaOnChange}
-            />
+            /> */}
+            <div data-netlify-recaptcha="true"></div>
           </Form.Group>
           <div className="d-flex justify-content-end mt-4">
             <Button variant="primary" type="submit" style={{ minWidth: 120 }}>
