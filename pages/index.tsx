@@ -1,18 +1,17 @@
+import React, { useContext, useEffect } from "react";
 import type { GetStaticProps, NextPage } from "next";
 import Image from "next/image";
-import { Container, Col, Row } from "react-bootstrap";
+import Link from "next/link";
 
 import ContactForm from "../components/contactForm";
 import Spacer from "../components/spacer";
-
+import AppContext from "../appContext";
 import { OpeningTime, openingTimes } from "../configuration/opening-times";
 
 import drainBannerImage from "../public/drain-banner-dark.jpg";
 import blockedDrainImage from "../public/blocked-drains.jpg";
 import commercialDrainImage from "../public/commercial-drains.jpg";
 import drainJettingImage from "../public/drain-jetting.jpg";
-import React, { useContext, useEffect } from "react";
-import AppContext from "../appContext";
 
 export const getStaticProps: GetStaticProps<{
   openingTimes: OpeningTime[];
@@ -61,7 +60,9 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
             <strong>West Midlands</strong> to help you when you need it most.
             Whether it be for Domestic or Commercial drains, our aim is to
             identify and resolve the issue on the very same day.{" "}
-            <a className="link-primary text-decoration-none">Contact us</a>{" "}
+            <Link href="/#contact">
+              <a className="link-primary text-decoration-none">Contact us</a>
+            </Link>{" "}
             today to book our specialist drainage services.
           </p>
 
