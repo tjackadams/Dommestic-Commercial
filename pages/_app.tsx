@@ -27,6 +27,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   const value = { openingTimes, setOpeningTimes };
 
+  const title = "Domestic & Commercial Drain Services in Dudley, West Midlands";
+  const description =
+    "We serve Dudley, West Midlands - Blocked Drains, Drainage, Drain Cleaning. Fast & reliable service. No VAT charges. Domestic & Commercial Drain Services.";
+
   return (
     <>
       <Script
@@ -51,23 +55,21 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="shortcut icon" href="/favicon.png" />
       </Head>
       <DefaultSeo
-        title="Blocked Drains | Dommestic & Commercial Drain Services in West Midlands, UK"
-        description="We offer a fast & efficient Domestic & Commercial drains service in Dudley and across the West Midlands."
+        title={title}
+        description={description}
         canonical="https://www.dudleydrains.co.uk"
         openGraph={{
           type: "website",
           url: "https://www.dudleydrains.co.uk",
-          title:
-            "Blocked Drains | Dommestic & Commercial Drain Services in West Midlands, UK",
-          description:
-            "We offer a fast & efficient Domestic & Commercial drains service in Dudley and across the West Midlands.",
+          title: title,
+          description: description,
         }}
       />
       <LocalBusinessJsonLd
         type="Drainage service"
         id="https://www.dudleydrains.co.uk"
         name="Domestic & Commercial Drain Services"
-        description="We offer a fast & efficient Domestic & Commercial drains service in Dudley and across the West Midlands."
+        description={description}
         url="https://www.dudleydrains.co.uk"
         telephone="07974243764"
         address={{
