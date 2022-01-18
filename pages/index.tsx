@@ -78,7 +78,7 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
                 </div>
                 <div className="col-md-8">
                   <div className="card-body text-center">
-                    <h5 className="card-title">Blocked Drains</h5>
+                    <p className="card-title fs-5">Blocked Drains</p>
                     <p className="card-text fw-light">
                       Domestic & Commercial Drain Services provide a bespoke
                       service for clearing and unblocking all types of blocked
@@ -101,7 +101,7 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
                 </div>
                 <div className="col-md-8">
                   <div className="card-body text-center">
-                    <h5 className="card-title">Drainage</h5>
+                    <p className="card-title fs-5">Drainage</p>
                     <p className="card-text fw-light">
                       Our drainage service covers both Commercial Drains and
                       Domestic Drains. We understand how important it is to our
@@ -124,7 +124,7 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
                 </div>
                 <div className="col-md-8">
                   <div className="card-body text-center">
-                    <h5 className="card-title">Drain Cleaning</h5>
+                    <p className="card-title fs-5">Drain Cleaning</p>
                     <p className="card-text fw-light">
                       Most drainage problems can be solved without pulling out
                       the &quot;big guns&quot;, but sometimes there are
