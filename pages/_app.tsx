@@ -53,6 +53,10 @@ function MyApp({ Component, pageProps }: AppProps) {
       />
       <Head>
         <link rel="shortcut icon" href="/favicon.png" />
+        <meta
+          name="google-site-verification"
+          content="BlE7dGE6FASI4yrml47wZuvHUxOnZH_OzvaSs16ANtA"
+        />
       </Head>
       <DefaultSeo
         title={title}
