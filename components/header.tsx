@@ -81,7 +81,7 @@ export default function Header() {
               href="/#contact"
               className="rounded-sm bg-(--primary) px-6 py-2.5 text-sm font-bold text-white no-underline shadow-sm hover:bg-(--primary-lighter) transition-all hover:-translate-y-0.5"
             >
-              Book a Visit
+              Request a Callout
             </Link>
 
             <a

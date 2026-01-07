@@ -10,11 +10,15 @@ import AppContext from "../appContext";
 import { OpeningTime, openingTimes } from "../configuration/opening-times";
 import { siteConfig } from "../configuration/site-config";
 
-import drainBannerImage from "../public/drain-banner-dark.jpg";
+import drainBannerImage from "../public/drain-banner-dark-v2.jpg";
 import blockedDrainImage from "../public/blocked-drains.jpg";
 import commercialDrainImage from "../public/commercial-drains.jpg";
 import drainJettingImage from "../public/drain-jetting.jpg";
-import { EnvelopeIcon, PhoneIcon, MapPinIcon } from "@heroicons/react/24/outline";
+import {
+  EnvelopeIcon,
+  PhoneIcon,
+  MapPinIcon,
+} from "@heroicons/react/24/outline";
 
 export const getStaticProps: GetStaticProps<{
   openingTimes: OpeningTime[];
@@ -57,7 +61,7 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
               href="/#contact"
               className="rounded-sm bg-(--primary) px-8 py-3.5 text-lg font-bold text-white no-underline shadow-lg hover:bg-(--primary-lighter) transition-all hover:scale-105"
             >
-              Book a Visit
+              Request a Callout
             </Link>
             <a
               href={siteConfig.contact.telLinkMobile}
@@ -96,6 +100,8 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
                     alt="Blocked Drains"
                     fill
                     className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    priority
                     placeholder="blur"
                   />
                 </div>
@@ -122,6 +128,7 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
                     alt="Blocked Commercial Drains"
                     fill
                     className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 33vw"
                     placeholder="blur"
                   />
                 </div>
@@ -145,6 +152,7 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
                     alt="Jetting Blocked Drains"
                     fill
                     className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 33vw"
                     placeholder="blur"
                   />
                 </div>
@@ -183,7 +191,9 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
                       <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                     </svg>
                   </div>
-                  <span className="text-lg font-medium text-neutral-700">{item}</span>
+                  <span className="text-lg font-medium text-neutral-700">
+                    {item}
+                  </span>
                 </div>
               ))}
             </div>
@@ -200,19 +210,27 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
                 Areas we Service
               </h2>
               <p className="text-lg text-neutral-600 font-light">
-                Operating from our base in <span className="font-semibold text-neutral-800">Dudley</span>, we provide rapid response services to the following areas and beyond.
+                Operating from our base in{" "}
+                <span className="font-semibold text-neutral-800">Dudley</span>,
+                we provide rapid response services to the following areas and
+                beyond.
               </p>
             </div>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 px-2 md:px-4 mb-12">
               {siteConfig.serviceAreas.map((area) => (
-                <div key={area} className="flex items-center gap-3 p-3 bg-white border border-neutral-100 shadow-sm rounded-lg hover:border-(--primary) transition-colors group">
+                <div
+                  key={area}
+                  className="flex items-center gap-3 p-3 bg-white border border-neutral-100 shadow-sm rounded-lg hover:border-(--primary) transition-colors group"
+                >
                   <MapPinIcon className="h-5 w-5 shrink-0 text-neutral-400 group-hover:text-(--primary) transition-colors" />
-                  <span className="text-base font-medium text-neutral-700 leading-tight">{area}</span>
+                  <span className="text-base font-medium text-neutral-700 leading-tight">
+                    {area}
+                  </span>
                 </div>
               ))}
             </div>
-            
+
             <div className="text-center p-8 border border-dashed border-neutral-200 rounded-xl bg-neutral-50/50">
               <p className="text-lg md:text-xl font-light text-neutral-600 mb-6">
                 Can&#39;t see your area listed? We may still be able to help.
@@ -230,27 +248,40 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 px-4 md:px-12 items-start">
             <div className="bg-neutral-50 p-8 md:p-12 rounded-2xl shadow-inner border border-neutral-100">
-              <h2 className="text-3xl font-semibold md:text-4xl mb-2 text-center lg:text-left">Book a Callout</h2>
-              <p className="text-neutral-500 mb-8 text-center lg:text-left">Fill out the form below and we&#39;ll get back to you shortly.</p>
+              <h2 className="text-3xl font-semibold md:text-4xl mb-2 text-center lg:text-left">
+                Request a Callout
+              </h2>
+              <p className="text-neutral-500 mb-8 text-center lg:text-left">
+                Fill out the form below and we&#39;ll get back to you shortly.
+              </p>
               <ContactForm />
             </div>
-            
-            <div className="flex flex-col gap-12" id="contact" style={{ scrollMarginTop: 100 }}>
+
+            <div
+              className="flex flex-col gap-12"
+              id="contact"
+              style={{ scrollMarginTop: 100 }}
+            >
               <div>
                 <h2 className="text-3xl font-semibold md:text-4xl mb-6">
                   Contact Information
                 </h2>
                 <div className="space-y-6">
                   <div>
-                    <h3 className="font-bold text-lg text-neutral-800 mb-1">{siteConfig.businessName}</h3>
+                    <h3 className="font-bold text-lg text-neutral-800 mb-1">
+                      {siteConfig.businessName}
+                    </h3>
                     <p className="text-neutral-600 text-lg">
-                      {siteConfig.address.line1}<br />
-                      {siteConfig.address.town}<br />
-                      {siteConfig.address.county}<br />
+                      {siteConfig.address.line1}
+                      <br />
+                      {siteConfig.address.town}
+                      <br />
+                      {siteConfig.address.county}
+                      <br />
                       {siteConfig.address.postcode}
                     </p>
                   </div>
-                  
+
                   <div className="flex flex-col gap-3">
                     <a
                       className="inline-flex items-center gap-3 text-lg font-medium text-(--primary) no-underline hover:text-(--primary-lighter) transition-colors"
@@ -282,7 +313,7 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
                   </div>
                 </div>
               </div>
-              
+
               <div className="h-100 w-full rounded-2xl overflow-hidden shadow-md border border-neutral-100">
                 <Map openingTimes={openingTimes} />
               </div>
