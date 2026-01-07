@@ -1,7 +1,7 @@
 export default function Spacer() {
   return (
-    <div className="my-4 flex items-center justify-center">
-      <hr className="w-1/2 border-neutral-300" />
+    <div className="my-12 flex items-center justify-center">
+      <hr className="w-1/3 border-neutral-200" />
     </div>
   );
 }
