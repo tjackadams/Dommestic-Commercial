@@ -1,34 +1,74 @@
 import Link from "next/link";
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { useId, useState } from "react";
+import { Bars3Icon, PhoneIcon, XMarkIcon } from "@heroicons/react/24/outline";
+
+import InlineIcon from "./InlineIcon";
 
 export default function Header() {
+  const navId = useId();
+  const [open, setOpen] = useState(false);
+
   return (
-    <Navbar collapseOnSelect expand="lg" sticky="top" className="bg-white">
-      <Container>
-        <Navbar.Brand href="/" className="fs-5 fw-bold">
+    <header className="sticky top-0 z-50 bg-white">
+      <nav className="container mx-auto flex items-center px-4 py-3">
+        <Link href="/" className="text-lg font-bold text-black no-underline">
           Domestic & Commercial Drain Services
-        </Navbar.Brand>
-        <Navbar.Brand className="ms-4 fs-6 fw-normal d-none d-lg-block">
+        </Link>
+
+        <div className="ml-4 hidden text-base font-normal text-black lg:block">
           West Midlands
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="nav" />
-        <Navbar.Collapse id="nav">
-          <Nav className="ms-4 me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Link href="/#services" passHref>
-              <Nav.Link>Services</Nav.Link>
+        </div>
+
+        <button
+          type="button"
+          className="ml-auto inline-flex items-center justify-center rounded p-2 text-black lg:hidden"
+          aria-controls={navId}
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+        >
+          <span className="sr-only">Toggle navigation</span>
+          {open ? (
+            <XMarkIcon style={{ width: "1.5rem", height: "1.5rem" }} />
+          ) : (
+            <Bars3Icon style={{ width: "1.5rem", height: "1.5rem" }} />
+          )}
+        </button>
+
+        <div
+          id={navId}
+          className={`${
+            open ? "block" : "hidden"
+          } w-full lg:ml-6 lg:block lg:w-auto`}
+        >
+          <div className="mt-3 flex flex-col gap-2 lg:mt-0 lg:flex-row lg:items-center lg:gap-4">
+            <Link
+              href="/"
+              className="text-black no-underline hover:text-[var(--primary-lighter)]"
+            >
+              Home
             </Link>
-            <Link href="/#contact" passHref>
-              <Nav.Link>Contact</Nav.Link>
+            <Link
+              href="/#services"
+              className="text-black no-underline hover:text-[var(--primary-lighter)]"
+            >
+              Services
             </Link>
-          </Nav>
-          <Nav>
-            <Nav.Link className="fs-5 link-dark" href="tel:07974243764">
-              <i className="bi bi-telephone"></i> 07974 243764
-            </Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+            <Link
+              href="/#contact"
+              className="text-black no-underline hover:text-[var(--primary-lighter)]"
+            >
+              Contact
+            </Link>
+
+            <a
+              className="mt-2 text-lg text-black no-underline lg:mt-0 lg:ml-6"
+              href="tel:07974243764"
+            >
+              <InlineIcon icon={PhoneIcon} className="mr-2" /> 07974 243764
+            </a>
+          </div>
+        </div>
+      </nav>
+    </header>
   );
 }

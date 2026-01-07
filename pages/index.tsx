@@ -12,6 +12,9 @@ import drainBannerImage from "../public/drain-banner-dark.jpg";
 import blockedDrainImage from "../public/blocked-drains.jpg";
 import commercialDrainImage from "../public/commercial-drains.jpg";
 import drainJettingImage from "../public/drain-jetting.jpg";
+import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
+
+import InlineIcon from "../components/InlineIcon";
 
 export const getStaticProps: GetStaticProps<{
   openingTimes: OpeningTime[];
@@ -33,53 +36,56 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
   return (
     <>
       <div
-        className="position-relative overflow-hidden p-3 mb-md-4 text-center text-white"
+        className="relative overflow-hidden p-4 text-center text-white md:mb-4"
         style={{
           backgroundImage: `url(${drainBannerImage.src})`,
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="col-md-8 p-lg-5 mx-auto">
-          <h1 className="display-4">
+        <div className="mx-auto max-w-3xl px-4 py-10 md:px-0">
+          <h1 className="text-4xl md:text-5xl">
             Providing Domestic & Commercial Drain Services
           </h1>
-          <p className="lead">Across Dudley & the West Midlands</p>
+          <p className="mt-2 text-xl">Across Dudley & the West Midlands</p>
         </div>
       </div>
-      <div className="d-flex justify-content-center">
-        <div className="d-flex flex-column p-3 p-md-5 justify-content-center bg-white border page-content">
+      <div className="flex justify-center">
+        <div className="w-full md:w-3/4 flex flex-col justify-center border border-neutral-200 bg-white p-4 md:p-10">
           <h2
-            className="display-5 text-center"
+            className="text-center text-3xl font-semibold md:text-4xl"
             id="services"
             style={{ scrollMarginTop: 100 }}
           >
             <strong>Our Services</strong>
           </h2>
-          <p className="fs-5 fw-light text-center mb-5">
+          <p className="mb-5 text-center text-lg font-light">
             We offer a fast & efficient drainage service across the{" "}
             <strong>West Midlands</strong> to help you when you need it most.
             Whether it be for Domestic or Commercial drains, our aim is to
             identify and resolve the issue on the very same day.{" "}
-            <Link href="/#contact">
-              <a className="link-primary text-decoration-none">Contact us</a>
+            <Link
+              href="/#contact"
+              className="text-[color:var(--primary)] no-underline hover:text-[var(--primary-lighter)]"
+            >
+              Contact us
             </Link>{" "}
             today to book our specialist drainage services.
           </p>
 
-          <div className="vstack gap-5 mb-3">
-            <div className="card shadow rounded">
-              <div className="row g-0">
-                <div className="col-md-4">
+          <div className="mb-3 flex flex-col gap-10">
+            <div className="overflow-hidden rounded shadow">
+              <div className="flex flex-col md:flex-row">
+                <div className="md:w-1/3">
                   <Image
                     src={blockedDrainImage}
                     alt="Blocked Drains"
-                    className="img-fluid rounded-start"
+                    className="h-full w-full object-cover"
                   />
                 </div>
-                <div className="col-md-8">
-                  <div className="card-body text-center">
-                    <p className="card-title fs-5">Blocked Drains</p>
-                    <p className="card-text fw-light">
+                <div className="md:w-2/3">
+                  <div className="p-4 text-center">
+                    <p className="text-lg font-medium">Blocked Drains</p>
+                    <p className="font-light">
                       Domestic & Commercial Drain Services provide a bespoke
                       service for clearing and unblocking all types of blocked
                       drains. This includes, but is not limited to Blocked
@@ -90,19 +96,19 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
                 </div>
               </div>
             </div>
-            <div className="card shadow rounded">
-              <div className="row g-0">
-                <div className="col-md-4">
+            <div className="overflow-hidden rounded shadow">
+              <div className="flex flex-col md:flex-row">
+                <div className="md:w-1/3">
                   <Image
                     src={commercialDrainImage}
                     alt="Blocked Commercial Drains"
-                    className="img-fluid rounded-start"
+                    className="h-full w-full object-cover"
                   />
                 </div>
-                <div className="col-md-8">
-                  <div className="card-body text-center">
-                    <p className="card-title fs-5">Drainage</p>
-                    <p className="card-text fw-light">
+                <div className="md:w-2/3">
+                  <div className="p-4 text-center">
+                    <p className="text-lg font-medium">Drainage</p>
+                    <p className="font-light">
                       Our drainage service covers both Commercial Drains and
                       Domestic Drains. We understand how important it is to our
                       customers that projects are managed effectively to ensure
@@ -113,19 +119,19 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
                 </div>
               </div>
             </div>
-            <div className="card shadow rounded">
-              <div className="row g-0">
-                <div className="col-md-4">
+            <div className="overflow-hidden rounded shadow">
+              <div className="flex flex-col md:flex-row">
+                <div className="md:w-1/3">
                   <Image
                     src={drainJettingImage}
                     alt="Jetting Blocked Drains"
-                    className="img-fluid rounded-start"
+                    className="h-full w-full object-cover"
                   />
                 </div>
-                <div className="col-md-8">
-                  <div className="card-body text-center">
-                    <p className="card-title fs-5">Drain Cleaning</p>
-                    <p className="card-text fw-light">
+                <div className="md:w-2/3">
+                  <div className="p-4 text-center">
+                    <p className="text-lg font-medium">Drain Cleaning</p>
+                    <p className="font-light">
                       Most drainage problems can be solved without pulling out
                       the &quot;big guns&quot;, but sometimes there are
                       blockages that are so stubborn, they require something
@@ -139,10 +145,10 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
           </div>
 
           <Spacer />
-          <h2 className="display-5 text-center">
+          <h2 className="text-center text-3xl font-semibold md:text-4xl">
             <strong>Why do our customers recommend us?</strong>
           </h2>
-          <ul className="list-unstyled text-center fs-4 lh-lg">
+          <ul className="list-none p-0 text-center text-2xl leading-relaxed">
             <li>Excellent reputation for quality & honesty.</li>
             <li>Fast & reliable service.</li>
             <li>No VAT charges.</li>
@@ -152,12 +158,12 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
 
           <Spacer />
 
-          <div className="d-flex flex-wrap justify-content-evenly align-items-start ">
-            <div className="text-center text-md-start">
-              <h2 className="display-5 ">
+          <div className="flex flex-wrap items-start justify-evenly">
+            <div className="text-center md:text-left">
+              <h2 className="text-3xl font-semibold md:text-4xl">
                 <strong>Areas we Service</strong>
               </h2>
-              <ul className="list-unstyled fs-4 lh-lg mb-4">
+              <ul className="mb-4 list-none p-0 text-2xl leading-relaxed">
                 <li>Dudley</li>
                 <li>Wolverhampton</li>
                 <li>Cradley Heath</li>
@@ -166,14 +172,14 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
                 <li>Stourbridge</li>
                 <li>Tipton</li>
               </ul>
-              <p className="lead">
+              <p className="text-xl">
                 Can&#39;t see your area listed above? <br />
                 We may still be able to help. <br />
                 Please do not hesitate to contact us with your enquiry.
               </p>
             </div>
-            <div className="flex-shrink-0">
-              <h2 className="display-5 ">
+            <div className="shrink-0">
+              <h2 className="text-3xl font-semibold md:text-4xl">
                 <strong>Contact us</strong>
               </h2>
               <ContactForm />
@@ -182,39 +188,42 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
 
           <Spacer />
 
-          <div className="d-flex justify-content-evenly align-items-start">
-            <div className="text-center text-md-start">
+          <div className="flex items-start justify-evenly">
+            <div className="text-center md:text-left">
               <h2
-                className="display-5"
+                className="text-3xl font-semibold md:text-4xl"
                 id="contact"
                 style={{ scrollMarginTop: 100 }}
               >
                 <strong>Contact Information</strong>
               </h2>
-              <p className="fw-bold">Domestic & Commercial Drain Services</p>
-              <ul className="list-unstyled">
+              <p className="font-bold">Domestic & Commercial Drain Services</p>
+              <ul className="list-none p-0">
                 <li>67 Merryfield Road</li>
                 <li>Dudley</li>
                 <li>West Midlands</li>
                 <li>DY1 2ND</li>
               </ul>
-              <ul className="list-unstyled text-primary lh-lg">
+              <ul className="mt-4 list-none p-0 leading-7 text-[color:var(--primary)]">
                 <li>
-                  <a className="text-decoration-none" href="tel:01384357446">
-                    <i className="bi bi-telephone"></i> 01384 357446
+                  <a className="no-underline" href="tel:01384357446">
+                    <InlineIcon icon={PhoneIcon} className="mr-2" /> 01384
+                    357446
                   </a>
                 </li>
                 <li>
-                  <a className="text-decoration-none" href="tel:07974243764">
-                    <i className="bi bi-telephone"></i> 07974 243764
+                  <a className="no-underline" href="tel:07974243764">
+                    <InlineIcon icon={PhoneIcon} className="mr-2" /> 07974
+                    243764
                   </a>
                 </li>
                 <li>
                   <a
-                    className="text-decoration-none"
+                    className="no-underline"
                     href="mailto:stevetomkins53@gmail.com"
                   >
-                    <i className="bi bi-envelope"></i> stevetomkins53@gmail.com
+                    <InlineIcon icon={EnvelopeIcon} className="mr-2" />
+                    stevetomkins53@gmail.com
                   </a>
                 </li>
               </ul>

@@ -1,15 +1,15 @@
-import { DefaultSeo, LocalBusinessJsonLd } from "next-seo";
+import { LocalBusinessJsonLd } from "next-seo";
+import { generateDefaultSeo } from "next-seo/pages";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Script from "next/script";
 import { useEffect, useState } from "react";
-import { SSRProvider } from "react-bootstrap";
 import AppContext from "../appContext";
 import Layout from "../components/layout";
 import { OpeningTime } from "../configuration/opening-times";
 import * as gtag from "../lib/gtag";
-import "../styling/app.scss";
+import "../styling/app.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -57,21 +57,22 @@ function MyApp({ Component, pageProps }: AppProps) {
           name="google-site-verification"
           content="BlE7dGE6FASI4yrml47wZuvHUxOnZH_OzvaSs16ANtA"
         />
+        {generateDefaultSeo({
+          title,
+          description,
+          canonical: "https://www.dudleydrains.co.uk",
+          openGraph: {
+            type: "website",
+            url: "https://www.dudleydrains.co.uk",
+            title: title,
+            description: description,
+          },
+        })}
       </Head>
-      <DefaultSeo
-        title={title}
-        description={description}
-        canonical="https://www.dudleydrains.co.uk"
-        openGraph={{
-          type: "website",
-          url: "https://www.dudleydrains.co.uk",
-          title: title,
-          description: description,
-        }}
-      />
       <LocalBusinessJsonLd
         type="Drainage service"
-        id="https://www.dudleydrains.co.uk"
+        scriptId="local-business-jsonld"
+        scriptKey="local-business-jsonld"
         name="Domestic & Commercial Drain Services"
         description={description}
         url="https://www.dudleydrains.co.uk"
@@ -83,10 +84,10 @@ function MyApp({ Component, pageProps }: AppProps) {
           addressCountry: "UK",
         }}
         geo={{
-          latitude: "52.511172",
-          longitude: "-2.115357",
+          latitude: 52.511172,
+          longitude: -2.115357,
         }}
-        openingHours={[
+        openingHoursSpecification={[
           {
             opens: "09:00",
             closes: "17:00",
@@ -99,13 +100,11 @@ function MyApp({ Component, pageProps }: AppProps) {
           },
         ]}
       />
-      <SSRProvider>
-        <AppContext.Provider value={value}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </AppContext.Provider>
-      </SSRProvider>
+      <AppContext.Provider value={value}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </AppContext.Provider>
     </>
   );
 }

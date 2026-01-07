@@ -20,10 +20,10 @@ const getInfoWindowString = (place: Place, openingTimes: OpeningTime[]) => {
 
   return `
     <div class="p-2">
-    <p class="fs-5">
+    <p class="text-lg">
     ${place.name}
     </p>
-      <ul class="list-unstyled fs-6 lh-base">
+      <ul class="list-none p-0 text-base leading-normal">
       ${times}
       </ul>
     </div>`;

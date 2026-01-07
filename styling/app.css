@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+:root {
+  --body-bg: rgb(237, 235, 233);
+  --primary: #008272;
+  --primary-lighter: rgb(0, 178, 148);
+}
+
+body {
+  background-color: var(--body-bg);
+}
