@@ -6,6 +6,7 @@ import {
 } from "react-netlify-forms";
 import { useFormik } from "formik";
 import { z } from "zod";
+import { useEffect } from "react";
 
 const RECAPTCHA_KEY = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_KEY || "";
 
@@ -61,27 +62,45 @@ export default function ContactForm() {
     name: "contact",
     action: "/thanks",
     honeypotName: "bot-field",
-    onSuccess: (_response: unknown, context: any) => {
+    onSuccess: (_response: unknown, _context: any) => {
       console.info("Successfully sent form data to Netlify Server");
-      context.formRef.current.reset();
     },
   });
 
-  const { handleSubmit, handleChange, handleBlur, touched, errors, values } =
-    useFormik<ContactFormValues>({
-      initialValues: {
-        fullName: "",
-        phoneNumber: "",
-        emailAddress: "",
-        enquiry: "",
-      },
-      onSubmit: (values) => netlify.handleSubmit(null, values),
-      validate,
-    });
+  const {
+    handleSubmit,
+    handleChange,
+    handleBlur,
+    touched,
+    errors,
+    values,
+    resetForm,
+  } = useFormik<ContactFormValues>({
+    initialValues: {
+      fullName: "",
+      phoneNumber: "",
+      emailAddress: "",
+      enquiry: "",
+    },
+    onSubmit: (values) => netlify.handleSubmit(null, values),
+    validate,
+  });
+
+  useEffect(() => {
+    if (netlify.success) {
+      resetForm();
+    }
+  }, [netlify.success, resetForm]);
 
   return (
     <NetlifyFormProvider {...netlify}>
-      <form onSubmit={handleSubmit} ref={netlify.formRef} name="contact">
+      <form
+        onSubmit={handleSubmit}
+        ref={netlify.formRef}
+        name="contact"
+        action="/thanks"
+        method="POST"
+      >
         <Honeypot />
         {netlify.success && (
           <div
