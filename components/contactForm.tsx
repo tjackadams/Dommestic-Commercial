@@ -212,7 +212,7 @@ export default function ContactForm() {
         <div className="mt-4 flex justify-end">
           <button
             type="submit"
-            className="min-w-[120px] rounded bg-[color:var(--primary)] px-4 py-2 text-white hover:bg-[var(--primary-lighter)]"
+            className="min-w-30 rounded bg-[--primary] px-4 py-2 text-white hover:bg-[--primary-lighter]"
           >
             Send
           </button>
