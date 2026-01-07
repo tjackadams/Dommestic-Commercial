@@ -95,12 +95,7 @@ export default function ContactForm() {
 
   return (
     <NetlifyFormProvider {...netlify}>
-      <NetlifyFormComponent
-        onSubmit={handleSubmit}
-        name="contact"
-        action="/thanks"
-        data-netlify={false}
-      >
+      <NetlifyFormComponent onSubmit={handleSubmit} data-netlify={false}>
         {netlify.success && (
           <div
             className="rounded border border-green-200 bg-green-50 p-3 text-green-800"
@@ -118,7 +113,6 @@ export default function ContactForm() {
             our GitHub demo does not provide a response.
           </div>
         )}
-        <Honeypot />
         <Recaptcha siteKey={RECAPTCHA_KEY} invisible />
         <div className="mt-4">
           <label htmlFor="fullName" className="block text-sm font-normal">
@@ -211,7 +205,7 @@ export default function ContactForm() {
         <div className="mt-4 flex justify-end">
           <button
             type="submit"
-            className="min-w-30 rounded bg-[--primary] px-4 py-2 text-white hover:bg-[--primary-lighter]"
+            className="min-w-[120px] rounded bg-(--primary) px-4 py-2 text-white hover:bg-(--primary-lighter)"
           >
             Send
           </button>
