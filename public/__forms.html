@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netlify Forms</title>
+</head>
+<body>
+    <!-- This file is for Netlify's build bot to detect forms in Next.js v5 runtime -->
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" action="/thanks" hidden>
+        <input type="text" name="fullName" />
+        <input type="text" name="phoneNumber" />
+        <input type="email" name="emailAddress" />
+        <textarea name="enquiry"></textarea>
+        <input type="text" name="bot-field" />
+        <div data-netlify-recaptcha="true"></div>
+    </form>
+</body>
+</html>

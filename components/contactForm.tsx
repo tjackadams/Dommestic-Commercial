@@ -1,6 +1,5 @@
 import {
   Honeypot,
-  NetlifyFormComponent,
   NetlifyFormProvider,
   Recaptcha,
   useNetlifyForm,
@@ -82,7 +81,7 @@ export default function ContactForm() {
 
   return (
     <NetlifyFormProvider {...netlify}>
-      <NetlifyFormComponent onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} ref={netlify.formRef} name="contact">
         <Honeypot />
         {netlify.success && (
           <div
@@ -199,7 +198,7 @@ export default function ContactForm() {
             Send
           </button>
         </div>
-      </NetlifyFormComponent>
+      </form>
     </NetlifyFormProvider>
   );
 }
