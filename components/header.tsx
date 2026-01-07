@@ -2,8 +2,6 @@ import Link from "next/link";
 import { useId, useState } from "react";
 import { Bars3Icon, PhoneIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
-import InlineIcon from "./InlineIcon";
-
 export default function Header() {
   const navId = useId();
   const [open, setOpen] = useState(false);
@@ -61,10 +59,11 @@ export default function Header() {
             </Link>
 
             <a
-              className="mt-2 text-lg text-black no-underline lg:mt-0 lg:ml-6"
+              className="mt-2 inline-flex items-center gap-2 text-lg text-black no-underline lg:mt-0 lg:ml-6"
               href="tel:07974243764"
             >
-              <InlineIcon icon={PhoneIcon} className="mr-2" /> 07974 243764
+              <PhoneIcon className="h-5 w-5" aria-hidden="true" />
+              <span>07974 243764</span>
             </a>
           </div>
         </div>

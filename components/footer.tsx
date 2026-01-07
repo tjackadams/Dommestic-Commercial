@@ -3,8 +3,6 @@ import AppContext from "../appContext";
 import Map from "./map";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
 
-import InlineIcon from "./InlineIcon";
-
 export default function Footer() {
   const state = useContext(AppContext);
 
@@ -25,27 +23,29 @@ export default function Footer() {
           <ul className="mt-4 list-none p-0 leading-7">
             <li>
               <a
-                className="text-[color:var(--primary)] no-underline"
+                className="inline-flex items-center gap-2 text-[color:var(--primary)] no-underline"
                 href="tel:01384357446"
               >
-                <InlineIcon icon={PhoneIcon} className="mr-2" /> 01384 357446
+                <PhoneIcon className="h-4 w-4" aria-hidden="true" />
+                <span>01384 357446</span>
               </a>
             </li>
             <li>
               <a
-                className="text-[color:var(--primary)] no-underline"
+                className="inline-flex items-center gap-2 text-[color:var(--primary)] no-underline"
                 href="tel:07974243764"
               >
-                <InlineIcon icon={PhoneIcon} className="mr-2" /> 07974 243764
+                <PhoneIcon className="h-4 w-4" aria-hidden="true" />
+                <span>07974 243764</span>
               </a>
             </li>
             <li>
               <a
-                className="text-[color:var(--primary)] no-underline"
+                className="inline-flex items-center gap-2 text-[color:var(--primary)] no-underline"
                 href="mailto:stevetomkins53@gmail.com"
               >
-                <InlineIcon icon={EnvelopeIcon} className="mr-2" />
-                stevetomkins53@gmail.com
+                <EnvelopeIcon className="h-4 w-4" aria-hidden="true" />
+                <span>stevetomkins53@gmail.com</span>
               </a>
             </li>
           </ul>

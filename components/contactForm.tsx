@@ -104,7 +104,7 @@ export default function ContactForm() {
         <Honeypot />
         <Recaptcha siteKey={RECAPTCHA_KEY} invisible />
         <div className="mt-4">
-          <label htmlFor="fullName" className="block text-sm font-medium">
+          <label htmlFor="fullName" className="block text-sm font-normal">
             Full Name
           </label>
           <input
@@ -114,7 +114,7 @@ export default function ContactForm() {
             value={values.fullName}
             onChange={handleChange}
             onBlur={handleBlur}
-            className={`mt-1 w-full rounded border p-2 ${
+            className={`mt-1 w-full rounded border p-2 text-sm ${
               errors.fullName && touched.fullName
                 ? "border-red-500"
                 : "border-neutral-300"
@@ -126,7 +126,7 @@ export default function ContactForm() {
         </div>
 
         <div className="mt-4">
-          <label htmlFor="phoneNumber" className="block text-sm font-medium">
+          <label htmlFor="phoneNumber" className="block text-sm font-normal">
             Phone Number
           </label>
           <input
@@ -136,7 +136,7 @@ export default function ContactForm() {
             value={values.phoneNumber}
             onChange={handleChange}
             onBlur={handleBlur}
-            className={`mt-1 w-full rounded border p-2 ${
+            className={`mt-1 w-full rounded border p-2 text-sm ${
               errors.phoneNumber && touched.phoneNumber
                 ? "border-red-500"
                 : "border-neutral-300"
@@ -148,7 +148,7 @@ export default function ContactForm() {
         </div>
 
         <div className="mt-4">
-          <label htmlFor="emailAddress" className="block text-sm font-medium">
+          <label htmlFor="emailAddress" className="block text-sm font-normal">
             Email Address
           </label>
           <input
@@ -158,7 +158,7 @@ export default function ContactForm() {
             value={values.emailAddress}
             onChange={handleChange}
             onBlur={handleBlur}
-            className={`mt-1 w-full rounded border p-2 ${
+            className={`mt-1 w-full rounded border p-2 text-sm ${
               errors.emailAddress && touched.emailAddress
                 ? "border-red-500"
                 : "border-neutral-300"
@@ -170,7 +170,7 @@ export default function ContactForm() {
         </div>
 
         <div className="mt-4">
-          <label htmlFor="enquiry" className="block text-sm font-medium">
+          <label htmlFor="enquiry" className="block text-sm font-normal">
             Enquiry
           </label>
           <textarea
@@ -180,7 +180,7 @@ export default function ContactForm() {
             value={values.enquiry}
             onChange={handleChange}
             onBlur={handleBlur}
-            className={`mt-1 w-full rounded border p-2 ${
+            className={`mt-1 w-full rounded border p-2 text-sm ${
               errors.enquiry && touched.enquiry
                 ? "border-red-500"
                 : "border-neutral-300"

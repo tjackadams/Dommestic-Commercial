@@ -14,8 +14,6 @@ import commercialDrainImage from "../public/commercial-drains.jpg";
 import drainJettingImage from "../public/drain-jetting.jpg";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
 
-import InlineIcon from "../components/InlineIcon";
-
 export const getStaticProps: GetStaticProps<{
   openingTimes: OpeningTime[];
 }> = async (context) => {
@@ -50,13 +48,13 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
         </div>
       </div>
       <div className="flex justify-center">
-        <div className="w-full md:w-3/4 flex flex-col justify-center border border-neutral-200 bg-white p-4 md:p-10">
+        <div className="w-full md:w-3/4 flex flex-col justify-center bg-white p-4 shadow-md md:p-10">
           <h2
-            className="text-center text-3xl font-semibold md:text-4xl"
+            className="text-center text-3xl font-normal md:text-4xl"
             id="services"
             style={{ scrollMarginTop: 100 }}
           >
-            <strong>Our Services</strong>
+            Our Services
           </h2>
           <p className="mb-5 text-center text-lg font-light">
             We offer a fast & efficient drainage service across the{" "}
@@ -73,7 +71,7 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
           </p>
 
           <div className="mb-3 flex flex-col gap-10">
-            <div className="overflow-hidden rounded shadow">
+            <div className="overflow-hidden rounded border border-neutral-200 shadow-lg">
               <div className="flex flex-col md:flex-row">
                 <div className="md:w-1/3">
                   <Image
@@ -96,7 +94,7 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
                 </div>
               </div>
             </div>
-            <div className="overflow-hidden rounded shadow">
+            <div className="overflow-hidden rounded border border-neutral-200 shadow-lg">
               <div className="flex flex-col md:flex-row">
                 <div className="md:w-1/3">
                   <Image
@@ -119,7 +117,7 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
                 </div>
               </div>
             </div>
-            <div className="overflow-hidden rounded shadow">
+            <div className="overflow-hidden rounded border border-neutral-200 shadow-lg">
               <div className="flex flex-col md:flex-row">
                 <div className="md:w-1/3">
                   <Image
@@ -146,7 +144,7 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
 
           <Spacer />
           <h2 className="text-center text-3xl font-semibold md:text-4xl">
-            <strong>Why do our customers recommend us?</strong>
+            Why do our customers recommend us?
           </h2>
           <ul className="list-none p-0 text-center text-2xl leading-relaxed">
             <li>Excellent reputation for quality & honesty.</li>
@@ -160,8 +158,8 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
 
           <div className="flex flex-wrap items-start justify-evenly">
             <div className="text-center md:text-left">
-              <h2 className="text-3xl font-semibold md:text-4xl">
-                <strong>Areas we Service</strong>
+              <h2 className="text-3xl font-normal md:text-4xl">
+                Areas we Service
               </h2>
               <ul className="mb-4 list-none p-0 text-2xl leading-relaxed">
                 <li>Dudley</li>
@@ -179,9 +177,7 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
               </p>
             </div>
             <div className="shrink-0">
-              <h2 className="text-3xl font-semibold md:text-4xl">
-                <strong>Contact us</strong>
-              </h2>
+              <h2 className="text-3xl font-normal md:text-4xl">Contact us</h2>
               <ContactForm />
             </div>
           </div>
@@ -191,11 +187,11 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
           <div className="flex items-start justify-evenly">
             <div className="text-center md:text-left">
               <h2
-                className="text-3xl font-semibold md:text-4xl"
+                className="text-3xl font-normal md:text-4xl"
                 id="contact"
                 style={{ scrollMarginTop: 100 }}
               >
-                <strong>Contact Information</strong>
+                Contact Information
               </h2>
               <p className="font-bold">Domestic & Commercial Drain Services</p>
               <ul className="list-none p-0">
@@ -206,24 +202,30 @@ const Home: NextPage<{ openingTimes: OpeningTime[] }> = ({ openingTimes }) => {
               </ul>
               <ul className="mt-4 list-none p-0 leading-7 text-[color:var(--primary)]">
                 <li>
-                  <a className="no-underline" href="tel:01384357446">
-                    <InlineIcon icon={PhoneIcon} className="mr-2" /> 01384
-                    357446
-                  </a>
-                </li>
-                <li>
-                  <a className="no-underline" href="tel:07974243764">
-                    <InlineIcon icon={PhoneIcon} className="mr-2" /> 07974
-                    243764
+                  <a
+                    className="inline-flex items-center gap-2 no-underline"
+                    href="tel:01384357446"
+                  >
+                    <PhoneIcon className="h-4 w-4" aria-hidden="true" />
+                    <span>01384 357446</span>
                   </a>
                 </li>
                 <li>
                   <a
-                    className="no-underline"
+                    className="inline-flex items-center gap-2 no-underline"
+                    href="tel:07974243764"
+                  >
+                    <PhoneIcon className="h-4 w-4" aria-hidden="true" />
+                    <span>07974 243764</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="inline-flex items-center gap-2 no-underline"
                     href="mailto:stevetomkins53@gmail.com"
                   >
-                    <InlineIcon icon={EnvelopeIcon} className="mr-2" />
-                    stevetomkins53@gmail.com
+                    <EnvelopeIcon className="h-4 w-4" aria-hidden="true" />
+                    <span>stevetomkins53@gmail.com</span>
                   </a>
                 </li>
               </ul>
