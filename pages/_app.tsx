@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import AppContext from "../appContext";
 import Layout from "../components/layout";
 import { OpeningTime } from "../configuration/opening-times";
+import { siteConfig } from "../configuration/site-config";
 import * as gtag from "../lib/gtag";
 import "../styling/app.css";
 
@@ -27,9 +28,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   const value = { openingTimes, setOpeningTimes };
 
-  const title = "Domestic & Commercial Drain Services in Dudley, West Midlands";
-  const description =
-    "We serve Dudley, West Midlands - Blocked Drains, Drainage, Drain Cleaning. Fast & reliable service. No VAT charges. Domestic & Commercial Drain Services.";
+  const areaList = siteConfig.serviceAreas.join(", ");
+  const title = `${siteConfig.businessName} | Drain Services in Dudley & West Midlands`;
+  const description = `Expert drainage services in ${areaList}. Blocked drains, cleaning and repairs. Fast, reliable & professional. No VAT charges.`;
 
   return (
     <>
@@ -73,19 +74,19 @@ function MyApp({ Component, pageProps }: AppProps) {
         type="Drainage service"
         scriptId="local-business-jsonld"
         scriptKey="local-business-jsonld"
-        name="Domestic & Commercial Drain Services"
+        name={siteConfig.businessName}
         description={description}
         url="https://www.dudleydrains.co.uk"
-        telephone="07974243764"
+        telephone={siteConfig.contact.mobile}
         address={{
-          streetAddress: "67 Merryfield Rd",
-          addressLocality: "Dudley",
-          postalCode: "DY1 2ND",
+          streetAddress: siteConfig.address.line1,
+          addressLocality: siteConfig.address.town,
+          postalCode: siteConfig.address.postcode,
           addressCountry: "UK",
         }}
         geo={{
-          latitude: 52.511172,
-          longitude: -2.115357,
+          latitude: siteConfig.mapLocation.lat,
+          longitude: siteConfig.mapLocation.lng,
         }}
         openingHoursSpecification={[
           {

@@ -1,20 +1,39 @@
 import Link from "next/link";
-import { useId, useState } from "react";
+import { useId, useState, useEffect } from "react";
 import { Bars3Icon, PhoneIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { siteConfig } from "../configuration/site-config";
 
 export default function Header() {
   const navId = useId();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 bg-white">
-      <nav className="container mx-auto flex items-center px-4 py-3">
-        <Link href="/" className="text-lg font-bold text-black no-underline">
-          Domestic & Commercial Drain Services
+    <header
+      className={`sticky top-0 z-50 bg-white transition-all duration-300 ${
+        scrolled ? "py-1 shadow-md border-b border-neutral-100" : "py-4"
+      }`}
+    >
+      <nav className="container mx-auto flex items-center px-6 lg:px-8">
+        <Link
+          href="/"
+          className={`font-bold text-neutral-900 no-underline transition-all duration-300 ${
+            scrolled ? "text-base" : "text-lg"
+          }`}
+        >
+          {siteConfig.businessName}
         </Link>
 
-        <div className="ml-4 hidden text-base font-normal text-black lg:block">
-          West Midlands
+        <div className="ml-6 hidden text-sm font-medium text-neutral-400 uppercase tracking-widest lg:block">
+          Dudley & West Midlands
         </div>
 
         <button
@@ -35,35 +54,42 @@ export default function Header() {
         <div
           id={navId}
           className={`${
-            open ? "block" : "hidden"
-          } w-full lg:ml-6 lg:block lg:w-auto`}
+            open ? "block shadow-lg border-t border-neutral-100" : "hidden"
+          } absolute left-0 top-full w-full bg-white px-4 pb-6 lg:static lg:ml-auto lg:block lg:w-auto lg:p-0 lg:shadow-none lg:border-none`}
         >
-          <div className="mt-3 flex flex-col gap-2 lg:mt-0 lg:flex-row lg:items-center lg:gap-4">
+          <div className="mt-4 flex flex-col gap-4 lg:mt-0 lg:flex-row lg:items-center lg:gap-8">
             <Link
               href="/"
-              className="text-black no-underline hover:text-[var(--primary-lighter)]"
+              className="text-sm font-semibold tracking-wide text-neutral-700 no-underline hover:text-(--primary) lg:py-2"
             >
               Home
             </Link>
             <Link
               href="/#services"
-              className="text-black no-underline hover:text-[var(--primary-lighter)]"
+              className="text-sm font-semibold tracking-wide text-neutral-700 no-underline hover:text-(--primary) lg:py-2"
             >
               Services
             </Link>
             <Link
               href="/#contact"
-              className="text-black no-underline hover:text-[var(--primary-lighter)]"
+              className="text-sm font-semibold tracking-wide text-neutral-700 no-underline hover:text-(--primary) lg:py-2"
             >
               Contact
             </Link>
 
+            <Link
+              href="/#contact"
+              className="rounded-sm bg-(--primary) px-6 py-2.5 text-sm font-bold text-white no-underline shadow-sm hover:bg-(--primary-lighter) transition-all hover:-translate-y-0.5"
+            >
+              Book a Visit
+            </Link>
+
             <a
-              className="mt-2 inline-flex items-center gap-2 text-lg text-black no-underline lg:mt-0 lg:ml-6"
-              href="tel:07974243764"
+              className="inline-flex items-center gap-2 text-base font-bold text-(--primary) no-underline hover:text-(--primary-lighter)"
+              href={siteConfig.contact.telLinkMobile}
             >
               <PhoneIcon className="h-5 w-5" aria-hidden="true" />
-              <span>07974 243764</span>
+              <span>{siteConfig.contact.mobile}</span>
             </a>
           </div>
         </div>

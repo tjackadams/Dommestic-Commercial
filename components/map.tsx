@@ -1,8 +1,12 @@
 import { useState } from "react";
 import GoogleMap from "google-map-react";
 import { OpeningTime } from "../configuration/opening-times";
+import { siteConfig } from "../configuration/site-config";
 
-const coords = { lat: 52.511172, lng: -2.115357 };
+const coords = {
+  lat: siteConfig.mapLocation.lat,
+  lng: siteConfig.mapLocation.lng,
+};
 const MAPS_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "";
 
 const getInfoWindowString = (place: Place, openingTimes: OpeningTime[]) => {
@@ -87,11 +91,11 @@ export default function Map({ openingTimes }: MapProps) {
   const [state, setState] = useState<{ places: Place[] }>({
     places: [
       {
-        name: "Dommestic & Commercial Drains",
+        name: siteConfig.businessName,
         geometry: {
           location: {
-            lat: 52.511172,
-            lng: -2.115357,
+            lat: siteConfig.mapLocation.lat,
+            lng: siteConfig.mapLocation.lng,
           },
         },
       },
@@ -99,14 +103,16 @@ export default function Map({ openingTimes }: MapProps) {
   });
 
   return (
-    <GoogleMap
-      defaultZoom={14}
-      defaultCenter={coords}
-      bootstrapURLKeys={{ key: MAPS_KEY }}
-      yesIWantToUseGoogleMapApiInternals
-      onGoogleApiLoaded={({ map, maps }) =>
-        handleApiLoaded(map, maps, state.places, openingTimes)
-      }
-    ></GoogleMap>
+    <div style={{ height: "100%", width: "100%" }}>
+      <GoogleMap
+        defaultZoom={14}
+        defaultCenter={coords}
+        bootstrapURLKeys={{ key: MAPS_KEY }}
+        yesIWantToUseGoogleMapApiInternals
+        onGoogleApiLoaded={({ map, maps }) =>
+          handleApiLoaded(map, maps, state.places, openingTimes)
+        }
+      ></GoogleMap>
+    </div>
   );
 }
