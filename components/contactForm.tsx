@@ -1,6 +1,9 @@
 import { useFormik } from "formik";
 import { z } from "zod";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
+
+const RECAPTCHA_KEY = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_KEY || "";
 
 type ContactFormValues = {
   fullName: string;
@@ -53,6 +56,7 @@ export default function ContactForm() {
   const [submitState, setSubmitState] = useState<"idle" | "success" | "error">(
     "idle"
   );
+  const recaptchaRef = useRef<ReCAPTCHA | null>(null);
 
   const formik = useFormik<ContactFormValues>({
     initialValues: {
@@ -108,6 +112,20 @@ export default function ContactForm() {
     formik.setSubmitting(true);
 
     try {
+      if (!RECAPTCHA_KEY) {
+        console.error(
+          "Form submit error: NEXT_PUBLIC_GOOGLE_RECAPTCHA_KEY is missing"
+        );
+        throw new Error("Missing reCAPTCHA site key");
+      }
+
+      const token = await recaptchaRef.current?.executeAsync();
+      recaptchaRef.current?.reset();
+      if (!token) {
+        console.error("Form submit error: reCAPTCHA token missing");
+        throw new Error("Missing reCAPTCHA token");
+      }
+
       const formData = new FormData(formEl);
       const body = new URLSearchParams();
       const submittedKeys: string[] = [];
@@ -118,11 +136,14 @@ export default function ContactForm() {
         }
       });
 
+      body.append("g-recaptcha-response", token);
+      const allKeys = [...submittedKeys, "g-recaptcha-response"];
+
       // Debug info (no field values logged)
       console.info("Submitting Netlify form", {
         target: "/__forms.html",
-        keys: submittedKeys,
-        hasRecaptchaResponse: submittedKeys.includes("g-recaptcha-response"),
+        keys: allKeys,
+        hasRecaptchaResponse: true,
       });
 
       const response = await fetch("/__forms.html", {
@@ -200,6 +221,8 @@ export default function ContactForm() {
       </div>
 
       <div data-netlify-recaptcha="true" />
+
+      <ReCAPTCHA ref={recaptchaRef} sitekey={RECAPTCHA_KEY} size="invisible" />
 
       <div className="mt-4">
         <label htmlFor="fullName" className="block text-sm font-normal">
