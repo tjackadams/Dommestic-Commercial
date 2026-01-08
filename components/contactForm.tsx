@@ -56,7 +56,6 @@ export default function ContactForm() {
   const [submitState, setSubmitState] = useState<"idle" | "success" | "error">(
     "idle"
   );
-  const recaptchaRef = useRef<ReCAPTCHA | null>(null);
 
   const formik = useFormik<ContactFormValues>({
     initialValues: {
@@ -74,106 +73,129 @@ export default function ContactForm() {
 
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSubmitState("idle");
-
-    const maybeTarget = event.target;
-    const maybeCurrentTarget = event.currentTarget;
-    const formEl =
-      maybeCurrentTarget instanceof HTMLFormElement
-        ? maybeCurrentTarget
-        : maybeTarget instanceof HTMLElement
-        ? maybeTarget.closest("form")
-        : null;
-
-    if (!formEl) {
-      console.error("Form submit error: could not find <form> element", {
-        target: maybeTarget,
-        currentTarget: maybeCurrentTarget,
-      });
-      setSubmitState("error");
-      return;
-    }
-
-    formik.setTouched(
-      {
-        fullName: true,
-        phoneNumber: true,
-        emailAddress: true,
-        enquiry: true,
-      },
-      true
-    );
-
-    const validationErrors = await formik.validateForm();
-    if (Object.keys(validationErrors).length > 0) {
-      return;
-    }
-
-    formik.setSubmitting(true);
 
     try {
-      const formData = new FormData(formEl);
-      const body = new URLSearchParams();
-      const submittedKeys: string[] = [];
-      formData.forEach((value, key) => {
-        if (typeof value === "string") {
-          body.append(key, value);
-          submittedKeys.push(key);
-        }
-      });
-
-      // Debug info (no field values logged)
-      console.info("Submitting Netlify form", {
-        target: "/__forms.html",
-        keys: submittedKeys,
-        hasRecaptchaResponse: true,
-      });
-
-      const response = await fetch("/__forms.html", {
+      setSubmitState("idle");
+      const myForm = event.currentTarget;
+      const formData = new FormData(myForm);
+      const res = await fetch("__form.html", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: body.toString(),
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData as any).toString(),
       });
 
-      console.info("Netlify form response", {
-        status: response.status,
-        statusText: response.statusText,
-        redirected: response.redirected,
-        url: response.url,
-      });
-
-      // Netlify can respond with redirects (3xx) for successful submissions.
-      if (response.status < 200 || response.status >= 400) {
-        let responseText = "";
-        try {
-          responseText = await response.text();
-        } catch {
-          // ignore
-        }
-
-        const detail = `${response.status} ${response.statusText}`;
-        console.error("Netlify form submission failed", {
-          detail,
-          responseText,
-        });
-        throw new Error(detail);
+      if (res.status === 200) {
+        setSubmitState("success");
+      } else {
+        setSubmitState("error");
+        console.warn(`${res.status} ${res.statusText}`);
       }
-
-      setSubmitState("success");
-      formik.resetForm();
-    } catch (_error) {
-      console.error("Form submit error", _error);
+    } catch (e) {
       setSubmitState("error");
-    } finally {
-      formik.setSubmitting(false);
+      console.warn(`${e}`);
     }
+
+    // setSubmitState("idle");
+
+    // const maybeTarget = event.target;
+    // const maybeCurrentTarget = event.currentTarget;
+    // const formEl =
+    //   maybeCurrentTarget instanceof HTMLFormElement
+    //     ? maybeCurrentTarget
+    //     : maybeTarget instanceof HTMLElement
+    //     ? maybeTarget.closest("form")
+    //     : null;
+
+    // if (!formEl) {
+    //   console.error("Form submit error: could not find <form> element", {
+    //     target: maybeTarget,
+    //     currentTarget: maybeCurrentTarget,
+    //   });
+    //   setSubmitState("error");
+    //   return;
+    // }
+
+    // formik.setTouched(
+    //   {
+    //     fullName: true,
+    //     phoneNumber: true,
+    //     emailAddress: true,
+    //     enquiry: true,
+    //   },
+    //   true
+    // );
+
+    // const validationErrors = await formik.validateForm();
+    // if (Object.keys(validationErrors).length > 0) {
+    //   return;
+    // }
+
+    // formik.setSubmitting(true);
+
+    // try {
+    //   const formData = new FormData(formEl);
+    //   const body = new URLSearchParams();
+    //   const submittedKeys: string[] = [];
+    //   formData.forEach((value, key) => {
+    //     if (typeof value === "string") {
+    //       body.append(key, value);
+    //       submittedKeys.push(key);
+    //     }
+    //   });
+
+    //   // Debug info (no field values logged)
+    //   console.info("Submitting Netlify form", {
+    //     target: "/__forms.html",
+    //     keys: submittedKeys,
+    //     hasRecaptchaResponse: true,
+    //   });
+
+    //   const response = await fetch("/__forms.html", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/x-www-form-urlencoded",
+    //     },
+    //     body: body.toString(),
+    //   });
+
+    //   console.info("Netlify form response", {
+    //     status: response.status,
+    //     statusText: response.statusText,
+    //     redirected: response.redirected,
+    //     url: response.url,
+    //   });
+
+    //   // Netlify can respond with redirects (3xx) for successful submissions.
+    //   if (response.status < 200 || response.status >= 400) {
+    //     let responseText = "";
+    //     try {
+    //       responseText = await response.text();
+    //     } catch {
+    //       // ignore
+    //     }
+
+    //     const detail = `${response.status} ${response.statusText}`;
+    //     console.error("Netlify form submission failed", {
+    //       detail,
+    //       responseText,
+    //     });
+    //     throw new Error(detail);
+    //   }
+
+    //   setSubmitState("success");
+    //   formik.resetForm();
+    // } catch (_error) {
+    //   console.error("Form submit error", _error);
+    //   setSubmitState("error");
+    // } finally {
+    //   formik.setSubmitting(false);
+    // }
   };
 
   return (
     <form name="contact" onSubmit={handleFormSubmit}>
       <input type="hidden" name="form-name" value="contact" />
+      <input type="hidden" name="bot-field" />
 
       {submitState === "success" && (
         <div
