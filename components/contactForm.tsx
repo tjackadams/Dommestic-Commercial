@@ -53,7 +53,6 @@ export default function ContactForm() {
   const [submitState, setSubmitState] = useState<"idle" | "success" | "error">(
     "idle"
   );
-  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const formik = useFormik<ContactFormValues>({
     initialValues: {
@@ -72,7 +71,24 @@ export default function ContactForm() {
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitState("idle");
-    setSubmitError(null);
+
+    const maybeTarget = event.target;
+    const maybeCurrentTarget = event.currentTarget;
+    const formEl =
+      maybeCurrentTarget instanceof HTMLFormElement
+        ? maybeCurrentTarget
+        : maybeTarget instanceof HTMLElement
+        ? maybeTarget.closest("form")
+        : null;
+
+    if (!formEl) {
+      console.error("Form submit error: could not find <form> element", {
+        target: maybeTarget,
+        currentTarget: maybeCurrentTarget,
+      });
+      setSubmitState("error");
+      return;
+    }
 
     formik.setTouched(
       {
@@ -92,7 +108,7 @@ export default function ContactForm() {
     formik.setSubmitting(true);
 
     try {
-      const formData = new FormData(event.currentTarget);
+      const formData = new FormData(formEl);
       const body = new URLSearchParams();
       formData.forEach((value, key) => {
         if (typeof value === "string") {
@@ -122,21 +138,13 @@ export default function ContactForm() {
           detail,
           responseText,
         });
-
-        setSubmitError(responseText ? `${detail}: ${responseText}` : detail);
         throw new Error(detail);
       }
 
       setSubmitState("success");
       formik.resetForm();
     } catch (_error) {
-      if (_error instanceof Error) {
-        console.error("Form submit error", _error);
-        setSubmitError((prev) => prev ?? _error.message);
-      } else {
-        console.error("Form submit error", _error);
-        setSubmitError((prev) => prev ?? "Unknown error");
-      }
+      console.error("Form submit error", _error);
       setSubmitState("error");
     } finally {
       formik.setSubmitting(false);
@@ -162,7 +170,6 @@ export default function ContactForm() {
         >
           Sorry, we could not submit your enquiry right now. Please try again in
           a moment.
-          {submitError && <div className="mt-1 text-xs">{submitError}</div>}
         </div>
       )}
 
