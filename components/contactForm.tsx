@@ -78,7 +78,7 @@ export default function ContactForm() {
       setSubmitState("idle");
       const myForm = event.currentTarget;
       const formData = new FormData(myForm);
-      const res = await fetch("__form.html", {
+      const res = await fetch("__forms.html", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData as any).toString(),
