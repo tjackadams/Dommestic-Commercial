@@ -1,15 +1,6 @@
-import {
-  Honeypot,
-  NetlifyFormComponent,
-  NetlifyFormProvider,
-  Recaptcha,
-  useNetlifyForm,
-} from "react-netlify-forms";
 import { useFormik } from "formik";
 import { z } from "zod";
-import { useEffect } from "react";
-
-const RECAPTCHA_KEY = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_KEY || "";
+import { useState } from "react";
 
 type ContactFormValues = {
   fullName: string;
@@ -59,14 +50,9 @@ function validate(values: ContactFormValues) {
 }
 
 export default function ContactForm() {
-  const netlify = useNetlifyForm({
-    name: "contact",
-    action: "/thanks",
-    honeypotName: "bot-field",
-    onSuccess: (_response: unknown, _context: any) => {
-      console.info("Successfully sent form data to Netlify Server");
-    },
-  });
+  const [submitState, setSubmitState] = useState<"idle" | "success" | "error">(
+    "idle"
+  );
 
   const {
     handleSubmit,
@@ -76,6 +62,7 @@ export default function ContactForm() {
     errors,
     values,
     resetForm,
+    isSubmitting,
   } = useFormik<ContactFormValues>({
     initialValues: {
       fullName: "",
@@ -83,135 +70,180 @@ export default function ContactForm() {
       emailAddress: "",
       enquiry: "",
     },
-    onSubmit: (values) => netlify.handleSubmit(null, values),
+    onSubmit: async (formValues, helpers) => {
+      setSubmitState("idle");
+
+      try {
+        const body = new URLSearchParams({
+          "form-name": "contact",
+          fullName: formValues.fullName,
+          phoneNumber: formValues.phoneNumber,
+          emailAddress: formValues.emailAddress,
+          enquiry: formValues.enquiry,
+          "bot-field": "",
+        });
+
+        const response = await fetch("/__forms.html", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: body.toString(),
+        });
+
+        if (!response.ok) {
+          throw new Error(`Form submission failed: ${response.status}`);
+        }
+
+        setSubmitState("success");
+        resetForm();
+      } catch (_error) {
+        setSubmitState("error");
+      } finally {
+        helpers.setSubmitting(false);
+      }
+    },
     validate,
   });
 
-  useEffect(() => {
-    if (netlify.success) {
-      resetForm();
-    }
-  }, [netlify.success, resetForm]);
-
   return (
-    <NetlifyFormProvider {...netlify}>
-      <NetlifyFormComponent onSubmit={handleSubmit} data-netlify={true}>
-        {netlify.success && (
-          <div
-            className="rounded border border-green-200 bg-green-50 p-3 text-green-800"
-            role="alert"
-          >
-            Thanks for contacting us!
-          </div>
+    <form
+      name="contact"
+      method="POST"
+      action="/__forms.html"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      onSubmit={handleSubmit}
+    >
+      <input type="hidden" name="form-name" value="contact" />
+
+      {submitState === "success" && (
+        <div
+          className="rounded border border-green-200 bg-green-50 p-3 text-green-800"
+          role="alert"
+        >
+          Thanks for contacting us!
+        </div>
+      )}
+      {submitState === "error" && (
+        <div
+          className="rounded border border-red-200 bg-red-50 p-3 text-red-800"
+          role="alert"
+        >
+          Sorry, we could not submit your enquiry right now. Please try again in
+          a moment.
+        </div>
+      )}
+
+      <div className="hidden">
+        <label htmlFor="bot-field">Dont fill this out if youre human:</label>
+        <input
+          id="bot-field"
+          name="bot-field"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
+      <div data-netlify-recaptcha="true" />
+
+      <div className="mt-4">
+        <label htmlFor="fullName" className="block text-sm font-normal">
+          Full Name
+        </label>
+        <input
+          id="fullName"
+          type="text"
+          name="fullName"
+          value={values.fullName}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          className={`mt-1 w-full rounded border p-2 text-sm ${
+            errors.fullName && touched.fullName
+              ? "border-red-500"
+              : "border-neutral-300"
+          }`}
+        />
+        {errors.fullName && touched.fullName && (
+          <p className="mt-1 text-sm text-red-600">{errors.fullName}</p>
         )}
-        {netlify.error && (
-          <div
-            className="rounded border border-red-200 bg-red-50 p-3 text-red-800"
-            role="alert"
-          >
-            Sorry, we could not reach servers. Because it only works on Netlify,
-            our GitHub demo does not provide a response.
-          </div>
+      </div>
+
+      <div className="mt-4">
+        <label htmlFor="phoneNumber" className="block text-sm font-normal">
+          Phone Number
+        </label>
+        <input
+          id="phoneNumber"
+          type="text"
+          name="phoneNumber"
+          value={values.phoneNumber}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          className={`mt-1 w-full rounded border p-2 text-sm ${
+            errors.phoneNumber && touched.phoneNumber
+              ? "border-red-500"
+              : "border-neutral-300"
+          }`}
+        />
+        {errors.phoneNumber && touched.phoneNumber && (
+          <p className="mt-1 text-sm text-red-600">{errors.phoneNumber}</p>
         )}
-        <Honeypot />
-        <Recaptcha siteKey={RECAPTCHA_KEY} invisible />
-        <div className="mt-4">
-          <label htmlFor="fullName" className="block text-sm font-normal">
-            Full Name
-          </label>
-          <input
-            id="fullName"
-            type="text"
-            name="fullName"
-            value={values.fullName}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            className={`mt-1 w-full rounded border p-2 text-sm ${
-              errors.fullName && touched.fullName
-                ? "border-red-500"
-                : "border-neutral-300"
-            }`}
-          />
-          {errors.fullName && touched.fullName && (
-            <p className="mt-1 text-sm text-red-600">{errors.fullName}</p>
-          )}
-        </div>
+      </div>
 
-        <div className="mt-4">
-          <label htmlFor="phoneNumber" className="block text-sm font-normal">
-            Phone Number
-          </label>
-          <input
-            id="phoneNumber"
-            type="text"
-            name="phoneNumber"
-            value={values.phoneNumber}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            className={`mt-1 w-full rounded border p-2 text-sm ${
-              errors.phoneNumber && touched.phoneNumber
-                ? "border-red-500"
-                : "border-neutral-300"
-            }`}
-          />
-          {errors.phoneNumber && touched.phoneNumber && (
-            <p className="mt-1 text-sm text-red-600">{errors.phoneNumber}</p>
-          )}
-        </div>
+      <div className="mt-4">
+        <label htmlFor="emailAddress" className="block text-sm font-normal">
+          Email Address
+        </label>
+        <input
+          id="emailAddress"
+          type="email"
+          name="emailAddress"
+          value={values.emailAddress}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          className={`mt-1 w-full rounded border p-2 text-sm ${
+            errors.emailAddress && touched.emailAddress
+              ? "border-red-500"
+              : "border-neutral-300"
+          }`}
+        />
+        {errors.emailAddress && touched.emailAddress && (
+          <p className="mt-1 text-sm text-red-600">{errors.emailAddress}</p>
+        )}
+      </div>
 
-        <div className="mt-4">
-          <label htmlFor="emailAddress" className="block text-sm font-normal">
-            Email Address
-          </label>
-          <input
-            id="emailAddress"
-            type="email"
-            name="emailAddress"
-            value={values.emailAddress}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            className={`mt-1 w-full rounded border p-2 text-sm ${
-              errors.emailAddress && touched.emailAddress
-                ? "border-red-500"
-                : "border-neutral-300"
-            }`}
-          />
-          {errors.emailAddress && touched.emailAddress && (
-            <p className="mt-1 text-sm text-red-600">{errors.emailAddress}</p>
-          )}
-        </div>
+      <div className="mt-4">
+        <label htmlFor="enquiry" className="block text-sm font-normal">
+          Enquiry
+        </label>
+        <textarea
+          id="enquiry"
+          rows={3}
+          name="enquiry"
+          value={values.enquiry}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          className={`mt-1 w-full rounded border p-2 text-sm ${
+            errors.enquiry && touched.enquiry
+              ? "border-red-500"
+              : "border-neutral-300"
+          }`}
+        />
+        {errors.enquiry && touched.enquiry && (
+          <p className="mt-1 text-sm text-red-600">{errors.enquiry}</p>
+        )}
+      </div>
 
-        <div className="mt-4">
-          <label htmlFor="enquiry" className="block text-sm font-normal">
-            Enquiry
-          </label>
-          <textarea
-            id="enquiry"
-            rows={3}
-            name="enquiry"
-            value={values.enquiry}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            className={`mt-1 w-full rounded border p-2 text-sm ${
-              errors.enquiry && touched.enquiry
-                ? "border-red-500"
-                : "border-neutral-300"
-            }`}
-          />
-          {errors.enquiry && touched.enquiry && (
-            <p className="mt-1 text-sm text-red-600">{errors.enquiry}</p>
-          )}
-        </div>
-
-        <div className="mt-4 flex justify-end">
-          <button
-            type="submit"
-            className="min-w-[120px] rounded bg-(--primary) px-4 py-2 text-white hover:bg-(--primary-lighter)"
-          >
-            Send
-          </button>
-        </div>
-      </NetlifyFormComponent>
-    </NetlifyFormProvider>
+      <div className="mt-4 flex justify-end">
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="min-w-30 rounded bg-(--primary) px-4 py-2 text-white hover:bg-(--primary-lighter)"
+        >
+          Send
+        </button>
+      </div>
+    </form>
   );
 }
