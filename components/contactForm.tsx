@@ -54,67 +54,73 @@ export default function ContactForm() {
     "idle"
   );
 
-  const {
-    handleSubmit,
-    handleChange,
-    handleBlur,
-    touched,
-    errors,
-    values,
-    resetForm,
-    isSubmitting,
-  } = useFormik<ContactFormValues>({
+  const formik = useFormik<ContactFormValues>({
     initialValues: {
       fullName: "",
       phoneNumber: "",
       emailAddress: "",
       enquiry: "",
     },
-    onSubmit: async (formValues, helpers) => {
-      setSubmitState("idle");
-
-      try {
-        const body = new URLSearchParams({
-          "form-name": "contact",
-          fullName: formValues.fullName,
-          phoneNumber: formValues.phoneNumber,
-          emailAddress: formValues.emailAddress,
-          enquiry: formValues.enquiry,
-          "bot-field": "",
-        });
-
-        const response = await fetch("/__forms.html", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          body: body.toString(),
-        });
-
-        if (!response.ok) {
-          throw new Error(`Form submission failed: ${response.status}`);
-        }
-
-        setSubmitState("success");
-        resetForm();
-      } catch (_error) {
-        setSubmitState("error");
-      } finally {
-        helpers.setSubmitting(false);
-      }
+    onSubmit: () => {
+      // Submission is handled by handleFormSubmit so we can include FormData
+      // (e.g. reCAPTCHA response) in the POST body.
     },
     validate,
   });
 
+  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setSubmitState("idle");
+
+    formik.setTouched(
+      {
+        fullName: true,
+        phoneNumber: true,
+        emailAddress: true,
+        enquiry: true,
+      },
+      true
+    );
+
+    const validationErrors = await formik.validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      return;
+    }
+
+    formik.setSubmitting(true);
+
+    try {
+      const formData = new FormData(event.currentTarget);
+      const body = new URLSearchParams();
+      formData.forEach((value, key) => {
+        if (typeof value === "string") {
+          body.append(key, value);
+        }
+      });
+
+      const response = await fetch("/__forms.html", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: body.toString(),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Form submission failed: ${response.status}`);
+      }
+
+      setSubmitState("success");
+      formik.resetForm();
+    } catch (_error) {
+      setSubmitState("error");
+    } finally {
+      formik.setSubmitting(false);
+    }
+  };
+
   return (
-    <form
-      name="contact"
-      method="POST"
-      action="/__forms.html"
-      data-netlify="true"
-      netlify-honeypot="bot-field"
-      onSubmit={handleSubmit}
-    >
+    <form name="contact" onSubmit={handleFormSubmit}>
       <input type="hidden" name="form-name" value="contact" />
 
       {submitState === "success" && (
@@ -136,7 +142,7 @@ export default function ContactForm() {
       )}
 
       <div className="hidden">
-        <label htmlFor="bot-field">Dont fill this out if youre human:</label>
+        <label htmlFor="bot-field">Don't fill this out if you're human:</label>
         <input
           id="bot-field"
           name="bot-field"
@@ -155,17 +161,17 @@ export default function ContactForm() {
           id="fullName"
           type="text"
           name="fullName"
-          value={values.fullName}
-          onChange={handleChange}
-          onBlur={handleBlur}
+          value={formik.values.fullName}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
           className={`mt-1 w-full rounded border p-2 text-sm ${
-            errors.fullName && touched.fullName
+            formik.errors.fullName && formik.touched.fullName
               ? "border-red-500"
               : "border-neutral-300"
           }`}
         />
-        {errors.fullName && touched.fullName && (
-          <p className="mt-1 text-sm text-red-600">{errors.fullName}</p>
+        {formik.errors.fullName && formik.touched.fullName && (
+          <p className="mt-1 text-sm text-red-600">{formik.errors.fullName}</p>
         )}
       </div>
 
@@ -177,17 +183,19 @@ export default function ContactForm() {
           id="phoneNumber"
           type="text"
           name="phoneNumber"
-          value={values.phoneNumber}
-          onChange={handleChange}
-          onBlur={handleBlur}
+          value={formik.values.phoneNumber}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
           className={`mt-1 w-full rounded border p-2 text-sm ${
-            errors.phoneNumber && touched.phoneNumber
+            formik.errors.phoneNumber && formik.touched.phoneNumber
               ? "border-red-500"
               : "border-neutral-300"
           }`}
         />
-        {errors.phoneNumber && touched.phoneNumber && (
-          <p className="mt-1 text-sm text-red-600">{errors.phoneNumber}</p>
+        {formik.errors.phoneNumber && formik.touched.phoneNumber && (
+          <p className="mt-1 text-sm text-red-600">
+            {formik.errors.phoneNumber}
+          </p>
         )}
       </div>
 
@@ -199,17 +207,19 @@ export default function ContactForm() {
           id="emailAddress"
           type="email"
           name="emailAddress"
-          value={values.emailAddress}
-          onChange={handleChange}
-          onBlur={handleBlur}
+          value={formik.values.emailAddress}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
           className={`mt-1 w-full rounded border p-2 text-sm ${
-            errors.emailAddress && touched.emailAddress
+            formik.errors.emailAddress && formik.touched.emailAddress
               ? "border-red-500"
               : "border-neutral-300"
           }`}
         />
-        {errors.emailAddress && touched.emailAddress && (
-          <p className="mt-1 text-sm text-red-600">{errors.emailAddress}</p>
+        {formik.errors.emailAddress && formik.touched.emailAddress && (
+          <p className="mt-1 text-sm text-red-600">
+            {formik.errors.emailAddress}
+          </p>
         )}
       </div>
 
@@ -221,24 +231,24 @@ export default function ContactForm() {
           id="enquiry"
           rows={3}
           name="enquiry"
-          value={values.enquiry}
-          onChange={handleChange}
-          onBlur={handleBlur}
+          value={formik.values.enquiry}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
           className={`mt-1 w-full rounded border p-2 text-sm ${
-            errors.enquiry && touched.enquiry
+            formik.errors.enquiry && formik.touched.enquiry
               ? "border-red-500"
               : "border-neutral-300"
           }`}
         />
-        {errors.enquiry && touched.enquiry && (
-          <p className="mt-1 text-sm text-red-600">{errors.enquiry}</p>
+        {formik.errors.enquiry && formik.touched.enquiry && (
+          <p className="mt-1 text-sm text-red-600">{formik.errors.enquiry}</p>
         )}
       </div>
 
       <div className="mt-4 flex justify-end">
         <button
           type="submit"
-          disabled={isSubmitting}
+          disabled={formik.isSubmitting}
           className="min-w-30 rounded bg-(--primary) px-4 py-2 text-white hover:bg-(--primary-lighter)"
         >
           Send
