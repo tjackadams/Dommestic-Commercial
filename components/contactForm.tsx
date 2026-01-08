@@ -53,6 +53,7 @@ export default function ContactForm() {
   const [submitState, setSubmitState] = useState<"idle" | "success" | "error">(
     "idle"
   );
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const formik = useFormik<ContactFormValues>({
     initialValues: {
@@ -71,6 +72,7 @@ export default function ContactForm() {
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitState("idle");
+    setSubmitError(null);
 
     formik.setTouched(
       {
@@ -106,13 +108,35 @@ export default function ContactForm() {
         body: body.toString(),
       });
 
-      if (!response.ok) {
-        throw new Error(`Form submission failed: ${response.status}`);
+      // Netlify can respond with redirects (3xx) for successful submissions.
+      if (response.status < 200 || response.status >= 400) {
+        let responseText = "";
+        try {
+          responseText = await response.text();
+        } catch {
+          // ignore
+        }
+
+        const detail = `${response.status} ${response.statusText}`;
+        console.error("Netlify form submission failed", {
+          detail,
+          responseText,
+        });
+
+        setSubmitError(responseText ? `${detail}: ${responseText}` : detail);
+        throw new Error(detail);
       }
 
       setSubmitState("success");
       formik.resetForm();
     } catch (_error) {
+      if (_error instanceof Error) {
+        console.error("Form submit error", _error);
+        setSubmitError((prev) => prev ?? _error.message);
+      } else {
+        console.error("Form submit error", _error);
+        setSubmitError((prev) => prev ?? "Unknown error");
+      }
       setSubmitState("error");
     } finally {
       formik.setSubmitting(false);
@@ -138,6 +162,7 @@ export default function ContactForm() {
         >
           Sorry, we could not submit your enquiry right now. Please try again in
           a moment.
+          {submitError && <div className="mt-1 text-xs">{submitError}</div>}
         </div>
       )}
 
