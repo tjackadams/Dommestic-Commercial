@@ -1,75 +1,74 @@
-import { useContext } from "react";
-import AppContext from "../appContext";
-import Map from "./map";
+import { siteConfig } from "../configuration/site-config";
+import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
 
 export default function Footer() {
-  const state = useContext(AppContext);
-
   return (
-    <footer>
-      <div className="w-100" style={{ height: 600 }}>
-        <Map openingTimes={state?.openingTimes ?? []} />
-      </div>
-      <div className="d-flex flex-wrap justify-content-evenly align-items-start text-white p-4 bg-dark text-center text-md-start">
-        <div className="flex-shrink-1">
-          <p className="fw-bold">Domestic & Commercial Drain Services</p>
-          <ul className="list-unstyled">
-            <li>67 Merryfield Road</li>
-            <li>Dudley</li>
-            <li>West Midlands</li>
-            <li>DY1 2ND</li>
-          </ul>
-          <ul className="list-unstyled lh-lg">
-            <li>
-              <a
-                className="link-primary text-decoration-none"
-                href="tel:01384357446"
-              >
-                <i className="bi bi-telephone"></i> 01384 357446
-              </a>
-            </li>
-            <li>
-              <a
-                className="link-primary text-decoration-none"
-                href="tel:07974243764"
-              >
-                <i className="bi bi-telephone"></i> 07974 243764
-              </a>
-            </li>
-            <li>
-              <a
-                className="link-primary text-decoration-none"
-                href="mailto:stevetomkins53@gmail.com"
-              >
-                <i className="bi bi-envelope"></i> stevetomkins53@gmail.com
-              </a>
-            </li>
-          </ul>
+    <footer className="bg-neutral-900 text-white">
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          <div>
+            <p className="text-xl font-bold mb-4">{siteConfig.businessName}</p>
+            <address className="not-italic text-neutral-400 space-y-1">
+              <p>{siteConfig.address.line1}</p>
+              <p>{siteConfig.address.town}</p>
+              <p>{siteConfig.address.county}</p>
+              <p>{siteConfig.address.postcode}</p>
+            </address>
+          </div>
+
+          <div>
+            <p className="text-lg font-bold mb-4 text-white">Quick Contact</p>
+            <ul className="space-y-4">
+              <li>
+                <a
+                  className="inline-flex items-center gap-3 text-(--primary) no-underline hover:text-(--primary-lighter) transition-colors"
+                  href={siteConfig.contact.telLinkLandline}
+                >
+                  <PhoneIcon className="h-5 w-5 shrink-0" aria-hidden="true" />
+                  <span className="text-lg">{siteConfig.contact.landline}</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  className="inline-flex items-center gap-3 text-(--primary) no-underline hover:text-(--primary-lighter) transition-colors"
+                  href={siteConfig.contact.telLinkMobile}
+                >
+                  <PhoneIcon className="h-5 w-5 shrink-0" aria-hidden="true" />
+                  <span className="text-lg">{siteConfig.contact.mobile}</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  className="inline-flex items-center gap-3 text-neutral-400 no-underline hover:text-white transition-colors"
+                  href={siteConfig.contact.mailtoLink}
+                >
+                  <EnvelopeIcon
+                    className="h-5 w-5 shrink-0"
+                    aria-hidden="true"
+                  />
+                  <span className="text-lg truncate">
+                    {siteConfig.contact.email}
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p className="text-lg font-bold mb-4 text-white">Opening Hours</p>
+            <ul className="text-neutral-400 space-y-1">
+              <li>Mon - Fri: 09:00 - 17:00</li>
+              <li>Sat: 09:00 - 14:00</li>
+              <li>Sun: Closed</li>
+            </ul>
+          </div>
         </div>
-        <div className="vr d-none d-md-block"></div>
-        <div className="flex-shrink-1">
-          <p className="fw-bold">Opening Times</p>
-          <ul className="list-unstyled lh-lg">
-            {state?.openingTimes &&
-              state.openingTimes.map((openingTime) => {
-                return (
-                  <li key={openingTime.day}>
-                    {openingTime.day} {openingTime.opens}
-                    {openingTime.opens !== "Closed"
-                      ? " - " + openingTime.closes
-                      : ""}
-                  </li>
-                );
-              })}
-          </ul>
-        </div>
-      </div>
-      <div className="d-flex flex-column flex-md-row flex-nowrap justify-content-evenly align-items-center text-white p-2 bg-dark">
-        <div>
-          <p>© 2022 - Domestic & Commercial Drain Services</p>
-        </div>
-        <div>
-          <p>Website design by ITadams</p>
+
+        <div className="mt-12 pt-8 border-t border-neutral-800 text-center text-neutral-500 text-sm">
+          <p>
+            &copy; {new Date().getFullYear()} {siteConfig.businessName}. All
+            rights reserved.
+          </p>
         </div>
       </div>
     </footer>

@@ -2,8 +2,7 @@ $primary:#008272;
 $bs-body-bg: rgb(237, 235, 233);
 $primary-lighter: rgb(0, 178, 148);
 
-@import "node_modules/bootstrap/scss/bootstrap";
-@import "node_modules/bootstrap-icons/font/bootstrap-icons.scss";
+@import "bootstrap/scss/bootstrap";
 
 :root {
     --bs-body-bg: rgb(237, 235, 233);

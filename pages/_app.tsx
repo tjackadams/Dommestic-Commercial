@@ -1,15 +1,16 @@
-import { DefaultSeo, LocalBusinessJsonLd } from "next-seo";
+import { LocalBusinessJsonLd } from "next-seo";
+import { generateDefaultSeo } from "next-seo/pages";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Script from "next/script";
 import { useEffect, useState } from "react";
-import { SSRProvider } from "react-bootstrap";
 import AppContext from "../appContext";
 import Layout from "../components/layout";
 import { OpeningTime } from "../configuration/opening-times";
+import { siteConfig } from "../configuration/site-config";
 import * as gtag from "../lib/gtag";
-import "../styling/app.scss";
+import "../styling/app.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -27,9 +28,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   const value = { openingTimes, setOpeningTimes };
 
-  const title = "Domestic & Commercial Drain Services in Dudley, West Midlands";
-  const description =
-    "We serve Dudley, West Midlands - Blocked Drains, Drainage, Drain Cleaning. Fast & reliable service. No VAT charges. Domestic & Commercial Drain Services.";
+  const areaList = siteConfig.serviceAreas.join(", ");
+  const title = `${siteConfig.businessName} | Drain Services in Dudley & West Midlands`;
+  const description = `Expert drainage services in ${areaList}. Blocked drains, cleaning and repairs. Fast, reliable & professional. No VAT charges.`;
 
   return (
     <>
@@ -57,36 +58,37 @@ function MyApp({ Component, pageProps }: AppProps) {
           name="google-site-verification"
           content="BlE7dGE6FASI4yrml47wZuvHUxOnZH_OzvaSs16ANtA"
         />
+        {generateDefaultSeo({
+          title,
+          description,
+          canonical: "https://www.dudleydrains.co.uk",
+          openGraph: {
+            type: "website",
+            url: "https://www.dudleydrains.co.uk",
+            title: title,
+            description: description,
+          },
+        })}
       </Head>
-      <DefaultSeo
-        title={title}
-        description={description}
-        canonical="https://www.dudleydrains.co.uk"
-        openGraph={{
-          type: "website",
-          url: "https://www.dudleydrains.co.uk",
-          title: title,
-          description: description,
-        }}
-      />
       <LocalBusinessJsonLd
         type="Drainage service"
-        id="https://www.dudleydrains.co.uk"
-        name="Domestic & Commercial Drain Services"
+        scriptId="local-business-jsonld"
+        scriptKey="local-business-jsonld"
+        name={siteConfig.businessName}
         description={description}
         url="https://www.dudleydrains.co.uk"
-        telephone="07974243764"
+        telephone={siteConfig.contact.mobile}
         address={{
-          streetAddress: "67 Merryfield Rd",
-          addressLocality: "Dudley",
-          postalCode: "DY1 2ND",
+          streetAddress: siteConfig.address.line1,
+          addressLocality: siteConfig.address.town,
+          postalCode: siteConfig.address.postcode,
           addressCountry: "UK",
         }}
         geo={{
-          latitude: "52.511172",
-          longitude: "-2.115357",
+          latitude: siteConfig.mapLocation.lat,
+          longitude: siteConfig.mapLocation.lng,
         }}
-        openingHours={[
+        openingHoursSpecification={[
           {
             opens: "09:00",
             closes: "17:00",
@@ -99,13 +101,11 @@ function MyApp({ Component, pageProps }: AppProps) {
           },
         ]}
       />
-      <SSRProvider>
-        <AppContext.Provider value={value}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </AppContext.Provider>
-      </SSRProvider>
+      <AppContext.Provider value={value}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </AppContext.Provider>
     </>
   );
 }
