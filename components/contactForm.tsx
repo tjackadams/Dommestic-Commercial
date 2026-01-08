@@ -1,9 +1,6 @@
 import { useFormik } from "formik";
 import { z } from "zod";
-import { useRef, useState } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
-
-const RECAPTCHA_KEY = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_KEY || "";
+import { useState } from "react";
 
 type ContactFormValues = {
   fullName: string;
@@ -20,7 +17,6 @@ const contactFormSchema = z.object({
     .trim(),
   phoneNumber: z.string().min(1, "Please enter a valid phone number."),
   emailAddress: z
-    .string()
     .email("Please enter a valid email address.")
     .min(1, "Please enter a valid email address."),
   enquiry: z
@@ -95,102 +91,6 @@ export default function ContactForm() {
       setSubmitState("error");
       console.warn(`${e}`);
     }
-
-    // setSubmitState("idle");
-
-    // const maybeTarget = event.target;
-    // const maybeCurrentTarget = event.currentTarget;
-    // const formEl =
-    //   maybeCurrentTarget instanceof HTMLFormElement
-    //     ? maybeCurrentTarget
-    //     : maybeTarget instanceof HTMLElement
-    //     ? maybeTarget.closest("form")
-    //     : null;
-
-    // if (!formEl) {
-    //   console.error("Form submit error: could not find <form> element", {
-    //     target: maybeTarget,
-    //     currentTarget: maybeCurrentTarget,
-    //   });
-    //   setSubmitState("error");
-    //   return;
-    // }
-
-    // formik.setTouched(
-    //   {
-    //     fullName: true,
-    //     phoneNumber: true,
-    //     emailAddress: true,
-    //     enquiry: true,
-    //   },
-    //   true
-    // );
-
-    // const validationErrors = await formik.validateForm();
-    // if (Object.keys(validationErrors).length > 0) {
-    //   return;
-    // }
-
-    // formik.setSubmitting(true);
-
-    // try {
-    //   const formData = new FormData(formEl);
-    //   const body = new URLSearchParams();
-    //   const submittedKeys: string[] = [];
-    //   formData.forEach((value, key) => {
-    //     if (typeof value === "string") {
-    //       body.append(key, value);
-    //       submittedKeys.push(key);
-    //     }
-    //   });
-
-    //   // Debug info (no field values logged)
-    //   console.info("Submitting Netlify form", {
-    //     target: "/__forms.html",
-    //     keys: submittedKeys,
-    //     hasRecaptchaResponse: true,
-    //   });
-
-    //   const response = await fetch("/__forms.html", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/x-www-form-urlencoded",
-    //     },
-    //     body: body.toString(),
-    //   });
-
-    //   console.info("Netlify form response", {
-    //     status: response.status,
-    //     statusText: response.statusText,
-    //     redirected: response.redirected,
-    //     url: response.url,
-    //   });
-
-    //   // Netlify can respond with redirects (3xx) for successful submissions.
-    //   if (response.status < 200 || response.status >= 400) {
-    //     let responseText = "";
-    //     try {
-    //       responseText = await response.text();
-    //     } catch {
-    //       // ignore
-    //     }
-
-    //     const detail = `${response.status} ${response.statusText}`;
-    //     console.error("Netlify form submission failed", {
-    //       detail,
-    //       responseText,
-    //     });
-    //     throw new Error(detail);
-    //   }
-
-    //   setSubmitState("success");
-    //   formik.resetForm();
-    // } catch (_error) {
-    //   console.error("Form submit error", _error);
-    //   setSubmitState("error");
-    // } finally {
-    //   formik.setSubmitting(false);
-    // }
   };
 
   return (
@@ -307,8 +207,6 @@ export default function ContactForm() {
           <p className="mt-1 text-sm text-red-600">{formik.errors.enquiry}</p>
         )}
       </div>
-
-      <div data-netlify-recaptcha="true"></div>
 
       <div className="mt-4 flex justify-end">
         <button
