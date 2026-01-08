@@ -110,10 +110,19 @@ export default function ContactForm() {
     try {
       const formData = new FormData(formEl);
       const body = new URLSearchParams();
+      const submittedKeys: string[] = [];
       formData.forEach((value, key) => {
         if (typeof value === "string") {
           body.append(key, value);
+          submittedKeys.push(key);
         }
+      });
+
+      // Debug info (no field values logged)
+      console.info("Submitting Netlify form", {
+        target: "/__forms.html",
+        keys: submittedKeys,
+        hasRecaptchaResponse: submittedKeys.includes("g-recaptcha-response"),
       });
 
       const response = await fetch("/__forms.html", {
@@ -122,6 +131,13 @@ export default function ContactForm() {
           "Content-Type": "application/x-www-form-urlencoded",
         },
         body: body.toString(),
+      });
+
+      console.info("Netlify form response", {
+        status: response.status,
+        statusText: response.statusText,
+        redirected: response.redirected,
+        url: response.url,
       });
 
       // Netlify can respond with redirects (3xx) for successful submissions.
