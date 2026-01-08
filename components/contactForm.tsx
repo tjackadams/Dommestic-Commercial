@@ -86,6 +86,7 @@ export default function ContactForm() {
 
       if (res.status === 200) {
         setSubmitState("success");
+        formik.resetForm();
       } else {
         setSubmitState("error");
         console.warn(`${res.status} ${res.statusText}`);
@@ -306,6 +307,8 @@ export default function ContactForm() {
           <p className="mt-1 text-sm text-red-600">{formik.errors.enquiry}</p>
         )}
       </div>
+
+      <div data-netlify-recaptcha="true"></div>
 
       <div className="mt-4 flex justify-end">
         <button
