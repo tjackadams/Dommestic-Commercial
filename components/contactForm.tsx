@@ -112,20 +112,6 @@ export default function ContactForm() {
     formik.setSubmitting(true);
 
     try {
-      if (!RECAPTCHA_KEY) {
-        console.error(
-          "Form submit error: NEXT_PUBLIC_GOOGLE_RECAPTCHA_KEY is missing"
-        );
-        throw new Error("Missing reCAPTCHA site key");
-      }
-
-      const token = await recaptchaRef.current?.executeAsync();
-      recaptchaRef.current?.reset();
-      if (!token) {
-        console.error("Form submit error: reCAPTCHA token missing");
-        throw new Error("Missing reCAPTCHA token");
-      }
-
       const formData = new FormData(formEl);
       const body = new URLSearchParams();
       const submittedKeys: string[] = [];
@@ -136,13 +122,10 @@ export default function ContactForm() {
         }
       });
 
-      body.append("g-recaptcha-response", token);
-      const allKeys = [...submittedKeys, "g-recaptcha-response"];
-
       // Debug info (no field values logged)
       console.info("Submitting Netlify form", {
         target: "/__forms.html",
-        keys: allKeys,
+        keys: submittedKeys,
         hasRecaptchaResponse: true,
       });
 
@@ -209,18 +192,6 @@ export default function ContactForm() {
           a moment.
         </div>
       )}
-
-      <div className="hidden">
-        <label htmlFor="bot-field">Don't fill this out if you're human:</label>
-        <input
-          id="bot-field"
-          name="bot-field"
-          tabIndex={-1}
-          autoComplete="off"
-        />
-      </div>
-
-      <ReCAPTCHA ref={recaptchaRef} sitekey={RECAPTCHA_KEY} size="invisible" />
 
       <div className="mt-4">
         <label htmlFor="fullName" className="block text-sm font-normal">
