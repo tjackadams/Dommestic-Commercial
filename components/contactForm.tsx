@@ -220,8 +220,6 @@ export default function ContactForm() {
         />
       </div>
 
-      <div data-netlify-recaptcha="true" />
-
       <ReCAPTCHA ref={recaptchaRef} sitekey={RECAPTCHA_KEY} size="invisible" />
 
       <div className="mt-4">
